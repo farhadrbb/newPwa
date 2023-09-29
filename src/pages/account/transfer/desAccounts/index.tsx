@@ -11,10 +11,6 @@ import AccountsDestination from "./accountsDestination";
 
 
 
-interface IFormValue {
-    amount: string,
-    price: string
-}
 
 const DesAccounts = () => {
 

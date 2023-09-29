@@ -14,7 +14,7 @@ type IProps = {
 const TabsCustom = (props: IProps) => {
     // __________________________________variebles_________________________
     let { dataTab, className, center, children } = props
-    let classNamesTabs = " px-4 text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100   rounded-t-md "
+    let classNamesTabs = " px-5 text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100    "
     // ___________________________________hook_______________________________
     const [click, setClick] = useState<ItemsTab>({} as ItemsTab)
     // _________________________________function_____________________________
@@ -22,12 +22,12 @@ const TabsCustom = (props: IProps) => {
     const handleClick = (item: ItemsTab) => {
         setClick(item)
     }
-    const handleRenderElement = (clickId:any,notAnime?:boolean) => {
+    const handleRenderElement = (clickId: any, notAnime?: boolean) => {
         let div = children?.map((child: any, ind: any) => {
             return (
                 <>
                     {clickId === ind && (
-                        <div className={`${!notAnime &&  "animate-[scaleClick0_0.5s]"}`}>
+                        <div className={`${!notAnime && "animate-[scaleClick0_0.5s]"}`}>
                             {child}
                         </div>
                     )}
@@ -49,9 +49,12 @@ const TabsCustom = (props: IProps) => {
                 <div className={`${center && 'justify-center'} flex w-full`}>
                     {dataTab?.map((itm, ind) => (
                         <div
-                            className={`${className} ${classNamesTabs} py-1  ${click.id === itm.id ? 'border-blue-1 text-blue dark:!border-blue-1 border-b-0 border animate-[scaleClick_0.5s]  rounded-t-md text-md' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
+                            className={`${className} ${classNamesTabs} py-2  ${click.id === itm.id ? 'border-blue-1 text-blue dark:text-white dark:!border-blue-1   animate-[scaleClick_1s]  rounded-full  shadow-[0_0_5px_1px_rgba(0,0,0,0.2)]  dark:shadow-darkMode-black  text-md' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
                             onClick={() => handleClick(itm)}>
-                            {itm.title}
+                            <div className={`${click.id === itm.id && ("animate-[scaleClick_1s]")}}`}>
+
+                                {itm.title}
+                            </div>
                         </div>
                     ))}
                 </div>

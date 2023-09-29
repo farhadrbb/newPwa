@@ -40,14 +40,14 @@ const LoginTabOne = () => {
             name: 'userName',
             title: 'نام کاربری - شماره ملی',
             type: "number",
-            active:true
+            active: true
 
         },
         {
             name: 'pass',
             title: 'رمز عبور',
             type: "password",
-            active:true,
+            active: true,
             btn: {
                 // title: 'انتخاب',
                 click: handleClickModal,
@@ -115,20 +115,20 @@ const LoginTabOne = () => {
 
 
 
-    
+
     return (
         <>
 
-            <Box className="mt-12">
-                <InputCustom
-                    dataForm={dataForm}
-                    formValues={formValue}
-                    setFormValues={setformValue} />
-                <div className="flex mt-8 justify-between items-center">
-                    <BtnCustom title={'ورود'} click={handleClickLoginBtn} />
-                    <div className="text-[11px] text-blue">ثبت نام / فراموشی رمز </div>
-                </div>
-            </Box>
+                <Box className="mt-12">
+                    <InputCustom
+                        dataForm={dataForm}
+                        formValues={formValue}
+                        setFormValues={setformValue} />
+                    <div className="flex mt-8 justify-between items-center">
+                        <BtnCustom title={'ورود'} click={handleClickLoginBtn} />
+                        <div className="text-[11px] text-blue">ثبت نام / فراموشی رمز </div>
+                    </div>
+                </Box>
 
 
         </>

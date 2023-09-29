@@ -4,13 +4,16 @@ import InputCustom from "../../../../../component/inputCustom";
 import { useLazyGetAllDataQuery } from "../../../../../redux/api/allApi";
 import { GiClick } from 'react-icons/gi'
 import logo_img from '../../../../../assest/img/tejarat_logo1.png'
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setStepsSlice } from "../../../../../redux/slice/step";
+import URLS from "../../../../../common/url";
 
 
 
 
 interface IFormValue {
-    amount: string,
-    price: string
+    text: string,
 }
 
 const AccountsDestination = () => {
@@ -19,6 +22,8 @@ const AccountsDestination = () => {
     const [formValue, setFormValue] = useState<IFormValue>({} as IFormValue)
     const [stateData, setstateData] = useState<any>([]);
     const [getData, resultGetData] = useLazyGetAllDataQuery()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     // ______________________________________varibles_____________________________
 
@@ -36,10 +41,29 @@ const AccountsDestination = () => {
             // },
         },
 
-
     ]
 
+    // ______________________________________Function_____________________________
 
+    const handleClickItem = (itm: any) => {
+        let obj = {
+            destAccountNumber: itm.accountNumber,
+        }
+        dispatch(setStepsSlice({
+            step1: {
+                id: 1,
+                pathname: URLS.account.confirmTransfer,
+                title: 'انتقال وجه',
+                backUrl1: URLS.account.index,
+                backToHome: URLS.account.index,
+                data: { formValue: obj },
+                add: true
+            }
+        }))
+        navigate(URLS.account.transfer)
+    }
+
+    // ______________________________________useEffect_____________________________
 
     useEffect(() => {
         getData({ url: 'accountDestination' })
@@ -63,15 +87,15 @@ const AccountsDestination = () => {
                 </div>
                 <div className="">
                     {stateData.map((itm: any, ind: any) => (
-                        <div className="boxItem-global">
+                        <div className="boxItem-global cursor-pointer" onClick={() => handleClickItem(itm)}>
                             <div className="flex justify-between items-center">
                                 <div className="flex text-xs font-bold items-center">
                                     <img src={logo_img} className='w-[35px] h-[37px]' />
-                                    <div className="mr-1">{itm?.title}</div>
+                                    <div className="mr-1 dark:text-gray-100">{itm?.title}</div>
                                 </div>
-                                <GiClick className="text-xl text-cyan-50  rotate-[30deg]" />
+                                {/* <GiClick className="text-xl text-cyan-50  rotate-[30deg]" /> */}
                             </div>
-                            <div className="mt-1 text-sm text-gray-600 font-bold flex  w-[98%] mr-2">{itm.accountNumber}</div>
+                            <div className="mt-1 text-xs text-gray-500 dark:text-gray-200 font-bold flex justify-end w-full ">{itm.accountNumber}</div>
                         </div>
                     ))}
 

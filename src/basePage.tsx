@@ -43,7 +43,7 @@ const BasePage = () => {
         {
             path: "/services",
             children: [
-                { index: true, element: <TransferAccount /> },
+                { index: true, element: <div>test</div> },
                 { path: "transfer", element: <div>transfer</div> },
                 { path: "transfer/test2", element: <div>test2</div> },
             ],
@@ -51,7 +51,7 @@ const BasePage = () => {
         {
             path: "/profile",
             children: [
-                { index: true, element: <TransferAccount /> },
+                { index: true, element: <div>test</div> },
                 { path: "transfer", element: <div>transfer</div> },
                 { path: "transfer/test2", element: <div>test2</div> },
             ],

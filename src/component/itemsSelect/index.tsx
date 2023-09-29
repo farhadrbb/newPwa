@@ -20,8 +20,8 @@ interface IProps {
 const ItemsSelect = (props: IProps) => {
     // __________________________________varibles________________
     const { menu } = props
-    let boxItemClass = `w-full h-[100px] rounded-2xl bg-white flex flex-col items-center cursor-pointer  relative shadow-lg  shadow-slate-400 dark:bg-darkMode-grayDark dark:shadow-slate-900`
-    let boxItemTitle = `absolute bottom-0 w-full h-[32px] text-white  rounded-b-2xl flex justify-center items-center text-xs `
+    let boxItemClass = `w-full h-[85px] rounded-2xl bg-white flex flex-col items-center cursor-pointer  relative shadow-lg  shadow-slate-400 dark:bg-darkMode-grayDark dark:shadow-slate-900`
+    let boxItemTitle = `absolute bottom-0 w-full h-[25px] text-white  rounded-b-2xl flex justify-center items-center text-[11px] `
     // ___________________________________Hook_______________________
     const [clickItem, setClickItem] = useState({} as IMenu)
     // __________________________________functions______________
@@ -47,7 +47,7 @@ const ItemsSelect = (props: IProps) => {
                             style={{boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"}}
 
                         >
-                            <div className="absolute top-4"><itm.icon classNameIcon={itm.fill} size={35}/></div>
+                            <div className="absolute top-4"><itm.icon classNameIcon={itm.fill} size={30}/></div>
                             <div className={`${boxItemTitle} ${itm.color}`}>{itm.title}</div>
 
                         </div>

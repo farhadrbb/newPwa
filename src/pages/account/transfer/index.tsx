@@ -10,15 +10,10 @@ import TejaratAccountTransfer from "./tejaratAccount";
 
 
 
-interface IFormValue {
-    amount: string,
-    price: string
-}
 
 const TransferAccount = () => {
     // ___________________________________Hook_______________________
 
-    const [formValue, setFormValue] = useState<IFormValue>({} as IFormValue)
     // ______________________________________varibles_____________________________
 
     let dataTab = [

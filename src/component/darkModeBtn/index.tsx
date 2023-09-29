@@ -1,4 +1,6 @@
 import React from 'react'
+import { BsFillMoonFill } from 'react-icons/bs'
+import { BiSolidSun } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
 import Box from '../../component/box'
 import Loading from '../../component/loading'
@@ -20,9 +22,20 @@ const DarkBtn = () => {
     return (
         <>
             {/* <div className="animate-[fade_0.8s]"> */}
-                <div className="animate-[downAnime20_0.8s] absolute top-0 left-0">
-                        <BtnCustom title="dark" click={handleClickTheme}/>
-                </div>
+            <div className="flex justify-center items-center">
+                {darkmode === 'dark' && (
+                    <div className='animate-[fade_1s]'>
+
+                        <BiSolidSun onClick={handleClickTheme} className={'text-gray-200 text-xl'} />
+                    </div>
+                )}
+                {darkmode === 'light' && (
+                    <div className='animate-[fade_1s]'>
+                        <BsFillMoonFill onClick={handleClickTheme} className={'text-gray-200  '} />
+                    </div>
+                )}
+                {/* <BtnCustom title="dark" click={handleClickTheme}/> */}
+            </div>
             {/* </div> */}
         </>
     )

@@ -148,8 +148,8 @@ const Account = () => {
 
     return (
         <>
-            <div className="animate-[fade_0.8s_linear]">
-                <div className="animate-[downAnime50_1s] ">
+            <div className="animate-[fade_0.5s_linear]">
+                <div className="animate-[downAnime50_1.3s] ">
                     <ItemsSelect menu={menu} />
                 </div>
             </div>

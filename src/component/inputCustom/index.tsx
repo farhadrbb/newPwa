@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import cx from "classnames";
-import { withTranslation,useTranslation } from 'react-i18next'
+import { withTranslation, useTranslation } from 'react-i18next'
 import { Button } from 'antd';
 import BtnCustom from '../btnCustom';
 import { IInputCustom } from '../../common/types';
@@ -22,7 +22,7 @@ interface IinputCustom {
 
 const InputCustom = (props: IProps) => {
 
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
 
 
@@ -78,135 +78,146 @@ const InputCustom = (props: IProps) => {
                 <>
                     {itm.type === 'number' && itm.active && (
                         <>
-                            <div className={`${ind > 0 && 'mt-3'} relative w-full ${itm.title ? "h-[60px]" : 'h-[40px]'} `}>
-                                {itm.title != '' && (
-                                    <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                )}
-                                <input
-                                    className={inputClass}
-                                    value={formValues[itm.name] && formValues[itm.name]}
-                                    placeholder={itm?.placeholder}
-                                    onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
-                                    type="tel"
-                                    maxLength={itm.maxLength && itm.maxLength || 25}
-                                ></input>
-                                {itm.btn && itm?.btn?.title && (
-                                    <div className='absolute left-1 top-6   flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
-                                    </div>
-                                )}
-                                {itm.btn && !itm?.btn?.title && itm.btn.icon && (
-                                    <div className='absolute left-1 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        {itm.btn.icon}
-                                    </div>
-                                )}
+                            <div className="animate-[fade_0.7s]">
+
+                                <div className={`${ind > 0 && 'mt-3'} relative w-full ${itm.title ? "h-[60px]" : 'h-[40px]'} `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
+                                    <input
+                                        className={inputClass}
+                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        placeholder={itm?.placeholder}
+                                        onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
+                                        type="tel"
+                                        maxLength={itm.maxLength && itm.maxLength || 25}
+                                    ></input>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6   flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-1 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </>
                     )}
                     {itm.type === 'password' && itm.active && (
                         <>
-                            <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
-                                {itm.title != '' && (
-                                    <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                )}
-                                <input
-                                    className={inputClass}
-                                    value={formValues[itm.name] && formValues[itm.name]}
-                                    onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
-                                    placeholder={itm?.placeholder}
-                                    type="password"
-                                    maxLength={itm.maxLength && itm.maxLength || 25}
-                                ></input>
-                                {itm.btn && itm?.btn?.title && (
-                                    <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
-                                    </div>
-                                )}
-                                {itm.btn && !itm?.btn?.title && itm.btn.icon && (
-                                    <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        {itm.btn.icon}
-                                    </div>
-                                )}
+                            <div className="animate-[fade_0.7s]">
 
+                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
+                                    <input
+                                        className={inputClass}
+                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
+                                        placeholder={itm?.placeholder}
+                                        type="password"
+                                        maxLength={itm.maxLength && itm.maxLength || 25}
+                                    ></input>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
+
+                                </div>
                             </div>
                         </>
                     )}
                     {itm.type === 'amount' && itm.active && (
                         <>
-
-                            <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
-                                {itm.title != '' && (
-                                    <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                )}
-                                <input
-                                    // className={cx("input", "is-rounded")}
-                                    className={inputClass}
-                                    value={formValues[itm.name]}
-                                    onChange={(e) => { updateFormValues(addCommas(removeNonNumeric((e.target.value))), itm.name) }}
-                                    placeholder={itm?.placeholder}
-                                    type="tel"
-                                    maxLength={itm.maxLength && itm.maxLength || 25}
-                                ></input>
-                                <div className={`absolute top-8 dark:text-darkMode-graylight text-xs ${itm.btn?.title ? 'left-[120px]' : itm.btn?.icon ? 'left-10': 'left-2'}`}>{t('RIAL')}</div>
-                                {itm.btn && itm?.btn?.title && (
-                                    <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
-                                    </div>
-                                )}
-                                {itm.btn && !itm?.btn?.title && itm.btn.icon && (
-                                    <div className='absolute left-1 text-lg top-6 flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
-                                        {itm.btn.icon}
-                                    </div>
-                                )}
+                            <div className="animate-[fade_0.7s]">
+                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
+                                    <input
+                                        // className={cx("input", "is-rounded")}
+                                        className={inputClass}
+                                        value={formValues[itm.name]}
+                                        onChange={(e) => { updateFormValues(addCommas(removeNonNumeric((e.target.value))), itm.name) }}
+                                        placeholder={itm?.placeholder}
+                                        type="tel"
+                                        maxLength={itm.maxLength && itm.maxLength || 25}
+                                    ></input>
+                                    <div className={`absolute top-8 dark:text-darkMode-graylight text-xs ${itm.btn?.title ? 'left-[120px]' : itm.btn?.icon ? 'left-10' : 'left-2'}`}>{t('RIAL')}</div>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-1 text-lg top-6 flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn.click()}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                         </>
                     )}
                     {itm.type === 'text' && itm.active && (
                         <>
-
-                            <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
-                                {itm.title != '' && (
-                                    <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                )}
-                                <input
-                                    // className={cx("input", "is-rounded")}
-                                    onChange={(e) => updateFormValues(e.target.value, itm.name)}
-                                    value={formValues[itm.name] && formValues[itm.name]}
-                                    maxLength={itm.maxLength && itm.maxLength || 30}
-                                    placeholder={itm?.placeholder}
-                                    autoComplete="off"
-                                    type="text"
-                                    style={{ direction: 'rtl' }}
-                                ></input>
-                                {itm.btn && itm?.btn?.title && (
-                                    <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
-                                        <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
-                                    </div>
-                                )}
-                                {itm.btn && !itm?.btn?.title && itm.btn.icon && (
-                                    <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
-                                        {itm.btn.icon}
-                                    </div>
-                                )}
+                            <div className="animate-[fade_0.7s]">
+                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
+                                    <input
+                                        // className={cx("input", "is-rounded")}
+                                        onChange={(e) => updateFormValues(e.target.value, itm.name)}
+                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        maxLength={itm.maxLength && itm.maxLength || 30}
+                                        placeholder={itm?.placeholder}
+                                        autoComplete="off"
+                                        type="text"
+                                        style={{ direction: 'rtl' }}
+                                    ></input>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                         </>
                     )}
                     {itm.type === 'checkBox' && itm.active && (
                         <>
-                            <div className='flex mt-6'>
-                                <input
-                                    type="checkbox"
-                                    // name="visible_comments"
-                                    className='cursor-pointer'
+                            <div className="animate-[fade_0.7s]">
 
-                                    checked={formValues[itm.name] && formValues[itm.name]}
-                                    onChange={(e) => updateFormValues(e.target.checked, itm.name)}
-                                ></input>
-                                {itm.title != '' && (
-                                    <div className='text-xs text-gray-500 dark:text-darkMode-graylight font-semibold mr-1'>{itm.title}</div>
-                                )}
+                                <div className='flex mt-6'>
+                                    <input
+                                        type="checkbox"
+                                        // name="visible_comments"
+                                        className='cursor-pointer'
+
+                                        checked={formValues[itm.name] && formValues[itm.name]}
+                                        onChange={(e) => updateFormValues(e.target.checked, itm.name)}
+                                    ></input>
+                                    {itm.title != '' && (
+                                        <div className='text-xs text-gray-500 dark:text-darkMode-graylight font-semibold mr-1'>{itm.title}</div>
+                                    )}
+                                </div>
                             </div>
                         </>
                     )}

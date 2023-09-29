@@ -96,7 +96,7 @@ const ConfirmForm = () => {
           <div className="animate-[fade_0.7s]">
                 <div className="animate-[upAnime10_0.5s]">
                     <Box>
-                        <div className='flex bg-gray-100 dark:bg-darkMode-grayDark dark:text-gray-200  shadow-xl rounded-lg text-xs flex-col p-3'>
+                        <div className='flex bg-gray-100 dark:bg-darkMode-black dark:text-gray-200  shadow-xl rounded-lg text-xs flex-col p-3'>
                             <div className='flex justify-between items-center mb-3 border-b py-1 dark:border-gray-500'>
                                 <div>{titleState.title1}</div>
                                 <div className='font-bold'>{formValue?.title}</div>

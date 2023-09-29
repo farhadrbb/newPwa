@@ -108,7 +108,7 @@ html {
 
 @layer components {
   .boxItem-global {
-    @apply w-full h-20 bg-gray-100 shadow-md rounded-xl mb-3 py-2 px-3
+    @apply w-full h-20 bg-gray-100 dark:bg-darkMode-black shadow-md dark:shadow-lg rounded-xl mb-3 py-2 px-3
   }
 }
 
