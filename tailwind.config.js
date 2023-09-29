@@ -61,6 +61,10 @@ module.exports = {
           '0%': { transform: 'scale(0.9,0.9)' },
           '100%': { transform: 'scale(1,1)' },
         },
+        scaleClick0: {
+          '0%': { transform: 'scale(0.8,0.8)' },
+          '100%': { transform: 'scale(1,1)' },
+        },
         rotate360: {
           '0%': { transform: 'rotateY(0)' },
           '50%': { transform: 'rotateY(180deg)' },

@@ -96,14 +96,10 @@ export const baseQuery = async (args: any, api: any, extraOptions: any) => {
   }
 
   if (result.data?.messages?.[0]) {
-    setTimeout(() => {
       api.dispatch(setNotifySlice({ title: result.data?.messages?.[0].text, type: 'success' }))
-    }, 1000);
   }
   if (result.error?.data.messages?.[0]) {
-    setTimeout(() => {
       api.dispatch(setNotifySlice({ title: result.error?.data?.messages?.[0].text, type: 'error' }))
-    }, 1000);
   }
 
 

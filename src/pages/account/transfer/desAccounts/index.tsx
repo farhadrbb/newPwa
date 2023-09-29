@@ -41,6 +41,7 @@ const DesAccounts = () => {
                 <div className="animate-[upAnime10_0.5s]">
                     <Box className="mb-7">
                         <TabsCustom dataTab={dataTab}>
+                            <AccountsDestination/>
                             <div></div>
                         </TabsCustom>
                     </Box>

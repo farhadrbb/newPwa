@@ -7,6 +7,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { AiTwotoneStar } from 'react-icons/ai';
 import { SlRefresh } from 'react-icons/sl';
 import { useSelector } from 'react-redux';
+import BtnCustom from '../btnCustom';
 
 
 
@@ -31,8 +32,8 @@ const ActiveAccount = () => {
                     <div className='flex items-center '>
                         <img src={logo_img} className="w-[35px] h-[37px]" />
                         <div className='mr-2 text-sm font-bold'>{active.accountNumber}</div>
-                        <div >
-                            <MdOutlineKeyboardArrowDown className='text-xl mr-2' />
+                        <div className='mr-2'>
+                            <BtnCustom error classNameBtn='!p-1 text-[10px] border-0 text-gray-500' title='تغییر حساب' icon={ <MdOutlineKeyboardArrowDown className='text-xl mr-2' />}/>
                         </div>
                     </div>
                     <div>

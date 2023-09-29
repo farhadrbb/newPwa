@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import InputCustom from "../../../../../component/inputCustom";
 import { useLazyGetAllDataQuery } from "../../../../../redux/api/allApi";
 import { GiClick } from 'react-icons/gi'
-import logo_img from '../../../../assest/img/tejarat_logo1.png'
+import logo_img from '../../../../../assest/img/tejarat_logo1.png'
 
 
 
@@ -71,7 +71,7 @@ const AccountsDestination = () => {
                                 </div>
                                 <GiClick className="text-xl text-cyan-50  rotate-[30deg]" />
                             </div>
-                            <div className="mt-1 text-sm text-gray-600 font-bold flex  w-[98%]">{itm.accountNumber}</div>
+                            <div className="mt-1 text-sm text-gray-600 font-bold flex  w-[98%] mr-2">{itm.accountNumber}</div>
                         </div>
                     ))}
 

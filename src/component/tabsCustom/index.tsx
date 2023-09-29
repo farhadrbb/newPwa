@@ -27,7 +27,7 @@ const TabsCustom = (props: IProps) => {
             return (
                 <>
                     {clickId === ind && (
-                        <div className={`${!notAnime &&  "animate-[rightAnime_0.4s]"}`}>
+                        <div className={`${!notAnime &&  "animate-[scaleClick0_0.5s]"}`}>
                             {child}
                         </div>
                     )}
