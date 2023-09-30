@@ -8,7 +8,7 @@ interface IStep {
     backUrl1: string,
     backUrl2?: string,
     backToHome: string
-    data: object,
+    data: any,
     add: boolean,
     pathname: ''
 }
@@ -17,46 +17,7 @@ interface IStep {
 //     steps: []
 // }
 const initialState = {
-    // steps: [],
-    data: {
-        // step0: {
-        //     id: '',
-        //     pathname: '',
-        //     title: '',
-        //     backUrl1: '',
-        //     backUrl2: '',
-        //     backToHome: '',
-        //     data: {},
-        // },
-        // step1: {
-        //     id: '',
-        //     pathname: '',
-        //     title: '',
-        //     backUrl1: '',
-        //     backUrl2: '',
-        //     backToHome: '',
-        //     data: {},
-        // },
-        // step2: {
-        //     id: '',
-        //     pathname: '',
-        //     title: '',
-        //     backUrl1: '',
-        //     backUrl2: '',
-        //     backToHome: '',
-        //     data: {},
-        // },
-        // step3: {
-        //     id: '',
-        //     pathname: '',
-        //     title: '',
-        //     backUrl1: '',
-        //     backUrl2: '',
-        //     backToHome: '',
-        //     data: {},
-        // },
-
-    }
+    data: {}
 }
 
 

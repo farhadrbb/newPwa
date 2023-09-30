@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { IInputCustom, ItemsTab } from "../../../common/types";
 import ActiveAccount from "../../../component/activeAccount";
 import Box from "../../../component/box";
@@ -13,7 +14,7 @@ import TejaratAccountTransfer from "./tejaratAccount";
 
 const TransferAccount = () => {
     // ___________________________________Hook_______________________
-
+    const step = useSelector((state: any) => state.stepSlice.data)
     // ______________________________________varibles_____________________________
 
     let dataTab = [
@@ -38,7 +39,7 @@ const TransferAccount = () => {
                     <div>
                         <ActiveAccount />
                         <Box className="mb-7">
-                            <TabsCustom dataTab={dataTab}>
+                            <TabsCustom dataTab={dataTab} activeTab={step.step1?.activeTab}>
                                 <TejaratAccountTransfer />
                                 <MobileAccountTransfer />
                                 <IbanAccountTrasnfer />

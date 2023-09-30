@@ -11,7 +11,7 @@ import { useLazyGetAllDataQuery, usePostAllDataMutation } from '../../../../redu
 
 interface IFormValue {
     amount: string,
-    destAccountNumber: string,
+    destinationAccountNumber: string,
     desTransfer: boolean
     transferId: boolean
 }
@@ -25,9 +25,10 @@ const TejaratAccountTransfer = () => {
 
     const [formValue, setFormValue] = React.useState<IFormValue>({
         amount: step.step1?.data?.formValue?.amount || '',
-        destAccountNumber: step.step1?.data?.formValue?.destAccountNumber || '',
+        destinationAccountNumber: step.step1?.data?.formValue?.destinationAccountNumber || '',
         desTransfer: step.step1?.data?.formValue?.desTransfer || '',
-        transferId: step.step1?.data?.formValue?.transferId || ''
+        transferId: step.step1?.data?.formValue?.transferId || '',
+   
     } as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -37,7 +38,7 @@ const TejaratAccountTransfer = () => {
     const dataFormTejarat = [
         {
             title: 'شماره حساب مقصد',
-            name: 'destAccountNumber',
+            name: 'destinationAccountNumber',
             type: "number",
             active: true,
             btn: {
@@ -93,19 +94,29 @@ const TejaratAccountTransfer = () => {
     ]
 
     // ______________________________________function_____________________________
-    const handleClickSend = () => {
-        let body = {
+
+
+    const dataApi = ()=>{
+        let data = {
             amount: {
                 amount: formValue.amount.replace(/\,/g, ""),
                 type: active.balance.type,
             },
-            destinationAccountNumber: formValue.destAccountNumber,
+            destinationAccountNumber: formValue.destinationAccountNumber,
             externalRequestId: 0,
             requestSourceType: "CUSTOMER_NORMAL",
             sourceAccountNumber: active.accountNumber,
             transferIdentifier1: formValue.transferId,
         }
+        return data
 
+    }
+
+
+
+    
+    const handleClickSend = () => {
+        let body = dataApi()
         postData({ url: 'accountTransferVerifyAccount', body })
     }
 
@@ -120,8 +131,8 @@ const TejaratAccountTransfer = () => {
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
+                activeTab:0,
                 data: { formValue },
-                add: true
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -139,6 +150,7 @@ const TejaratAccountTransfer = () => {
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
+                    activeTab:0,
                     data: { formValue, resultApi: resultPostData.data, type: 'account' },
                     add: true
                 }

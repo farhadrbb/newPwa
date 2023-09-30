@@ -82,7 +82,7 @@ const InputCustom = (props: IProps) => {
 
                                 <div className={`${ind > 0 && 'mt-3'} relative w-full ${itm.title ? "h-[60px]" : 'h-[40px]'} `}>
                                     {itm.title != '' && (
-                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
                                     <input
                                         className={inputClass}
@@ -112,7 +112,7 @@ const InputCustom = (props: IProps) => {
 
                                 <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
-                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
                                     <input
                                         className={inputClass}
@@ -142,7 +142,7 @@ const InputCustom = (props: IProps) => {
                             <div className="animate-[fade_0.7s]">
                                 <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
-                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
                                     <input
                                         // className={cx("input", "is-rounded")}
@@ -174,7 +174,7 @@ const InputCustom = (props: IProps) => {
                             <div className="animate-[fade_0.7s]">
                                 <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
-                                        <div className='absolute top-0 right-0 text-gray-500 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
                                     <input
                                         // className={cx("input", "is-rounded")}

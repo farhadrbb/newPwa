@@ -11,7 +11,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 const ToolMenu = memo((props: any) => {
     const { stateClickMenu } = props
 
-    let classBtn = " bg-blue w-7 h-7 rounded-full shadow-[0_0_5px_1px_rgba(0,0,0,0.2)] shadow-blue dark:shadow-darkMode-black flex justify-center items-center text-white"
+    let classBtn = " bg-blue w-7 h-7 rounded-full shadow-[0_0_10px_2px_rgba(0,0,0,0.1)] shadow-gray-500 dark:shadow-darkMode-black flex justify-center items-center text-white"
   
     // ____________________________hook________________________________
     const navigate = useNavigate()
@@ -33,7 +33,7 @@ const ToolMenu = memo((props: any) => {
 
             {stateClickMenu && (
                 <>
-                    <div className="animate-[fade_0.6s] absolute -top-[115%] left-[15%]">
+                    <div className="animate-[fade_0.6s] absolute -top-[115%] left-[15%] ">
                         <div className="animate-[downAnime20_1.1s]">
                             <div className={classBtn}>
                                 <DarkBtn/>
@@ -47,13 +47,14 @@ const ToolMenu = memo((props: any) => {
                             </div>
                         </div>
                     </div>
-                    <div className="animate-[fade_1s] absolute -top-[75%] -left-[90%]">
+                    <div className="animate-[fade_1s] absolute -top-[75%] -left-[90%]" onClick={()=>window.open('tel:9971863733')}>
                         <div className="animate-[downAnime20_1.4s]">
                             <div className={classBtn}>
                                 <AiOutlinePlus/>
                             </div>
                         </div>
                     </div>
+                    {/* <div className="absolute -bottom-[30%] rounded-full opacity-50 w-36 h-36 bg-gray-400"></div> */}
                     {/* <div className="absolute -top-[50%] -right-[90%] bg-blue w-7 h-7  rounded-full shadow-[0_0_5px_1px_rgba(0,0,0,0.2)] shadow-blue"></div>
                                     <div className="absolute -top-[50%] -left-[90%] bg-blue w-7 h-7  rounded-full shadow-[0_0_5px_1px_rgba(0,0,0,0.2)] shadow-blue"></div> */}
                 </>

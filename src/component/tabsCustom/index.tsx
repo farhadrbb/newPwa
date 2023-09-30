@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { ItemsTab } from '../../common/types'
 
+import {CiCreditCard2, CiMobile3} from 'react-icons/ci'
+
 type IProps = {
     dataTab: ItemsTab[],
     className?: string,
     center?: boolean,
-    children: any
+    children: any,
+    activeTab?:number
 }
 
 
@@ -13,8 +16,9 @@ type IProps = {
 
 const TabsCustom = (props: IProps) => {
     // __________________________________variebles_________________________
-    let { dataTab, className, center, children } = props
+    let { dataTab, className, center, children,activeTab } = props
     let classNamesTabs = " px-5 text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100    "
+ 
     // ___________________________________hook_______________________________
     const [click, setClick] = useState<ItemsTab>({} as ItemsTab)
     // _________________________________function_____________________________
@@ -27,7 +31,7 @@ const TabsCustom = (props: IProps) => {
             return (
                 <>
                     {clickId === ind && (
-                        <div className={`${!notAnime && "animate-[scaleClick0_0.5s]"}`}>
+                        <div className={`min-h-[10vh] max-h-[70vh] !overflow-y-auto ${!notAnime && "animate-[scaleClick0_0.5s]"}`}>
                             {child}
                         </div>
                     )}
@@ -38,7 +42,7 @@ const TabsCustom = (props: IProps) => {
     }
     // __________________________________useEffect___________________________
     useEffect(() => {
-        setClick(dataTab[0])
+        setClick(dataTab?.[activeTab || 0])
     }, [])
 
 
@@ -49,16 +53,16 @@ const TabsCustom = (props: IProps) => {
                 <div className={`${center && 'justify-center'} flex w-full`}>
                     {dataTab?.map((itm, ind) => (
                         <div
-                            className={`${className} ${classNamesTabs} py-2  ${click.id === itm.id ? 'border-blue-1 text-blue dark:text-white dark:!border-blue-1   animate-[scaleClick_1s]  rounded-full  shadow-[0_0_5px_1px_rgba(0,0,0,0.2)]  dark:shadow-darkMode-black  text-md' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
+                            className={`${className} ${classNamesTabs} py-2 !text-xs ${click.id === itm.id ? 'border-blue-1   border-b  text-blue dark:text-white dark:!border-blue-1   animate-[scaleClick_1s]     dark:shadow-darkMode-black  ' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
                             onClick={() => handleClick(itm)}>
-                            <div className={`${click.id === itm.id && ("animate-[scaleClick_1s]")}}`}>
-
+                            <div className={`flex items-center${click.id === itm.id && ("animate-[scaleClick_1s]")}}`}>
+                                {/* <CiCreditCard2 className='ml-1 text-lg'/> */}
                                 {itm.title}
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className={`w-full mt-7`}>
+                <div className={`w-full mt-7  `}>
                     {handleRenderElement(click.id)}
                 </div>
             </div>

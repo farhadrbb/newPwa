@@ -30,7 +30,7 @@ const AccountsDestination = () => {
     const dataForm = [
         {
             title: '',
-            name: 'destAccountNumber',
+            name: 'text',
             type: "number",
             placeholder: "جست و جو",
             active: true,
@@ -47,7 +47,7 @@ const AccountsDestination = () => {
 
     const handleClickItem = (itm: any) => {
         let obj = {
-            destAccountNumber: itm.accountNumber,
+            destinationAccountNumber: itm.accountNumber,
         }
         dispatch(setStepsSlice({
             step1: {
@@ -57,6 +57,7 @@ const AccountsDestination = () => {
                 backUrl1: URLS.account.index,
                 backToHome: URLS.account.index,
                 data: { formValue: obj },
+                activeTab:0,
                 add: true
             }
         }))
@@ -77,7 +78,7 @@ const AccountsDestination = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full min-h-[10vh] h-[70vh] !overflow-y-auto">
+            <div className="flex flex-col w-full">
                 <div className="mb-3">
                     <InputCustom
                         dataForm={dataForm}

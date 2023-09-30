@@ -14,7 +14,7 @@ const Content = (props: any) => {
     return (
         <>
             <div
-                className={`${classContent} ${!handleRouteForLayout() && "px-5"}  ${handleRouteForLayout() && "bg-white dark:bg-darkMode-black "} 
+                className={`${classContent}  ${!handleRouteForLayout() && "px-5"}  ${handleRouteForLayout() && "bg-white dark:bg-darkMode-black "} 
                     ${handleRouteForLayout() && location.pathname != '/services' ? "top-[240px] pb-[110px] pt-10 " : 'top-[40px] z-[110] py-2'}`}
             >
                 {children}
