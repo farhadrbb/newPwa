@@ -9,16 +9,6 @@ const AccountBoxList = (props: any) => {
     const { itm } = props
     // _________________________HOOK______________________
     const { t } = useTranslation()
-//     let  style = {
-//         background: "rgba(255, 255, 255, 0.41)",
-//         borderRadius: "16px",
-//     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-//     // backdrop - filter: blur(0px);
-//     // -webkit - backdrop - filter: blur(0px);
-//     border:" 1px solid rgba(255, 255, 255, 0.45)",
-//     fontFamily: 'TidFont'
-// }
-
 
 // _________________________Functions______________________
 const handleDataJsx = (item: any, type: string) => {
@@ -34,7 +24,7 @@ const handleDataJsx = (item: any, type: string) => {
 
 return (
     <>
-        <div className={`w-full h-full rounded-lg bg-blue relative text-white z-[60] shadow-xl border border-gray-400`} style={{fontFamily: 'TidFont'}} >
+        <div className={`w-full h-full rounded-lg bg-blue relative text-white z-[60] shadow-lg shadow-gray-500  dark:shadow-darkMode-black border border-gray-400`} style={{fontFamily: 'TidFont'}} >
             <img src={logo_t_img} className={'w-[40px] h-[40px] absolute top-2 right-2'} />
             <div className='absolute top-5 right-16 text-xs' >{itm?.accountNumber}</div>
             <div className='text-xs absolute top-[6.5rem] right-5'>{t('ACCOUNT_NUMBER')}</div>

@@ -75,6 +75,7 @@ const TejaratAccountTransfer = () => {
 
     ]
 
+    
     // ______________________________________function_____________________________
 
 
@@ -116,7 +117,7 @@ const TejaratAccountTransfer = () => {
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
                 activeTab: 2,
-                data: { formValue },
+                data: { formValue,apiKey:"accountIbanDestination" },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -134,9 +135,8 @@ const TejaratAccountTransfer = () => {
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
-                    activeTab: 0,
+                    activeTab: 2,
                     data: { formValue, resultApi: resultPostData.data, type: 'payaAccount' },
-                    add: true
                 }
             }))
             navigate(URLS.account.confirmTransfer)

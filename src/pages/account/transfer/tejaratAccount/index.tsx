@@ -132,7 +132,7 @@ const TejaratAccountTransfer = () => {
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
                 activeTab:0,
-                data: { formValue },
+                data: { formValue,apiKey:"accountDestination" },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -152,7 +152,6 @@ const TejaratAccountTransfer = () => {
                     backToHome: '/account',
                     activeTab:0,
                     data: { formValue, resultApi: resultPostData.data, type: 'account' },
-                    add: true
                 }
             }))
             navigate(URLS.account.confirmTransfer)

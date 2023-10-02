@@ -13,7 +13,7 @@ import { setAccountActive, setAccounts, setCardActive, setCards } from '../../..
 
 const List: React.FC = () => {
     // ________________________________varibales_____________________
-    let classParent = `h-[250px] flex items-center   relative overflow-hidden transition-all duration-500`
+    let classParent = `h-[255px] flex items-center   relative overflow-hidden transition-all duration-500`
     let classBoxImg = `w-full h-[175px] absolute top-8 left-0 px-10 sm:px-20 `
     const settings = {
         // centerPadding: "50px",

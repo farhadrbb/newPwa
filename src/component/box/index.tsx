@@ -12,7 +12,7 @@ const Box = memo((props: IProps) => {
 
     return (
         <>
-            <div className={`${boxClass} ${className} transition-all duration-1000`}>
+            <div className={`${boxClass} ${className} transition-all duration-1000 h`}>
                 {title && (
                     <div className={`${titleClass}`}>{title}</div>
                 )}

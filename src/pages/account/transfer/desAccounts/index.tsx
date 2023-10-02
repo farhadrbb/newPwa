@@ -7,6 +7,7 @@ import { useLazyGetAllDataQuery } from "../../../../redux/api/allApi";
 import { GiClick } from 'react-icons/gi'
 import logo_img from '../../../../assest/img/tejarat_logo1.png'
 import AccountsDestination from "./accountsDestination";
+import { useSelector } from "react-redux";
 
 
 
@@ -15,6 +16,9 @@ import AccountsDestination from "./accountsDestination";
 const DesAccounts = () => {
 
     // ______________________________________varibles_____________________________
+
+    const step = useSelector((state: any) => state.stepSlice.data)
+
 
 
     let dataTab = [
@@ -36,10 +40,15 @@ const DesAccounts = () => {
             <div className="animate-[fade_0.7s]">
                 <div className="animate-[upAnime10_0.5s]">
                     <Box className="mb-7">
-                        <TabsCustom dataTab={dataTab}>
-                            <AccountsDestination/>
-                            <div></div>
-                        </TabsCustom>
+                        {step.step1.data.apiKey === "accountDestination" && (
+                            <TabsCustom dataTab={dataTab}>
+                                <AccountsDestination />
+                                <div></div>
+                            </TabsCustom>
+                        )}
+                        {step.step1.data.apiKey === "accountIbanDestination" && (
+                            <AccountsDestination />
+                        )}
                     </Box>
                 </div>
             </div>

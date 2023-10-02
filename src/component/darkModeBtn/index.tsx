@@ -11,6 +11,8 @@ const DarkBtn = () => {
     const darkmode = useSelector((state: any) => state.toolsSlice.dark)
     const dispatch = useDispatch()
 
+    
+
     const handleClickTheme = () => {
         if (darkmode === 'dark') {
             dispatch(setDarkModeSlice('light'))
@@ -19,6 +21,8 @@ const DarkBtn = () => {
             dispatch(setDarkModeSlice('dark'))
         }
     }
+
+
     return (
         <>
             {/* <div className="animate-[fade_0.8s]"> */}

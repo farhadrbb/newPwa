@@ -8,7 +8,7 @@ import Layout from './component/layout';
 import Loading from './component/loading';
 import NotifyCustom from './component/notifyCustom';
 import i18n from './i18n';
-import { setNotifySlice } from './redux/slice/tool';
+import { setDarkModeSlice, setNotifySlice } from './redux/slice/tool';
 import Draggable from 'react-draggable';
 import { RiSettings5Fill } from 'react-icons/ri'
 import { Tooltip } from 'antd';
@@ -35,9 +35,10 @@ function App() {
   // _____________________________________hook________________________
 
   const darkmode = useSelector((state: any) => state.toolsSlice.dark)
+  
   const step = useSelector((state: any) => state.stepSlice.data)
   console.log("step", step);
-  const [state, setstate] = useState(false);
+ 
 
   const dispatch = useDispatch()
 
@@ -70,6 +71,7 @@ function App() {
 
   // _____________________________useEffect__________________________
   useEffect(() => {
+    
     if (darkmode === "light") {
       element.classList.remove("dark")
       localStorage.setItem('theme', "light")
@@ -79,6 +81,9 @@ function App() {
       localStorage.setItem('theme', "dark")
     }
   }, [darkmode])
+
+
+  
 
   // i18n.changeLanguage('en_US');
   i18n.changeLanguage('fa_IR');

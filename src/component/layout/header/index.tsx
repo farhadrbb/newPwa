@@ -16,9 +16,7 @@ const Header = (props: any) => {
     return (
         <>
             <div className={`${classHeader} ${location.pathname === '/services' ? 'h-[60px]' : 'h-[200px] '} relative`}>
-                {location.pathname === "/profile" && (
-                    <DarkBtn />
-                )}
+              
                 {handleRouteForLayout() && (
                     <>
                         <img src={img_type} className="w-[86px] h-[29px] mt-3" />

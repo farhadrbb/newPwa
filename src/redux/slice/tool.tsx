@@ -18,7 +18,7 @@ interface NotifyObj {
 
 const initialState: ToolsState = {
     loading: false,
-    dark: 'light',
+    dark: localStorage.getItem('theme') === 'light' ? 'light' : 'dark',
     notify: {
          title: '', 
          type: null,

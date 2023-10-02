@@ -29,7 +29,7 @@ const InputCustom = (props: IProps) => {
     // ___________________________________varibles______________________________
 
     const { formValues, setFormValues, dataForm } = props
-    const inputClass = 'bg-[#E8F0FE] placeholder:text-xs  dark:bg-darkMode-black dark:border-0 dark:outline-0 dark:text-white pr-3 focus:outline-blue-400  border border-gray-300 rounded-full h-[36px] w-full absolute left-0 bottom-0 text-black text-sm font-bold'
+    const inputClass = 'bg-[#E8F0FE] placeholder:text-xs   dark:bg-darkMode-black dark:border-0 dark:outline-0 dark:text-white pr-3 focus:outline-blue-400  border border-gray-300 rounded-full h-[36px] w-full absolute left-0 bottom-0 text-black text-sm font-bold'
 
 
     // _________________________________function_____________________________

@@ -26,26 +26,15 @@ const CardBox = (props: any) => {
     }
 
 
-
-
-
     return (
         <>
-            <div className={`w-full h-full rounded-lg  relative text-black z-[60] shadow-xl border border-gray-400`} style={{ fontFamily: 'TidFont' }} >
-
+            <div className={`w-full h-full rounded-lg  relative text-black z-[60] shadow-lg shadow-gray-500 dark:shadow-darkMode-black border border-gray-400`} style={{ fontFamily: 'TidFont' }} >
                 <img src={card_img} className={`w-full h-full rounded-lg text-black z-[30]`}  />
-                {/* <img src={logo_t_img} className={'w-[40px] h-[40px] absolute top-2 right-2'} /> */}
                 <div className='absolute top-20 w-[95%] mx-auto text-sm z-[100]' style={{ fontFamily: 'CardNumber', direction: 'ltr' }} >
                     <div className='w-full flex justify-center'>{sepreteNumber4(itm?.cardNumber)}</div>
                 </div>
-
                 <div className='text-xs  absolute top-32 right-5 font-bold '>{t('ACCOUNT_BALANCE')}</div>
                 <div className='text-xs absolute font-semibold top-32 left-5'>{handleDataJsx(itm?.availableBalance?.amount, 'balance')}</div>
-                {/* <div className='text-xs absolute top-[6.5rem] right-5'>{t('ACCOUNT_NUMBER')}</div>
-            <div className='text-xs absolute top-[6.5rem] left-5'>{itm?.cardNumber}</div>
-            <div className='text-xs font-semibold absolute top-32 right-5'>{t('ACCOUNT_BALANCE')}</div>
-            <div className='text-xs absolute font-semibold top-32 left-5'>{handleDataJsx(itm?.availableBalance?.amount, 'balance')}</div>
-            <div className='text-[11px] absolute  bottom-4 left-5' style={{ direction: 'ltr' }}>{handleDataJsx(itm, "date")}</div> */}
                 <div className='text-[11px] absolute  bottom-4 left-5' style={{ direction: 'ltr' }}>{handleDataJsx(itm, "date")}</div>
             </div>
         </>

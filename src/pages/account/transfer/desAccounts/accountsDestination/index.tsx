@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import InputCustom from "../../../../../component/inputCustom";
 import { useLazyGetAllDataQuery } from "../../../../../redux/api/allApi";
 import { GiClick } from 'react-icons/gi'
-import logo_img from '../../../../../assest/img/tejarat_logo1.png'
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setStepsSlice } from "../../../../../redux/slice/step";
 import URLS from "../../../../../common/url";
+import ImageBanks from "../../../../../component/imageBank";
 
 
 
@@ -16,7 +16,9 @@ interface IFormValue {
     text: string,
 }
 
-const AccountsDestination = () => {
+const AccountsDestination = (props: any) => {
+    const step = useSelector((state: any) => state.stepSlice.data)
+
     // ___________________________________Hook_______________________
 
     const [formValue, setFormValue] = useState<IFormValue>({} as IFormValue)
@@ -24,8 +26,10 @@ const AccountsDestination = () => {
     const [getData, resultGetData] = useLazyGetAllDataQuery()
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [apiKeyState, setapiKeyState] = useState<any>(null);
 
     // ______________________________________varibles_____________________________
+
 
     const dataForm = [
         {
@@ -43,11 +47,20 @@ const AccountsDestination = () => {
 
     ]
 
+
+    let infoApi: any = {
+        accountDestination: 'accounts',
+        accountIbanDestination: 'ibans'
+    }
+
+
+
     // ______________________________________Function_____________________________
 
     const handleClickItem = (itm: any) => {
         let obj = {
-            destinationAccountNumber: itm.accountNumber,
+            destinationAccountNumber: itm?.accountNumber,
+            destinationIBAN: itm?.iban
         }
         dispatch(setStepsSlice({
             step1: {
@@ -57,24 +70,51 @@ const AccountsDestination = () => {
                 backUrl1: URLS.account.index,
                 backToHome: URLS.account.index,
                 data: { formValue: obj },
-                activeTab:0,
+                activeTab: apiKeyState === 'accountDestination' ? 0 : 2,
                 add: true
             }
         }))
         navigate(URLS.account.transfer)
     }
 
+    
+    const handleData = (itm: any) => {
+
+        if (apiKeyState === 'accountDestination') {
+            return {
+                title: itm?.title,
+                accountNumber: itm?.accountNumber
+            }
+        }
+
+        if (apiKeyState === 'accountIbanDestination') {
+            return {
+                title: itm?.title,
+                iban: itm?.iban
+            }
+        }
+    }
+
     // ______________________________________useEffect_____________________________
 
     useEffect(() => {
-        getData({ url: 'accountDestination' })
+        if (apiKeyState) {
+            getData({ url: apiKeyState })
+        }
+    }, [apiKeyState]);
+
+
+    useEffect(() => {
+        setapiKeyState(step.step1?.data?.apiKey)
     }, []);
 
     useEffect(() => {
         if (resultGetData.isSuccess && resultGetData.data) {
-            setstateData(resultGetData.data?.result?.accounts)
+            setstateData(resultGetData.data?.result?.[infoApi?.[apiKeyState]])
         }
     }, [resultGetData.data]);
+
+
 
     return (
         <>
@@ -87,16 +127,16 @@ const AccountsDestination = () => {
                     />
                 </div>
                 <div className="">
-                    {stateData.map((itm: any, ind: any) => (
+                    {stateData?.map((itm: any, ind: any) => (
                         <div className="boxItem-global cursor-pointer" onClick={() => handleClickItem(itm)}>
                             <div className="flex justify-between items-center">
                                 <div className="flex text-xs font-bold items-center">
-                                    <img src={logo_img} className='w-[35px] h-[37px]' />
-                                    <div className="mr-1 dark:text-gray-100">{itm?.title}</div>
+                                    <ImageBanks logKey={itm.bank?.logoKey}/>
+                                    <div className="mr-2 dark:text-gray-100">{handleData(itm)?.title}</div>
                                 </div>
                                 {/* <GiClick className="text-xl text-cyan-50  rotate-[30deg]" /> */}
                             </div>
-                            <div className="mt-1 text-xs text-gray-500 dark:text-gray-200 font-bold flex justify-end w-full ">{itm.accountNumber}</div>
+                            <div className="mt-1 text-xs text-gray-500 dark:text-gray-200 font-bold flex justify-end w-full ">{handleData(itm)?.accountNumber || handleData(itm)?.iban}</div>
                         </div>
                     ))}
 

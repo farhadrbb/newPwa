@@ -42,7 +42,7 @@ const ItemsSelect = (props: IProps) => {
                 <div className="grid grid-cols-3 gap-2 px-1  w-[95%]">
                     {menu?.map((itm:any, ind:any) => (
                         <div
-                            className={`${boxItemClass} ${clickItem.title === itm.title ? 'animate-[scaleClick_0.3s_linear] ' : ''}` }
+                            className={`${boxItemClass} border dark:border-0 ${clickItem.title === itm.title ? 'animate-[scaleClick_0.3s_linear] ' : ''}` }
                             onClick={() => handleClickItem(itm)}
                             style={{boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"}}
 
