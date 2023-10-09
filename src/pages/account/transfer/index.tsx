@@ -39,7 +39,7 @@ const TransferAccount = () => {
                     <div>
                         <ActiveAccount />
                         <Box className="mb-7">
-                            <TabsCustom dataTab={dataTab} activeTab={step.step1?.activeTab}>
+                            <TabsCustom dataTab={dataTab} activeTab={step.step1?.data.activeTab}>
                                 <TejaratAccountTransfer />
                                 <MobileAccountTransfer />
                                 <IbanAccountTrasnfer />

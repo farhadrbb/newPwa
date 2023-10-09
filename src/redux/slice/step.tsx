@@ -34,9 +34,7 @@ const stepSlice = createSlice({
                 ...state.data
             }
             let str = action.payload.replace("step","")
-            let num = Number(str) + 1
-            console.log("num",num)
-            
+            let num = Number(str) + 1            
             delete obj[`step${Number(str) + 1}`]
             // console.log("obj",obj);
             state.data = obj

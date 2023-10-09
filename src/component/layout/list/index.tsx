@@ -110,23 +110,4 @@ export default List
 
 
 
-   //   <Slider {...settings} centerMode dots>
-        //     <div className='h-[230px] flex items-center  relative overflow-hidden scale-110'>
-        //         <div className='w-full h-[180px] absolute top-5 left-0 px-4'>
-        //             <img src={card_img} className={"w-full h-full rounded-lg "} style={{boxShadow:'0 0 20px black'}}/>
-        //         </div>
-        //     </div >
-        //     <div className='h-[230px] flex items-center  relative overflow-hidden '>
-        //         <div className='w-full h-[180px] absolute top-5 left-0 px-4'>
-        //             <img src={card_img} className={"w-full h-full rounded-lg "} style={{boxShadow:'0 0 20px black'}}/>
-        //         </div>
-        //     </div >
-        //     <div className='h-[230px] flex items-center  relative overflow-hidden '>
-        //         <div className='w-full h-[180px] absolute top-5 left-0 px-4'>
-        //             <img src={card_img} className={"w-full h-full rounded-lg "} style={{boxShadow:'0 0 20px black'}}/>
-        //         </div>
-        //     </div >
-
-
-        // </Slider>
 

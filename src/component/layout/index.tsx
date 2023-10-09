@@ -51,7 +51,6 @@ const Layout = (props: any) => {
     return (
         <>
             <div className="flex flex-col w-full h-full relative bg-white dark:bg-darkMode-black ">
-                <Loading />
                 <Header handleRouteForLayout={handleRouteForLayout}></Header>
                 <Content handleRouteForLayout={handleRouteForLayout}>{children}</Content>
                 <Footer handleRouteForLayout={handleRouteForLayout}></Footer>

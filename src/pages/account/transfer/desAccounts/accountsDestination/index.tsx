@@ -64,20 +64,18 @@ const AccountsDestination = (props: any) => {
         }
         dispatch(setStepsSlice({
             step1: {
-                id: 1,
-                pathname: URLS.account.confirmTransfer,
-                title: 'انتقال وجه',
-                backUrl1: URLS.account.index,
-                backToHome: URLS.account.index,
-                data: { formValue: obj },
-                activeTab: apiKeyState === 'accountDestination' ? 0 : 2,
-                add: true
+                ...step.step1,
+                data: {
+                    formValue: { ...step.step1.data.formValue, ...obj },
+                    activeTab: apiKeyState === 'accountDestination' ? 0 : 2,
+                },
             }
+
         }))
         navigate(URLS.account.transfer)
     }
 
-    
+
     const handleData = (itm: any) => {
 
         if (apiKeyState === 'accountDestination') {
@@ -131,7 +129,7 @@ const AccountsDestination = (props: any) => {
                         <div className="boxItem-global cursor-pointer" onClick={() => handleClickItem(itm)}>
                             <div className="flex justify-between items-center">
                                 <div className="flex text-xs font-bold items-center">
-                                    <ImageBanks logKey={itm.bank?.logoKey}/>
+                                    <ImageBanks logKey={itm.bank?.logoKey} />
                                     <div className="mr-2 dark:text-gray-100">{handleData(itm)?.title}</div>
                                 </div>
                                 {/* <GiClick className="text-xl text-cyan-50  rotate-[30deg]" /> */}

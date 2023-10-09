@@ -35,10 +35,10 @@ function App() {
   // _____________________________________hook________________________
 
   const darkmode = useSelector((state: any) => state.toolsSlice.dark)
-  
+
   const step = useSelector((state: any) => state.stepSlice.data)
   console.log("step", step);
- 
+
 
   const dispatch = useDispatch()
 
@@ -71,7 +71,7 @@ function App() {
 
   // _____________________________useEffect__________________________
   useEffect(() => {
-    
+
     if (darkmode === "light") {
       element.classList.remove("dark")
       localStorage.setItem('theme', "light")
@@ -83,39 +83,26 @@ function App() {
   }, [darkmode])
 
 
-  
+
 
   // i18n.changeLanguage('en_US');
   i18n.changeLanguage('fa_IR');
 
   return (
-    <div className="w-full h-full relative " onClick={() => handleRemoveNotif()}>
-
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/login" element={<Layout><Login /></Layout>} />
-            <Route path="*" element={<PrivateRoute><Layout><BasePage /></Layout></PrivateRoute>} />
-          </Routes>
-        </Suspense>
-        <NotifyCustom />
-
-        {/* <Tooltip title="prompt text" showArrow>
-          <Draggable>
-            <div className='bg-white absolute rounded-lg p-2 cursor-pointer shadow-2xl flex justify-center items-center top-20 left-0 z-[1000] ' onClick={()=>setstate(true)}>
-              <RiSettings5Fill className='text-2xl' />
-            </div>
-          </Draggable>
-        </Tooltip>
-
-        <ModalCustom setShow={setstate} show={state}>
-          <div>
-            <div>sgsswg</div>
-          </div>
-        </ModalCustom> */}
-
-      </BrowserRouter>
-    </div>
+    <>
+      <div className="w-full h-full relative " onClick={() => handleRemoveNotif()}>
+        <BrowserRouter>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/login" element={<Layout><Login /></Layout>} />
+              <Route path="*" element={<PrivateRoute><Layout><BasePage /></Layout></PrivateRoute>} />
+            </Routes>
+          </Suspense>
+          <NotifyCustom />
+        </BrowserRouter>
+      </div>
+      <Loading />
+    </>
   );
 }
 

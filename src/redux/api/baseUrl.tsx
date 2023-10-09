@@ -12,7 +12,7 @@ import { store } from "../store";
 
 // const BASE_URL = "http://82.99.206.151:8090/api/";
 //asli
-const BASE_URL = "https://mbt.tejaratbank.ir/api/";
+// const BASE_URL = "https://mbt.tejaratbank.ir/api/";
 // const BASE_URL = "https://mhb.tejaratbank.ir/api/";
 
 // const BASE_URL = UiConfigs["BASE_URL"];

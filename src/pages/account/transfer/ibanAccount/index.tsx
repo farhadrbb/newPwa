@@ -14,7 +14,7 @@ interface IFormValue {
     destinationIBAN: string,
     desTransfer: boolean
     transferId: boolean,
-    transferIdentifier1:string
+    transferIdentifier1: string
 }
 
 const TejaratAccountTransfer = () => {
@@ -75,7 +75,7 @@ const TejaratAccountTransfer = () => {
 
     ]
 
-    
+
     // ______________________________________function_____________________________
 
 
@@ -116,8 +116,7 @@ const TejaratAccountTransfer = () => {
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
-                activeTab: 2,
-                data: { formValue,apiKey:"accountIbanDestination" },
+                data: { formValue, apiKey: "accountIbanDestination", activeTab: 2, },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -135,17 +134,17 @@ const TejaratAccountTransfer = () => {
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
-                    activeTab: 2,
-                    data: { formValue, resultApi: resultPostData.data, type: 'payaAccount' },
+                    data: {
+                        formValue,
+                        resultApi: resultPostData.data,
+                        type: 'payaAccount',
+                        activeTab: 2,
+                    },
                 }
             }))
             navigate(URLS.account.confirmTransfer)
         }
     }, [resultPostData]);
-
-
-
-
 
     return (
         <>

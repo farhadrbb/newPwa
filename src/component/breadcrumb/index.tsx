@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { setStepsSlice, setStepsSliceBack, setStepsSliceEmpty } from '../../redux/slice/step';
 import { HiHome } from 'react-icons/hi'
 import { FaArrowLeft } from 'react-icons/fa'
+import { BiCloset } from 'react-icons/bi';
+import { IoCloseCircle } from 'react-icons/io5';
 
 
 
@@ -12,7 +14,6 @@ const useBackButton = () => {
 
     const handleEvent = () => {
         setIsBack(true);
-        // callback();
         window.history.go(1);
     };
 
@@ -48,8 +49,6 @@ const BreadCrumb = () => {
     // ___________________________________functions__________________________
 
     const handlePaste = () => {
-
-        // setstepState(step[step.length - 1])
         Object.keys(step.data).map((itm: any, ind: any) => {
             if (step.data[itm]) {
                 if (step.data[itm].pathname == location.pathname) {
@@ -62,18 +61,6 @@ const BreadCrumb = () => {
     }
 
     const handleRouteBack = (obj: any, backHome?: any) => {
-
-        // let changeAdd = {
-        //     ...obj,
-        //     add: false
-        // }
-
-
-        // step.map((itm: any, ind: any) => {
-
-        // })
-
-        console.log("backState", backState);
         dispatch(setStepsSliceBack(backState))
         navigate(backHome ? obj.backToHome : obj?.backUrl1)
     }
@@ -83,7 +70,7 @@ const BreadCrumb = () => {
         if (location) {
             handlePaste()
         }
-        
+
     }, [location]);
     return (
         <>
@@ -95,10 +82,21 @@ const BreadCrumb = () => {
                         className='mx-3'>
                         <HiHome className='text-xl hover:text-gray-300' />
                     </div>
-                    <div
-                        onClick={() => handleRouteBack(stepState)}>
-                        <FaArrowLeft className='text-[19px] mt-[1px] hover:text-gray-300 cursor-pointer' />
-                    </div>
+                    {location.pathname.includes("receipt") && (
+
+                        <div
+                            onClick={() => handleRouteBack(stepState)}>
+                            <IoCloseCircle className='text-[22px] mt-[1px] hover:text-gray-300 cursor-pointer' />
+                        </div>
+                    )}
+                    {!location.pathname.includes("receipt") && (
+
+                        <div
+                            onClick={() => handleRouteBack(stepState)}>
+                            <FaArrowLeft className='text-[19px] mt-[1px] hover:text-gray-300 cursor-pointer' />
+                        </div>
+
+                    )}
                 </div>
 
             </div>

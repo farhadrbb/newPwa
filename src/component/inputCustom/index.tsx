@@ -178,6 +178,7 @@ const InputCustom = (props: IProps) => {
                                     )}
                                     <input
                                         // className={cx("input", "is-rounded")}
+                                        className={inputClass}
                                         onChange={(e) => updateFormValues(e.target.value, itm.name)}
                                         value={formValues[itm.name] && formValues[itm.name]}
                                         maxLength={itm.maxLength && itm.maxLength || 30}

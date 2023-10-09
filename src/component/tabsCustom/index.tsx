@@ -17,7 +17,7 @@ type IProps = {
 const TabsCustom = (props: IProps) => {
     // __________________________________variebles_________________________
     let { dataTab, className, center, children,activeTab } = props
-    let classNamesTabs = " px-5 text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100    "
+    let classNamesTabs = "  text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100    "
  
     // ___________________________________hook_______________________________
     const [click, setClick] = useState<ItemsTab>({} as ItemsTab)
@@ -53,11 +53,12 @@ const TabsCustom = (props: IProps) => {
                 <div className={`${center && 'justify-center'} flex w-full`}>
                     {dataTab?.map((itm, ind) => (
                         <div
-                            className={`${className} ${classNamesTabs} py-2 !text-xs ${click.id === itm.id ? 'border-blue-1   border-b  text-blue dark:text-white dark:!border-blue-1   animate-[scaleClick_1s]     dark:shadow-darkMode-black  ' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
+                            className={`${className} ${classNamesTabs}  py-2 !text-xs ${click.id === itm.id ? 'border-blue-1 transition-all duration-500  text-blue dark:text-white dark:!border-blue-1   animate-[scaleClick_1s]     dark:shadow-darkMode-black  ' : 'hover:!border-gray-500 dark:hover:border-gray-500 dark:text-gray-100'}`}
                             onClick={() => handleClick(itm)}>
-                            <div className={`flex items-center${click.id === itm.id && ("animate-[scaleClick_1s]")}}`}>
+                            <div className={`flex relative px-5 whitespace-nowrap justify-center items-center${click.id === itm.id && ("animate-[scaleClick_1s]")}}`}>
                                 {/* <CiCreditCard2 className='ml-1 text-lg'/> */}
                                 {itm.title}
+                                <div className={`${click.id === itm.id ? 'absolute -bottom-3 w-full h-[1px] bg-blue' : 'w-0'} transition-all duration-500`}></div>
                             </div>
                         </div>
                     ))}

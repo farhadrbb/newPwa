@@ -2,12 +2,10 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import Box from '../box';
-import BtnCustom from '../btnCustom';
 import InputCustom from '../inputCustom';
-import { MdKey } from 'react-icons/md'
-import { sepreteNumber3 } from '../../common/utils';
 import OtpPassBtn from '../otpPassBtn';
 import InfoBox from './infoBox';
+import SendBtnConfirmForm from './sendBtn';
 
 
 interface IFormValue {
@@ -37,6 +35,9 @@ const ConfirmForm = () => {
             sourceAccountNumber: step.resultApi?.result?.sourceAccountNumber,
             destinationAccountNumber: step.resultApi?.result?.destinationAccountNumber,
             destinationOwner: step.resultApi?.result?.destinationOwner,
+            destinationDescription: step.formValue?.destinationDescription,
+            sourceDescription: step.formValue?.sourceDescription,
+            transferIdentifier1: step.formValue?.transferIdentifier1,
             amount: step.resultApi?.result?.amount?.amount,
         },
         mobileAccount: {
@@ -65,6 +66,8 @@ const ConfirmForm = () => {
             sourceAccountNumber: t('SOURCE'),
             destinationAccountNumber: t('DESTINATION'),
             destinationOwner: t('ACCOUNT_OWNER_NAME'),
+            destinationDescription:"شرح مقصد",
+            sourceDescription:"شرح مبدا",
             amount: t('AMOUNT'),
         },
         mobileAccount: {
@@ -74,8 +77,6 @@ const ConfirmForm = () => {
             destinationOwner: t('ACCOUNT_OWNER_NAME'),
             amount: t('AMOUNT'),
             destinationPhoneNumber: t('DESTINATION_PHONE_NUMBER'),
-
-
         },
         payaAccount: {
             title: t('TRANSACTION_TYPE'),
@@ -113,16 +114,13 @@ const ConfirmForm = () => {
     // _________________________________________functions____________________________
 
 
-
-
-
     return (
         <>
             <div className="animate-[fade_0.7s]">
                 <div className="animate-[upAnime10_0.5s]">
 
                     <Box>
-                        <InfoBox formValue={infoDataState} titleState={titleState} />
+                        <InfoBox infoDataState={infoDataState} titleState={titleState} />
                         <div className='mt-6'>
                             <InputCustom
                                 dataForm={dataForm}
@@ -131,7 +129,11 @@ const ConfirmForm = () => {
                             />
                         </div>
                         <div className='flex justify-between mt-5'>
-                            <BtnCustom title='ارسال' />
+                            <SendBtnConfirmForm
+                                infoDataObj={infoData[step.type]}
+                                type={step.type}
+                                formValue={formValue}
+                                 />
                             <OtpPassBtn amount={infoData[step.type]?.amount} />
                         </div>
                     </Box>

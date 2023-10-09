@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import BtnCustom from '../../../../component/btnCustom';
 import InputCustom from '../../../../component/inputCustom';
 import { setStepsSlice } from '../../../../redux/slice/step';
@@ -14,6 +14,9 @@ interface IFormValue {
     destinationAccountNumber: string,
     desTransfer: boolean
     transferId: boolean
+    destinationDescription:string
+    sourceDescription:string
+    transferIdentifier1:string
 }
 
 const TejaratAccountTransfer = () => {
@@ -28,7 +31,10 @@ const TejaratAccountTransfer = () => {
         destinationAccountNumber: step.step1?.data?.formValue?.destinationAccountNumber || '',
         desTransfer: step.step1?.data?.formValue?.desTransfer || '',
         transferId: step.step1?.data?.formValue?.transferId || '',
-   
+        destinationDescription: step.step1?.data?.formValue?.destinationDescription || '',
+        sourceDescription: step.step1?.data?.formValue?.sourceDescription || '',
+        transferIdentifier1: step.step1?.data?.formValue?.transferIdentifier1 || '',
+
     } as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -66,15 +72,15 @@ const TejaratAccountTransfer = () => {
         },
         {
             title: 'شرح مبدا',
-            name: 'desSource',
-            type: "number",
+            name: 'sourceDescription',
+            type: "text",
             active: formValue.desTransfer
 
         },
         {
             title: 'شرح مقصد',
-            name: 'desDes',
-            type: "amount",
+            name: 'destinationDescription',
+            type: "text",
             active: formValue.desTransfer
         },
         {
@@ -85,7 +91,7 @@ const TejaratAccountTransfer = () => {
         },
         {
             title: '',
-            name: 'desSource',
+            name: 'transferIdentifier1',
             type: "number",
             active: formValue.transferId
 
@@ -96,7 +102,7 @@ const TejaratAccountTransfer = () => {
     // ______________________________________function_____________________________
 
 
-    const dataApi = ()=>{
+    const dataApi = () => {
         let data = {
             amount: {
                 amount: formValue.amount.replace(/\,/g, ""),
@@ -106,7 +112,7 @@ const TejaratAccountTransfer = () => {
             externalRequestId: 0,
             requestSourceType: "CUSTOMER_NORMAL",
             sourceAccountNumber: active.accountNumber,
-            transferIdentifier1: formValue.transferId,
+            transferIdentifier1: formValue.transferIdentifier1,
         }
         return data
 
@@ -114,7 +120,7 @@ const TejaratAccountTransfer = () => {
 
 
 
-    
+
     const handleClickSend = () => {
         let body = dataApi()
         postData({ url: 'accountTransferVerifyAccount', body })
@@ -131,8 +137,8 @@ const TejaratAccountTransfer = () => {
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
-                activeTab:0,
-                data: { formValue,apiKey:"accountDestination" },
+                activeTab: 0,
+                data: { formValue, apiKey: "accountDestination" },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -143,6 +149,7 @@ const TejaratAccountTransfer = () => {
     // ________________________________________________useEffect___________________________
     useEffect(() => {
         if (resultPostData.isSuccess) {
+            
             dispatch(setStepsSlice({
                 step1: {
                     id: 1,
@@ -150,13 +157,19 @@ const TejaratAccountTransfer = () => {
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
-                    activeTab:0,
-                    data: { formValue, resultApi: resultPostData.data, type: 'account' },
+                    data: {
+                        formValue,
+                        resultApi: resultPostData.data,
+                        type: 'account',
+                        activeTab: 0,
+                    },
                 }
             }))
             navigate(URLS.account.confirmTransfer)
         }
     }, [resultPostData]);
+
+    
 
 
 

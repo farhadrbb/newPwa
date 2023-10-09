@@ -14,9 +14,9 @@ interface IFormValue {
     destinationPhoneNumber: string,
     desTransfer: boolean
     transferId: boolean,
-    sourceDescription:string,
-    destinationDescription:string,
-    transferIdentifier1:string
+    sourceDescription: string,
+    destinationDescription: string,
+    transferIdentifier1: string
 }
 
 const MobileAccountTransfer = () => {
@@ -101,26 +101,26 @@ const MobileAccountTransfer = () => {
     // ______________________________________function_____________________________
 
 
-    const dataApi = ()=>{
+    const dataApi = () => {
         let data = {
             "amount": {
-              "amount":formValue.amount.replace(/\,/g, ""),
-              "type": active.balance.type
+                "amount": formValue.amount.replace(/\,/g, ""),
+                "type": active.balance.type
             },
             "destinationDescription": formValue.destinationDescription ? formValue.destinationDescription : "",
             "sourceDescription": formValue.sourceDescription ? formValue.sourceDescription : "",
             "transferIdentifier1": formValue.transferIdentifier1 ? formValue.transferIdentifier1 : "",
             "destinationPhoneNumber": formValue.destinationPhoneNumber,
             "sourceAccountNumber": active.accountNumber,
-      
-          }
+
+        }
         return data
 
     }
 
 
 
-    
+
     const handleClickSend = () => {
         let body = dataApi()
         postData({ url: 'accountTransferMobileVerify', body })
@@ -129,7 +129,6 @@ const MobileAccountTransfer = () => {
 
 
     const handleClickBtnInput = () => {
-
         dispatch(setStepsSlice({
             step1: {
                 id: 1,
@@ -137,8 +136,10 @@ const MobileAccountTransfer = () => {
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
-                activeTab:1,
-                data: { formValue },
+                data: {
+                    formValue,
+                    activeTab: 1
+                },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -156,8 +157,12 @@ const MobileAccountTransfer = () => {
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
-                    activeTab:1,
-                    data: { formValue, resultApi: resultPostData.data, type: 'mobileAccount' },
+                    data: {
+                        formValue,
+                        activeTab: 1,
+                        resultApi: resultPostData.data,
+                        type: 'mobileAccount'
+                    },
                 }
             }))
             navigate(URLS.account.confirmTransfer)
