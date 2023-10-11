@@ -25,16 +25,17 @@ const MobileAccountTransfer = () => {
 
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
+    let formValueStep = step.step1?.data?.formValue
 
     const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: step.step1?.data?.formValue?.amount || '',
-        destinationPhoneNumber: step.step1?.data?.formValue?.destinationPhoneNumber || '',
-        desTransfer: step.step1?.data?.formValue?.desTransfer || '',
-        transferId: step.step1?.data?.formValue?.transferId || '',
-        sourceDescription: step.step1?.data?.formValue?.sourceDescription || '',
-        destinationDescription: step.step1?.data?.formValue?.destinationDescription || '',
-        transferIdentifier1: step.step1?.data?.formValue?.transferIdentifier1 || '',
-    } as IFormValue)
+        amount: formValueStep?.amount || '',
+        destinationPhoneNumber: formValueStep?.destinationPhoneNumber || '',
+        desTransfer: formValueStep?.desTransfer || '',
+        transferId: formValueStep?.transferId || '',
+        sourceDescription: formValueStep?.sourceDescription || '',
+        destinationDescription: formValueStep?.destinationDescription || '',
+        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
+    })
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -115,7 +116,6 @@ const MobileAccountTransfer = () => {
 
         }
         return data
-
     }
 
 
@@ -131,7 +131,6 @@ const MobileAccountTransfer = () => {
     const handleClickBtnInput = () => {
         dispatch(setStepsSlice({
             step1: {
-                id: 1,
                 pathname: URLS.account.destAccounts,
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
@@ -152,7 +151,6 @@ const MobileAccountTransfer = () => {
         if (resultPostData.isSuccess) {
             dispatch(setStepsSlice({
                 step1: {
-                    id: 1,
                     pathname: URLS.account.confirmTransfer,
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,

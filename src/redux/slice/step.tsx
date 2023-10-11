@@ -3,19 +3,34 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 
 interface IStep {
-    id: number,
     title: string
-    backUrl1: string,
+    backUrl1:string,
     backUrl2?: string,
     backToHome: string
-    data: any,
-    add: boolean,
-    pathname: ''
+    data: IData,
+    add?: boolean,
+    pathname: string
 }
 
-// const initialState: any = {
-//     steps: []
-// }
+
+interface IData{
+    formValue?:any
+    resultApi?:any
+    type?:string
+    apiKey?:string
+    activeTab?:number
+}
+
+interface IState{
+    step0?:IStep
+    step1?:IStep
+    step2?:IStep
+    step3?:IStep
+    step4?:IStep
+    step5?:IStep
+}
+
+
 const initialState = {
     data: {}
 }
@@ -25,7 +40,7 @@ const stepSlice = createSlice({
     name: 'steps',
     initialState,
     reducers: {
-        setStepsSlice: (state, action) => {
+        setStepsSlice: (state, action:PayloadAction<IState>) => {
             let obj = action.payload
             state.data = { ...state.data, ...obj }
         },
@@ -34,7 +49,6 @@ const stepSlice = createSlice({
                 ...state.data
             }
             let str = action.payload.replace("step","")
-            let num = Number(str) + 1            
             delete obj[`step${Number(str) + 1}`]
             // console.log("obj",obj);
             state.data = obj

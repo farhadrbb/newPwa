@@ -91,7 +91,7 @@ const LoginTabOne = () => {
         if (user) {
             setTimeout(() => {
                 navigate("/account")
-            }, 1000);
+            }, 500);
         }
     }, [resultLogin]);
 

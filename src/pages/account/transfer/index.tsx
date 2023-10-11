@@ -34,20 +34,18 @@ const TransferAccount = () => {
 
     return (
         <>
-            <div className="animate-[fade_0.7s]">
-                <div className="animate-[upAnime10_0.5s]">
-                    <div>
-                        <ActiveAccount />
-                        <Box className="mb-7">
-                            <TabsCustom dataTab={dataTab} activeTab={step.step1?.data.activeTab}>
-                                <TejaratAccountTransfer />
-                                <MobileAccountTransfer />
-                                <IbanAccountTrasnfer />
-                            </TabsCustom>
-                        </Box>
-                    </div>
-                </div>
+
+            <div>
+                <ActiveAccount />
+                <Box className="mb-7">
+                    <TabsCustom dataTab={dataTab} activeTab={step.step1?.data.activeTab}>
+                        <TejaratAccountTransfer />
+                        <MobileAccountTransfer />
+                        <IbanAccountTrasnfer />
+                    </TabsCustom>
+                </Box>
             </div>
+
         </>
     )
 }

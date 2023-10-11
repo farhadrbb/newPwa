@@ -41,7 +41,7 @@ const SendBtnConfirmForm = (props: any) => {
             },
             mobileAccount: {
                 accountNumber: activeAccount.accountNumber,
-                destinationPhoneNumber:obj.destinationPhoneNumber,
+                destinationPhoneNumber: obj.destinationPhoneNumber,
                 amount: obj.amount,
                 destinationAccountNumber: obj.destinationAccountNumber,
                 destinationDescription: obj?.destinationDescription,
@@ -49,12 +49,11 @@ const SendBtnConfirmForm = (props: any) => {
                 transferIdentifier1: obj?.transferIdentifier1,
                 accountPassword: encPass
             },
-            payaAccount:{
-                
-                    accountNumber: activeAccount.accountNumber,
-                    amount: obj.amount,
-                    destinationIBANNumber: obj.destinationIBANNumber,
-               
+            payaAccount: {
+                accountNumber: activeAccount.accountNumber,
+                amount: obj.amount,
+                destinationIBANNumber: obj.destinationIBANNumber,
+                accountPassword: encPass
             }
         }
         returnData = infoDataApi?.[type]
@@ -66,7 +65,7 @@ const SendBtnConfirmForm = (props: any) => {
 
 
     const handleClick = (obj: any) => {
-        let keyApi:any = {
+        let keyApi: any = {
             account: "accountTransferToAccount",
             mobileAccount: "accountTransferMobile",
             payaAccount: "accountTransferToIban"
@@ -86,6 +85,13 @@ const SendBtnConfirmForm = (props: any) => {
                     backUrl1: URLS.account.transfer,
                     backToHome: '/account',
                     data: { resultApi: resultPostData.data, type: type },
+                }
+            }))
+
+            dispatch(setStepsSlice({
+                step1: {
+                    ...step.step1,
+                    data: {},
                 }
             }))
             navigate(URLS.account.receipt)

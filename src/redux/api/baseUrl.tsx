@@ -87,12 +87,12 @@ export const baseQuery = async (args: any, api: any, extraOptions: any) => {
   if (result.meta?.response?.status === 200) {
     setTimeout(() => {
       api.dispatch(setLoadingSlice(false))
-    }, 1000);
+    }, 500);
   }
   if (result.error) {
     setTimeout(() => {
       api.dispatch(setLoadingSlice(false))
-    }, 1000);
+    }, 500);
   }
 
   if (result.data?.messages?.[0]) {
@@ -110,7 +110,7 @@ export const baseQuery = async (args: any, api: any, extraOptions: any) => {
     // api.dispatch(setToast({title:'دوباره لاگین کنید',type:'error'}))
     setTimeout(() => {
       window.location.reload()
-    }, 1000);
+    }, 500);
   }
   return result;
 };

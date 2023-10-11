@@ -116,8 +116,8 @@ const ConfirmForm = () => {
 
     return (
         <>
-            <div className="animate-[fade_0.7s]">
-                <div className="animate-[upAnime10_0.5s]">
+            {/* <div className="animate-[fade_0.7s]">
+                <div className="animate-[upAnime10_0.5s]"> */}
 
                     <Box>
                         <InfoBox infoDataState={infoDataState} titleState={titleState} />
@@ -137,8 +137,8 @@ const ConfirmForm = () => {
                             <OtpPassBtn amount={infoData[step.type]?.amount} />
                         </div>
                     </Box>
-                </div>
-            </div>
+                {/* </div>
+            </div> */}
         </>
     );
 }

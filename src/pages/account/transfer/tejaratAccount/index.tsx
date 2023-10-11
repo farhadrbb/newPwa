@@ -25,17 +25,17 @@ const TejaratAccountTransfer = () => {
 
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
+    let formValueStep = step.step1?.data?.formValue
 
     const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: step.step1?.data?.formValue?.amount || '',
-        destinationAccountNumber: step.step1?.data?.formValue?.destinationAccountNumber || '',
-        desTransfer: step.step1?.data?.formValue?.desTransfer || '',
-        transferId: step.step1?.data?.formValue?.transferId || '',
-        destinationDescription: step.step1?.data?.formValue?.destinationDescription || '',
-        sourceDescription: step.step1?.data?.formValue?.sourceDescription || '',
-        transferIdentifier1: step.step1?.data?.formValue?.transferIdentifier1 || '',
-
-    } as IFormValue)
+        amount: formValueStep?.amount || '',
+        destinationAccountNumber:formValueStep?.destinationAccountNumber || '',
+        desTransfer: formValueStep?.desTransfer || '',
+        transferId:formValueStep?.transferId || '',
+        destinationDescription: formValueStep?.destinationDescription || '',
+        sourceDescription: formValueStep?.sourceDescription || '',
+        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
+    })
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -132,18 +132,17 @@ const TejaratAccountTransfer = () => {
 
         dispatch(setStepsSlice({
             step1: {
-                id: 1,
                 pathname: URLS.account.destAccounts,
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
-                activeTab: 0,
-                data: { formValue, apiKey: "accountDestination" },
+                data: { 
+                    formValue, 
+                    apiKey: "accountDestination",
+                    activeTab:0},
             }
         }))
         navigate(URLS.account.destAccounts)
-
-
     }
 
     // ________________________________________________useEffect___________________________
@@ -152,7 +151,6 @@ const TejaratAccountTransfer = () => {
             
             dispatch(setStepsSlice({
                 step1: {
-                    id: 1,
                     pathname: URLS.account.confirmTransfer,
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,

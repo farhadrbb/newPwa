@@ -19,17 +19,12 @@ const ActiveAccount = () => {
     const { t } = useTranslation()
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
 
-
-
-
-
-
     return (
         <div className={parentClass}  >
             <div>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center '>
-                        <img src={logo_img} className="w-[35px] h-[37px]" />
+                        <img src={logo_img} className="w-[35px] h-[37px]"/>
                         <div className='mr-2 text-sm font-bold'>{active.accountNumber}</div>
                         <MdOutlineKeyboardArrowDown className='text-xl mr-2' />
                         <div className='mr-2'>
@@ -46,7 +41,7 @@ const ActiveAccount = () => {
                     <div className='text-xs'>{t('ACCOUNT_BALANCE')}</div>
                     <SlRefresh className='mr-1 fill-cyan-50' />
                 </div>
-                <div className='flex text-sm  py-1 px-3 rounded-lg items-center  dark:bg-darkMode-graylight '>
+                <div className='flex text-sm  py-1  rounded-lg items-center  dark:bg-darkMode-graylight '>
                     <div className='ml-1 text-cyan-50 font-bold '>
                         {sepreteNumber3(active?.balance?.amount)}
                     </div>

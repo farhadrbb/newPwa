@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ProfileIcon } from "../../assest/img/icon";
 import { IcAccountCar, IcAccountLogService, IcBalanceServicesIcon, IcBillService, IcCharityServices, IcDetailsServices, IcInternetService, IcOrganPaymentServies, IcRequstMoney, IcTopUpService, IcTransferService } from "../../assest/img/icon/services";
@@ -10,6 +10,8 @@ import InputCustom from "../../component/inputCustom";
 import ItemsSelect, { IMenu } from "../../component/itemsSelect";
 import ModalCustom from "../../component/modalCustom";
 import TabsCustom from "../../component/tabsCustom";
+import { usePostAllDataMutation } from "../../redux/api/allApi";
+import { setAccountActive } from "../../redux/slice/activeAccountAndCard";
 import { setStepsSlice } from "../../redux/slice/step";
 import { setNotifySlice } from "../../redux/slice/tool";
 
@@ -27,6 +29,10 @@ const Account = () => {
     const [modalShow, setModalShow] = useState<boolean>(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
+    const [postData, resultPostData] = usePostAllDataMutation()
+
+
     // ______________________________________varibles_____________________________
     const menu: IMenu[] = [
         {
@@ -125,11 +131,18 @@ const Account = () => {
             setModalShow(true)
             return
         }
+        if (itm.title === 'موجودی') {
+            let body = {
+                accountNumber: activeAccount.accountNumber
+            }
+            postData({ url: 'accountSourceBalance', body })
+            return
+        }
+
 
 
         dispatch(setStepsSlice({
             step0: {
-                id: 0,
                 pathname: itm.route,
                 title: itm.title,
                 backUrl1: '/account',
@@ -144,6 +157,23 @@ const Account = () => {
             navigate(itm.route)
         }, 100);
     }
+
+
+    useEffect(() => {
+        if(resultPostData.isSuccess && resultPostData.data){
+        const {lastBalanceUpdateDateMill,balance,availableBalance} = resultPostData.data?.result
+            dispatch(setAccountActive({
+                ...activeAccount,
+                availableBalance,
+                balance,
+                lastBalanceUpdateDateMill
+            }))
+        }
+    }, [resultPostData]);
+
+    console.log("result",resultPostData);
+    console.log("activeAccount",activeAccount);
+    
 
 
     return (

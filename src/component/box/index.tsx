@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 
 interface IProps {
     title?: string,
@@ -12,11 +12,16 @@ const Box = memo((props: IProps) => {
 
     return (
         <>
-            <div className={`${boxClass} ${className} transition-all duration-1000 h`}>
-                {title && (
-                    <div className={`${titleClass}`}>{title}</div>
-                )}
-                <div className="w-full px-4 pt-2 pb-5">{children}</div>
+            <div className="animate-[fade_0.7s] w-full">
+                <div className="animate-[upAnime10_0.5s] ">
+
+                    <div className={`${boxClass} ${className} `}>
+                        {title && (
+                            <div className={`${titleClass}`}>{title}</div>
+                        )}
+                        <div className="w-full px-4 pt-2 pb-5">{children}</div>
+                    </div>
+                </div>
             </div>
         </>
     )

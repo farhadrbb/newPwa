@@ -46,7 +46,7 @@ const NotifyCustom = () => {
         if (notify.title) {
             setTimeout(() => {
                 setnotifyState(notify)
-            }, 1000);
+            }, 500);
         }
     }, [notify])
 

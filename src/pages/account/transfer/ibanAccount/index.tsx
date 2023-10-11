@@ -23,13 +23,13 @@ const TejaratAccountTransfer = () => {
 
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
-
+    let formValueStep = step.step1?.data?.formValue
     const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: step.step1?.data?.formValue?.amount || '',
-        destinationIBAN: step.step1?.data?.formValue?.destinationIBAN || '',
-        desTransfer: step.step1?.data?.formValue?.desTransfer || '',
-        transferId: step.step1?.data?.formValue?.transferId || '',
-        transferIdentifier1: step.step1?.data?.formValue?.transferIdentifier1 || '',
+        amount: formValueStep?.amount || '',
+        destinationIBAN: formValueStep?.formValue?.destinationIBAN || '',
+        desTransfer:formValueStep?.desTransfer || '',
+        transferId: formValueStep?.transferId || '',
+        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
 
     } as IFormValue)
     const navigate = useNavigate()
@@ -111,7 +111,6 @@ const TejaratAccountTransfer = () => {
 
         dispatch(setStepsSlice({
             step1: {
-                id: 1,
                 pathname: URLS.account.destAccounts,
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
@@ -129,7 +128,6 @@ const TejaratAccountTransfer = () => {
         if (resultPostData.isSuccess) {
             dispatch(setStepsSlice({
                 step1: {
-                    id: 1,
                     pathname: URLS.account.confirmTransfer,
                     title: 'تایید انتقال وجه',
                     backUrl1: URLS.account.transfer,
