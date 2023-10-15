@@ -31,6 +31,9 @@ const List: React.FC = () => {
     const active = useSelector((state: any) => state.activeCardOrAccount)
     const dispatch = useDispatch()
 
+    console.log("user",user);
+    
+
     
     
 
@@ -78,7 +81,6 @@ const List: React.FC = () => {
 
     useEffect(() => {
         if (user) {
-            
             dispatch(setCards(user.cards))
             dispatch(setAccounts(user.accounts))
 

@@ -13,7 +13,7 @@ import BtnCustom from '../btnCustom';
 const NotifyCustom = () => {
     // ____________________________________varibles___________________________
 
-    let classNotify = 'absolute max-w-max mx-auto max-h-max !z-[2000] top-[45%] left-0 right-0 bg-black py-5 pr-4 pl-5 rounded-xl text-white animate-[upAnime10_0.5s] shadow-2xl shadow-gray-700 dark:shadow-gray-800'
+    let classNotify = 'absolute max-w-max mx-auto max-h-max !z-[2000] top-[45%] left-0 right-0 bg-black py-5 pr-4 pl-5 rounded-xl text-white animate-[upAnime10_0.9s] shadow-2xl shadow-gray-700 dark:shadow-gray-800'
 
     // ____________________________________hook___________________________
     const notify = useSelector((state: any) => state.toolsSlice.notify)

@@ -27,15 +27,7 @@ const MobileAccountTransfer = () => {
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     let formValueStep = step.step1?.data?.formValue
 
-    const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: formValueStep?.amount || '',
-        destinationPhoneNumber: formValueStep?.destinationPhoneNumber || '',
-        desTransfer: formValueStep?.desTransfer || '',
-        transferId: formValueStep?.transferId || '',
-        sourceDescription: formValueStep?.sourceDescription || '',
-        destinationDescription: formValueStep?.destinationDescription || '',
-        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
-    })
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -47,6 +39,7 @@ const MobileAccountTransfer = () => {
             name: 'destinationPhoneNumber',
             type: "number",
             active: true,
+            value: formValue?.destinationPhoneNumber,
             // btn: {
             //     // title: 'انتخاب',
             //     click: () => handleClickBtnInput(),
@@ -57,6 +50,7 @@ const MobileAccountTransfer = () => {
             title: 'مبلغ',
             name: 'amount',
             type: "amount",
+            value: formValue?.amount,
             btn: {
                 // title: 'ماشین حساب',
                 click: () => handleClickBtnInput(),
@@ -66,12 +60,14 @@ const MobileAccountTransfer = () => {
         },
         {
             title: 'شرح انتقال',
+            value: formValue?.desTransfer,
             name: 'desTransfer',
             type: "checkBox",
             active: true
         },
         {
             title: 'شرح مبدا',
+            value: formValue?.desTransfer,
             name: 'sourceDescription',
             type: "number",
             active: formValue.desTransfer
@@ -80,6 +76,7 @@ const MobileAccountTransfer = () => {
         {
             title: 'شرح مقصد',
             name: 'destinationDescription',
+            value: formValue?.destinationDescription,
             type: "amount",
             active: formValue.desTransfer
         },
@@ -87,11 +84,13 @@ const MobileAccountTransfer = () => {
             title: 'شناسه واریز',
             name: 'transferId',
             type: "checkBox",
+            value: formValue?.transferId,
             active: true
         },
         {
             title: '',
             name: 'transferIdentifier1',
+            value: formValue?.transferId,
             type: "number",
             active: formValue.transferId
 

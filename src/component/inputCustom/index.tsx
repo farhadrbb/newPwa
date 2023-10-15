@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import cx from "classnames";
 import { withTranslation, useTranslation } from 'react-i18next'
 import { Button } from 'antd';
 import BtnCustom from '../btnCustom';
 import { IInputCustom } from '../../common/types';
+import { useSelector } from 'react-redux';
 type IProps = {
     // updateFormValues: Function,
     dataForm: IinputCustom[],
@@ -29,9 +30,10 @@ const InputCustom = (props: IProps) => {
     // ___________________________________varibles______________________________
 
     const { formValues, setFormValues, dataForm } = props
+    
     const inputClass = 'bg-[#E8F0FE] placeholder:text-xs   dark:bg-darkMode-black dark:border-0 dark:outline-0 dark:text-white pr-3 focus:outline-blue-400  border border-gray-300 rounded-full h-[36px] w-full absolute left-0 bottom-0 text-black text-sm font-bold'
 
-
+    const step = useSelector((state: any) => state.stepSlice.data)
     // _________________________________function_____________________________
 
     const addCommas = (num: any) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -45,7 +47,8 @@ const InputCustom = (props: IProps) => {
         // }
         let elm = type === 'number' || 'amount' ? e : e;
 
-
+        console.log("e",e);
+        
         if (type === "amount") {
             if (elm === undefined) {
                 setFormValues({
@@ -71,6 +74,20 @@ const InputCustom = (props: IProps) => {
         }
     }
 
+    // useEffect(() => {
+    //     dataForm.map((itm: any, ind: any) => {
+    //         if (itm.value) {
+    //             setFormValues({
+    //                 ...formValues,
+    //                 [itm.name]: itm.value
+    //             })
+    //         }
+    //     })
+    // }, [step]);
+    console.log("formValue", formValues);
+
+
+
 
     return (
         <>
@@ -86,7 +103,7 @@ const InputCustom = (props: IProps) => {
                                     )}
                                     <input
                                         className={inputClass}
-                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
                                         placeholder={itm?.placeholder}
                                         onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
                                         type="tel"
@@ -116,7 +133,7 @@ const InputCustom = (props: IProps) => {
                                     )}
                                     <input
                                         className={inputClass}
-                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
                                         onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
                                         placeholder={itm?.placeholder}
                                         type="password"
@@ -147,7 +164,7 @@ const InputCustom = (props: IProps) => {
                                     <input
                                         // className={cx("input", "is-rounded")}
                                         className={inputClass}
-                                        value={formValues[itm.name]}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
                                         onChange={(e) => { updateFormValues(addCommas(removeNonNumeric((e.target.value))), itm.name) }}
                                         placeholder={itm?.placeholder}
                                         type="tel"
@@ -180,7 +197,7 @@ const InputCustom = (props: IProps) => {
                                         // className={cx("input", "is-rounded")}
                                         className={inputClass}
                                         onChange={(e) => updateFormValues(e.target.value, itm.name)}
-                                        value={formValues[itm.name] && formValues[itm.name]}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
                                         maxLength={itm.maxLength && itm.maxLength || 30}
                                         placeholder={itm?.placeholder}
                                         autoComplete="off"
@@ -212,7 +229,7 @@ const InputCustom = (props: IProps) => {
                                         // name="visible_comments"
                                         className='cursor-pointer'
 
-                                        checked={formValues[itm.name] && formValues[itm.name]}
+                                        checked={formValues[itm.name] && formValues[itm.name] }
                                         onChange={(e) => updateFormValues(e.target.checked, itm.name)}
                                     ></input>
                                     {itm.title != '' && (

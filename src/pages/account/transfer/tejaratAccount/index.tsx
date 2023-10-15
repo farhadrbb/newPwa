@@ -14,9 +14,9 @@ interface IFormValue {
     destinationAccountNumber: string,
     desTransfer: boolean
     transferId: boolean
-    destinationDescription:string
-    sourceDescription:string
-    transferIdentifier1:string
+    destinationDescription: string
+    sourceDescription: string
+    transferIdentifier1: string
 }
 
 const TejaratAccountTransfer = () => {
@@ -26,16 +26,7 @@ const TejaratAccountTransfer = () => {
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     let formValueStep = step.step1?.data?.formValue
-
-    const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: formValueStep?.amount || '',
-        destinationAccountNumber:formValueStep?.destinationAccountNumber || '',
-        desTransfer: formValueStep?.desTransfer || '',
-        transferId:formValueStep?.transferId || '',
-        destinationDescription: formValueStep?.destinationDescription || '',
-        sourceDescription: formValueStep?.sourceDescription || '',
-        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
-    })
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -46,6 +37,7 @@ const TejaratAccountTransfer = () => {
             title: 'شماره حساب مقصد',
             name: 'destinationAccountNumber',
             type: "number",
+            value: formValue?.destinationAccountNumber,
             active: true,
             btn: {
                 // title: 'انتخاب',
@@ -57,6 +49,7 @@ const TejaratAccountTransfer = () => {
             title: 'مبلغ',
             name: 'amount',
             type: "amount",
+            value: formValue?.amount,
             btn: {
                 // title: 'ماشین حساب',
                 click: () => handleClickBtnInput(),
@@ -67,33 +60,38 @@ const TejaratAccountTransfer = () => {
         {
             title: 'شرح انتقال',
             name: 'desTransfer',
+            value: formValue?.desTransfer,
             type: "checkBox",
             active: true
         },
         {
             title: 'شرح مبدا',
             name: 'sourceDescription',
+            value: formValue?.sourceDescription,
             type: "text",
-            active: formValue.desTransfer
+            active: formValue?.desTransfer
 
         },
         {
             title: 'شرح مقصد',
             name: 'destinationDescription',
+            value: formValue?.destinationDescription,
             type: "text",
-            active: formValue.desTransfer
+            active: formValue?.desTransfer
         },
         {
             title: 'شناسه واریز',
             name: 'transferId',
+            value: formValue?.transferId,
             type: "checkBox",
             active: true
         },
         {
             title: '',
             name: 'transferIdentifier1',
+            value: formValue?.transferIdentifier1,
             type: "number",
-            active: formValue.transferId
+            active: formValue?.transferId
 
         },
 
@@ -105,7 +103,7 @@ const TejaratAccountTransfer = () => {
     const dataApi = () => {
         let data = {
             amount: {
-                amount: formValue.amount.replace(/\,/g, ""),
+                amount: formValue.amount?.replace(/\,/g, ""),
                 type: active.balance.type,
             },
             destinationAccountNumber: formValue.destinationAccountNumber,
@@ -117,9 +115,6 @@ const TejaratAccountTransfer = () => {
         return data
 
     }
-
-
-
 
     const handleClickSend = () => {
         let body = dataApi()
@@ -136,10 +131,11 @@ const TejaratAccountTransfer = () => {
                 title: 'انتخاب مقصد',
                 backUrl1: '/account/transfer',
                 backToHome: '/account',
-                data: { 
-                    formValue, 
+                data: {
+                    formValue,
                     apiKey: "accountDestination",
-                    activeTab:0},
+                    activeTab: 0
+                },
             }
         }))
         navigate(URLS.account.destAccounts)
@@ -148,7 +144,7 @@ const TejaratAccountTransfer = () => {
     // ________________________________________________useEffect___________________________
     useEffect(() => {
         if (resultPostData.isSuccess) {
-            
+
             dispatch(setStepsSlice({
                 step1: {
                     pathname: URLS.account.confirmTransfer,
@@ -167,7 +163,8 @@ const TejaratAccountTransfer = () => {
         }
     }, [resultPostData]);
 
-    
+
+
 
 
 

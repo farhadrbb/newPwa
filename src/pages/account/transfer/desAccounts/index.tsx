@@ -41,7 +41,7 @@ const DesAccounts = () => {
                 <div className="animate-[upAnime10_0.5s]">
                     <Box className="mb-7">
                         {step.step1.data.apiKey === "accountDestination" && (
-                            <TabsCustom dataTab={dataTab}>
+                            <TabsCustom dataTab={dataTab} notAnime>
                                 <AccountsDestination />
                                 <div></div>
                             </TabsCustom>

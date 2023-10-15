@@ -19,6 +19,15 @@ const user = createSlice({
         setKeyExchnage: (state, action) => {
             state.key = action.payload
         },
+        setBalanceAccount: (state, action) => {
+            let balanced = state.user?.accounts?.filter((itm:any,ind:any)=>{
+                if(itm.accountNumber === action.payload.accountNumber){
+                    state.user.accounts[ind] = action.payload
+                }
+
+            })
+            // state.user = action.payload
+        },
 
     },
     extraReducers: (builder) => {
@@ -31,5 +40,5 @@ const user = createSlice({
     },
 })
 
-export const { setKeyExchnage } = user.actions
+export const { setKeyExchnage,setBalanceAccount } = user.actions
 export default user.reducer

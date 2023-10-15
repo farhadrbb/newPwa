@@ -14,6 +14,7 @@ import { usePostAllDataMutation } from "../../redux/api/allApi";
 import { setAccountActive } from "../../redux/slice/activeAccountAndCard";
 import { setStepsSlice } from "../../redux/slice/step";
 import { setNotifySlice } from "../../redux/slice/tool";
+import { setBalanceAccount } from "../../redux/slice/user";
 
 
 interface IFormValue {
@@ -25,7 +26,6 @@ interface IFormValue {
 const Account = () => {
     // ___________________________________Hook_______________________
 
-    const [formValue, setFormValue] = useState<IFormValue>({} as IFormValue)
     const [modalShow, setModalShow] = useState<boolean>(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -162,7 +162,13 @@ const Account = () => {
     useEffect(() => {
         if(resultPostData.isSuccess && resultPostData.data){
         const {lastBalanceUpdateDateMill,balance,availableBalance} = resultPostData.data?.result
-            dispatch(setAccountActive({
+            // dispatch(setAccountActive({
+            //     ...activeAccount,
+            //     availableBalance,
+            //     balance,
+            //     lastBalanceUpdateDateMill
+            // }))
+            dispatch(setBalanceAccount({
                 ...activeAccount,
                 availableBalance,
                 balance,
@@ -171,16 +177,14 @@ const Account = () => {
         }
     }, [resultPostData]);
 
-    console.log("result",resultPostData);
-    console.log("activeAccount",activeAccount);
-    
+   
 
 
     return (
         <>
             <div className="animate-[fade_0.8s_linear]">
                 <div className="animate-[downAnime50_1s] ">
-                    <ItemsSelect menu={menu} />
+                    <ItemsSelect menu={menu}/>
                 </div>
             </div>
 

@@ -41,7 +41,7 @@ const ActiveAccount = () => {
                     <div className='text-xs'>{t('ACCOUNT_BALANCE')}</div>
                     <SlRefresh className='mr-1 fill-cyan-50' />
                 </div>
-                <div className='flex text-sm  py-1  rounded-lg items-center  dark:bg-darkMode-graylight '>
+                <div className='flex text-sm  py-1  rounded-lg items-center  dark:bg-darkMode-graylight px-2'>
                     <div className='ml-1 text-cyan-50 font-bold '>
                         {sepreteNumber3(active?.balance?.amount)}
                     </div>

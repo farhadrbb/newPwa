@@ -9,6 +9,7 @@ type IProps = {
     center?: boolean,
     children: any,
     activeTab?:number
+    notAnime?:boolean
 }
 
 
@@ -16,7 +17,7 @@ type IProps = {
 
 const TabsCustom = (props: IProps) => {
     // __________________________________variebles_________________________
-    let { dataTab, className, center, children,activeTab } = props
+    let { dataTab, className, center, children,activeTab,notAnime } = props
     let classNamesTabs = "  text-xs flex justify-center items-center cursor-pointer dark:border-b-gray-100    "
  
     // ___________________________________hook_______________________________
@@ -26,12 +27,12 @@ const TabsCustom = (props: IProps) => {
     const handleClick = (item: ItemsTab) => {
         setClick(item)
     }
-    const handleRenderElement = (clickId: any, notAnime?: boolean) => {
+    const handleRenderElement = (clickId: any) => {
         let div = children?.map((child: any, ind: any) => {
             return (
                 <>
                     {clickId === ind && (
-                        <div className={`min-h-[10vh] max-h-[70vh] !overflow-y-auto ${!notAnime && "animate-[scaleClick0_0.5s]"}`}>
+                        <div className={`min-h-[10vh] max-h-[70vh] !overflow-y-auto ${!notAnime && "animate-[rightAnime_0.5s]"}`}>
                             {child}
                         </div>
                     )}

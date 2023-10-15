@@ -19,7 +19,7 @@ const Header = (props: any) => {
               
                 {handleRouteForLayout() && (
                     <>
-                        <img src={img_type} className="w-[86px] h-[29px] mt-3 shadow-lg" />
+                        <img src={img_type} className="w-[86px] h-[29px] mt-3 animate-[upAnime10_1s]" />
                         <div className="absolute top-[190px] bg-white w-full h-[70px] z-[100] dark:bg-darkMode-black "></div>
                         {location.pathname === '/account' || location.pathname === '/card' ? (
                             <div className="absolute top-6 h-[200px] w-full z-[120]">

@@ -24,14 +24,7 @@ const TejaratAccountTransfer = () => {
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     let formValueStep = step.step1?.data?.formValue
-    const [formValue, setFormValue] = React.useState<IFormValue>({
-        amount: formValueStep?.amount || '',
-        destinationIBAN: formValueStep?.formValue?.destinationIBAN || '',
-        desTransfer:formValueStep?.desTransfer || '',
-        transferId: formValueStep?.transferId || '',
-        transferIdentifier1: formValueStep?.transferIdentifier1 || '',
-
-    } as IFormValue)
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -43,6 +36,8 @@ const TejaratAccountTransfer = () => {
             name: 'destinationIBAN',
             type: "number",
             active: true,
+            value: formValue?.destinationIBAN,
+
             btn: {
                 // title: 'انتخاب',
                 click: () => handleClickBtnInput(),
@@ -53,6 +48,8 @@ const TejaratAccountTransfer = () => {
             title: 'مبلغ',
             name: 'amount',
             type: "amount",
+            value: formValue?.amount,
+
             btn: {
                 // title: 'ماشین حساب',
                 click: () => handleClickBtnInput(),
@@ -64,11 +61,15 @@ const TejaratAccountTransfer = () => {
             title: 'شناسه واریز',
             name: 'transferId',
             type: "checkBox",
+            value: formValue?.transferId,
+
             active: true
         },
         {
             title: '',
             name: 'transferIdentifier1',
+            value: formValue?.transferIdentifier1,
+
             type: "number",
             active: formValue.transferId
         },

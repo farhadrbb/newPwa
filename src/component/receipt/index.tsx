@@ -4,6 +4,7 @@ import { AiOutlineShareAlt } from 'react-icons/ai';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { IoCloseCircle } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
+import useReceiptModel from '../../customHook/useReceiptModel';
 import Box from '../box';
 import BtnCustom from '../btnCustom';
 
@@ -12,136 +13,13 @@ import BtnCustom from '../btnCustom';
 
 const Receipt = () => {
 
-    const step = useSelector((state: any) => state.stepSlice?.data?.step2.data)
     const { t } = useTranslation()
+    const [infoData,infoTitle] = useReceiptModel()
 
-    const handleStatus = (str: string) => {
-
-        if (str == 'SUCCESS') {
-            return (
-                <div className='flex items-center'>
-                    <div >
-                        {t("SUCCESS")}
-                    </div>
-                    <div>
-                        <BsFillCheckCircleFill className='text-lg text-cyan-50 mr-1' />
-                    </div>
-                </div>
-            )
-        } else if (str == 'FAIL') {
-            return (
-                <div className='flex items-center'>
-                    <div>
-                        {t("FAIL")}
-                    </div>
-                    <div>
-                        <IoCloseCircle className='text-lg text-red-500 mr-1' />
-                    </div>
-                </div>
-            )
-        } else if (!str && step.type === 'payaAccount') {
-            return (
-                <div className='flex items-center'>
-                    <div>
-                        {t("DOING")}
-                    </div>
-                    <div>
-                        <IoCloseCircle className='text-lg text-red-500 mr-1' />
-                    </div>
-                </div>
-            )
-        } else  {
-            return (
-                <div className='flex items-center'>
-                    <div>
-                        {t("SUCCESS")}
-                    </div>
-                    <div>
-                        <IoCloseCircle className='text-lg text-red-500 mr-1' />
-                    </div>
-                </div>
-            )
-        }
-
-    }
-
-
-
-    let infoData: any = {
-        account: {
-            activityStatus: handleStatus(step.resultApi?.result?.activityStatus),
-            sourceAccountNumber: step.resultApi?.result?.sourceAccountNumber,
-            destinationAccountNumber: step.resultApi?.result?.destinationAccountNumber,
-            destinationOwner: step.resultApi?.result?.destinationOwner,
-            dateMill: step.resultApi?.result?.dateMill,
-            traceNumber: step.resultApi?.result?.traceNumber,
-            referenceNumber: step.resultApi?.result?.referenceNumber,
-            amount: step.resultApi?.result?.amount.amount,
-        },
-        mobileAccount: {
-            activityStatus: handleStatus(step.resultApi?.result?.activityStatus),
-            sourceAccountNumber: step.resultApi?.result?.sourceAccountNumber,
-            destinationAccountNumber: step.resultApi?.result?.destinationAccountNumber,
-            destinationOwner: step.resultApi?.result?.destinationOwner,
-            dateMill: step.resultApi?.result?.dateMill,
-            traceNumber: step.resultApi?.result?.traceNumber,
-            referenceNumber: step.resultApi?.result?.referenceNumber,
-            amount: step.resultApi?.result?.amount.amount,
-        },
-        payaAccount: {
-            activityStatus: handleStatus(step.resultApi?.result?.activityStatus),
-            sourceAccountNumber: step.resultApi?.result?.sourceAccountNumber,
-            destinationIBANNumber: step.resultApi?.result?.destinationIBANNumber,
-            destinationOwner: step.resultApi?.result?.destinationOwner,
-            dateMill: step.resultApi?.result?.dateMill,
-            traceNumber: step.resultApi?.result?.traceNumber,
-            referenceNumber: step.resultApi?.result?.referenceNumber,
-            amount: step.resultApi?.result?.amount.amount,
-        }
-    }
-
-    let infoTitle: any = {
-        account: {
-            activityStatus: t("STATUS"),
-            sourceAccountNumber: t("SOURCE_ACCOUNT"),
-            destinationAccountNumber: t('DEST_ACCOUNT'),
-            destinationOwner: t('ACCOUNT_OWNER_NAME'),
-            dateMill: t('DATE_TIME'),
-            traceNumber: t('TRACKING_CODE'),
-            referenceNumber: t('REFRENCE_NUMBER'),
-            amount: t('AMOUNT'),
-        },
-        mobileAccount: {
-            activityStatus: t("STATUS"),
-            sourceAccountNumber: t("SOURCE_ACCOUNT"),
-            destinationAccountNumber: t('DEST_ACCOUNT'),
-            destinationOwner: t('ACCOUNT_OWNER_NAME'),
-            dateMill: t('DATE_TIME'),
-            traceNumber: t('TRACKING_CODE'),
-            referenceNumber: t('REFRENCE_NUMBER'),
-            amount: t('AMOUNT'),
-        },
-        payaAccount: {
-            activityStatus: t("STATUS"),
-            sourceAccountNumber: t("SOURCE_ACCOUNT"),
-            destinationIBANNumber: t('DEST_ACCOUNT'),
-            destinationOwner: t('ACCOUNT_OWNER_NAME'),
-            dateMill: t('DATE_TIME'),
-            traceNumber: t('TRACKING_CODE'),
-            referenceNumber: t('REFRENCE_NUMBER'),
-            amount: t('AMOUNT'),
-        }
-    }
-
-    const [infoDataState, setInfoDataState] = React.useState({
-        ...infoData[step.type]
-    });
-
-    const [titleState, settitleState] = React.useState({
-        ...infoTitle[step.type]
-    });
-
-
+    console.log("infoData",infoData);
+    console.log("infoTitle",infoTitle);
+    
+  
 
 
 
@@ -149,14 +27,14 @@ const Receipt = () => {
         <>
             <Box>
                 <div className='flex bg-gray-100 dark:bg-darkMode-black dark:text-gray-200  shadow-xl rounded-lg text-xs flex-col px-3 py-1'>
-                    {Object.keys(infoDataState).map((itm: any, ind: any, { length }): any => {
+                    {Object.keys(infoData ? infoData :{}).map((itm: any, ind: any, { length }): any => {
                         return (
                             <>
-                                {infoDataState?.[itm] && (
+                                {infoData?.[itm] && (
                                     <div className={`flex justify-between items-center  ${length - 1 != ind && ('border-b')}  py-3 dark:border-gray-500`}>
-                                        <div>{titleState?.[itm]}</div>
+                                        <div>{infoTitle?.[itm]}</div>
                                         <div className='font-bold flex'>
-                                            <div className={`${itm === "amount" || itm === 'destinationOwner' ? ('text-cyan-50') : ''}`}>{infoDataState?.[itm]}</div>
+                                            <div className={`${itm === "amount" || itm === 'destinationOwner' ? ('text-cyan-50') : ''}`}>{infoData?.[itm]}</div>
                                             {itm === "amount" && (
                                                 <div className='mr-1'>{t('RIAL')}</div>
                                             )}

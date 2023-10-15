@@ -35,7 +35,7 @@ const OtpPassBtn = (props: IProps) => {
             };
         } else {
             accountData = {
-                amount: amount ? amount : {},
+                amount: amount ? {amount,type: "IRR"} : {},
                 accountOperation: "TRANSFER",
                 sourceAccountNumber: activeAccount.accountNumber,
             };
