@@ -32,7 +32,7 @@ const TabsCustom = (props: IProps) => {
             return (
                 <>
                     {clickId === ind && (
-                        <div className={`min-h-[10vh] max-h-[70vh] !overflow-y-auto ${!notAnime && "animate-[rightAnime_0.5s]"}`}>
+                        <div className={`min-h-[10vh] max-h-[70vh] !overflow-y-auto ${!notAnime && "animate-[upAnime10_0.8s]"}`}>
                             {child}
                         </div>
                     )}

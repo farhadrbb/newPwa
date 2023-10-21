@@ -18,9 +18,6 @@ const DesAccounts = () => {
     // ______________________________________varibles_____________________________
 
     const step = useSelector((state: any) => state.stepSlice.data)
-
-
-
     let dataTab = [
         {
             id: 0,
@@ -32,26 +29,23 @@ const DesAccounts = () => {
         },
 
     ]
-
     // _____________________________________________________useEffect_____________________________
 
     return (
         <>
-            <div className="animate-[fade_0.7s]">
-                <div className="animate-[upAnime10_0.5s]">
-                    <Box className="mb-7">
-                        {step.step1.data.apiKey === "accountDestination" && (
-                            <TabsCustom dataTab={dataTab} notAnime>
-                                <AccountsDestination />
-                                <div></div>
-                            </TabsCustom>
-                        )}
-                        {step.step1.data.apiKey === "accountIbanDestination" && (
-                            <AccountsDestination />
-                        )}
-                    </Box>
-                </div>
-            </div>
+
+            <Box className="mb-7">
+                {step.step1.data.apiKey === "accountDestination" && (
+                    <TabsCustom dataTab={dataTab} notAnime>
+                        <AccountsDestination />
+                        <div></div>
+                    </TabsCustom>
+                )}
+                {step.step1.data.apiKey === "accountIbanDestination" && (
+                    <AccountsDestination />
+                )}
+            </Box>
+
         </>
     )
 }

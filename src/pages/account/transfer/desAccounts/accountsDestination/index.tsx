@@ -50,7 +50,7 @@ const AccountsDestination = (props: any) => {
 
     let infoApi: any = {
         accountDestination: 'accounts',
-        accountIbanDestination: 'ibans'
+        accountIbanDestination: 'ibans',
     }
 
 
@@ -124,7 +124,7 @@ const AccountsDestination = (props: any) => {
                         setFormValues={setFormValue}
                     />
                 </div>
-                <div className="">
+                <div>
                     {stateData?.map((itm: any, ind: any) => (
                         <div className="boxItem-global cursor-pointer" onClick={() => handleClickItem(itm)}>
                             <div className="flex justify-between items-center">

@@ -4,7 +4,7 @@ import { authApi } from '../api/auth'
 
 interface ToolsState {
     key: string,
-    user:any
+    user: any
 
 }
 
@@ -20,8 +20,8 @@ const user = createSlice({
             state.key = action.payload
         },
         setBalanceAccount: (state, action) => {
-            let balanced = state.user?.accounts?.filter((itm:any,ind:any)=>{
-                if(itm.accountNumber === action.payload.accountNumber){
+            state.user?.accounts?.filter((itm: any, ind: any) => {
+                if (itm.accountNumber === action.payload.accountNumber) {
                     state.user.accounts[ind] = action.payload
                 }
 
@@ -40,5 +40,5 @@ const user = createSlice({
     },
 })
 
-export const { setKeyExchnage,setBalanceAccount } = user.actions
+export const { setKeyExchnage, setBalanceAccount } = user.actions
 export default user.reducer

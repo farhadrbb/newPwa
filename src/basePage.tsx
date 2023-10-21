@@ -9,6 +9,9 @@ import { useState } from 'react'
 import ConfirmForm from "./component/confirmForm";
 import DesAccounts from "./pages/account/transfer/desAccounts";
 import Receipt from "./component/receipt";
+import SearchAccountOrCard from "./component/searchAccountOrCard";
+import AccountLog from "./pages/account/accountLog";
+import AccountLogResult from "./pages/account/accountLog/accountLogResult";
 
 
 
@@ -32,7 +35,9 @@ const BasePage = () => {
                 { path: "transfer/confirmForm", element: <ConfirmForm /> },
                 { path: "transfer/destAccounts", element: <DesAccounts /> },
                 { path: "transfer/receipt", element: <Receipt /> },
-
+                { path: "search", element: <SearchAccountOrCard /> },
+                { path: "log", element: <AccountLog /> },
+                { path: "log/result", element: <AccountLogResult /> },
             ],
         },
         {

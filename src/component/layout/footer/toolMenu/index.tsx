@@ -5,6 +5,7 @@ import DarkBtn from "../../../darkModeBtn";
 // import { RiSettings4Fill } from "react-icons/ri";
 import {IoSettingsSharp} from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BiSolidUserVoice } from "react-icons/bi";
 
 // import icg_wallet from '../../../assest/img/wallet.svg'
 
@@ -33,24 +34,31 @@ const ToolMenu = memo((props: any) => {
 
             {stateClickMenu && (
                 <>
-                    <div className="animate-[fade_0.6s] absolute -top-[135%] left-[15%] ">
-                        <div className="animate-[downAnime20_1.1s]">
+                    <div className="animate-[fade_0.8s] absolute -top-[150%] left-[60%] ">
+                        <div className="animate-[downAnime20_0.6s]">
                             <div className={classBtn}>
                                 <DarkBtn/>
                             </div>
                         </div>
                     </div>
-                    <div className="animate-[fade_0.2s] absolute -top-[95%] -right-[90%]">
-                        <div className="animate-[downAnime20_0.8s]">
+                    <div className="animate-[fade_0.8s] absolute -top-[95%] -right-[100%]">
+                        <div className="animate-[downAnime20_0.4s]">
                             <div className={classBtn}>
                             <IoSettingsSharp/>
                             </div>
                         </div>
                     </div>
-                    <div className="animate-[fade_1s] absolute -top-[95%] -left-[90%]" onClick={()=>window.open('tel:9971863733')}>
-                        <div className="animate-[downAnime20_1.4s]">
+                    <div className="animate-[fade_1.1s] absolute -top-[150%] right-[60%]">
+                        <div className="animate-[downAnime20_0.9s]">
                             <div className={classBtn}>
                                 <AiOutlinePlus/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="animate-[fade_1.4s] absolute -top-[95%] -left-[100%]" onClick={()=>window.open('tel:9971863733')}>
+                        <div className="animate-[downAnime20_1.2s]">
+                            <div className={classBtn}>
+                                <BiSolidUserVoice/>
                             </div>
                         </div>
                     </div>

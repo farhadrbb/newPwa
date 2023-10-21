@@ -30,14 +30,6 @@ const List: React.FC = () => {
     const user = useSelector((state: any) => state.user.user)
     const active = useSelector((state: any) => state.activeCardOrAccount)
     const dispatch = useDispatch()
-
-    console.log("user",user);
-    
-
-    
-    
-
-
     // _________________________________FUNCTIONS___________________________
 
     const handleCardOrAccount = (path: any) => {
@@ -83,7 +75,6 @@ const List: React.FC = () => {
         if (user) {
             dispatch(setCards(user.cards))
             dispatch(setAccounts(user.accounts))
-
         }
     }, [location.pathname, user.accounts, user.cards]);
 

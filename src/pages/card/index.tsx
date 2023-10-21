@@ -119,11 +119,11 @@ const Card = () => {
 
     return (
         <>
-            <div className="animate-[fade_0.8s_linear]">
+            {/* <div className="animate-[fade_0.8s_linear]"> */}
                 <div className="animate-[downAnime50_1s] ">
                     <ItemsSelect menu={menu} />
                 </div>
-            </div>
+            {/* </div> */}
 
             <ModalCustom show={modalShow} setShow={setModalShow}>
                 <></>

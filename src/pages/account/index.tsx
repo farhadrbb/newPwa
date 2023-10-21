@@ -56,7 +56,7 @@ const Account = () => {
             icon: IcAccountLogService,
             color: 'bg-itemSelect-red',
             fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
-            route: '/account/transfer',
+            route: '/account/log',
             onclick: (itm: IMenu) => handleOnclickItem(itm)
         },
         {
@@ -182,11 +182,11 @@ const Account = () => {
 
     return (
         <>
-            <div className="animate-[fade_0.8s_linear]">
+            {/* <div className="animate-[fade_0.8s]"> */}
                 <div className="animate-[downAnime50_1s] ">
                     <ItemsSelect menu={menu}/>
                 </div>
-            </div>
+            {/* </div> */}
 
             <ModalCustom show={modalShow} setShow={setModalShow}>
                 <div>
