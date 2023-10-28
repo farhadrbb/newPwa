@@ -144,7 +144,6 @@ const TejaratAccountTransfer = () => {
     // ________________________________________________useEffect___________________________
     useEffect(() => {
         if (resultPostData.isSuccess) {
-
             dispatch(setStepsSlice({
                 step1: {
                     pathname: URLS.account.confirmTransfer,

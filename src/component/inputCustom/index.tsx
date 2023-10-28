@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import cx from "classnames";
 import { withTranslation, useTranslation } from 'react-i18next'
-import { Button } from 'antd';
+import { Button, Select } from 'antd';
 import BtnCustom from '../btnCustom';
 import { IInputCustom } from '../../common/types';
 import { useSelector } from 'react-redux';
-type IProps = {
+import Box from '../box';
+import { convertEnglishNumberToPersian } from '../../common/utils';
+import ModalCustom from '../modalCustom';
+interface IProps {
     // updateFormValues: Function,
     dataForm: IinputCustom[],
     setFormValues: any,
@@ -16,6 +19,7 @@ type IProps = {
 interface IinputCustom {
     name: string,
     title: string,
+    option?: any,
     btn?: any
     type: string,
     active: boolean
@@ -30,64 +34,77 @@ const InputCustom = (props: IProps) => {
     // ___________________________________varibles______________________________
 
     const { formValues, setFormValues, dataForm } = props
-    
     const inputClass = 'bg-[#E8F0FE] placeholder:text-xs   dark:bg-darkMode-black dark:border-0 dark:outline-0 dark:text-white pr-3 focus:outline-blue-400  border border-gray-300 rounded-full h-[36px] w-full absolute left-0 bottom-0 text-black text-sm font-bold'
-
-    const step = useSelector((state: any) => state.stepSlice.data)
+    // ___________________________________hook______________________________
+    const [showSelectList, setshowSelectList] = useState(false);
+    const [valueModal, setvalueModal] = useState({
+        value: 10,
+        label: 10
+    });
     // _________________________________function_____________________________
-
+    
     const addCommas = (num: any) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const removeNonNumeric = (num: any) => num.toString().replace(/[^0-9]/g, "");
-
     function updateFormValues(e: any, type: string) {
-
-        // if (type === 'destCardNumber') {
-
-        //     onCardNumberEnter(e)
-        // }
-        let elm = type === 'number' || 'amount' ? e : e;
-
-        console.log("e",e);
-        
+        let val = e;
         if (type === "amount") {
-            if (elm === undefined) {
+            if (val === undefined) {
                 setFormValues({
                     ...formValues,
                     [type]: "",
                 });
-            } else if (elm[0] == 0) {
+            } else if (val[0] == 0) {
                 setFormValues({
                     ...formValues,
-                    [type]: elm.substring(1),
+                    [type]: val.substring(1),
                 });
             } else {
                 setFormValues({
                     ...formValues,
-                    [type]: elm,
+                    [type]: val,
                 });
             }
         } else {
             setFormValues({
                 ...formValues,
-                [type]: elm,
+                [type]: val,
             });
         }
     }
 
-    // useEffect(() => {
-    //     dataForm.map((itm: any, ind: any) => {
-    //         if (itm.value) {
-    //             setFormValues({
-    //                 ...formValues,
-    //                 [itm.name]: itm.value
-    //             })
-    //         }
-    //     })
-    // }, [step]);
-    console.log("formValue", formValues);
+
+    const handleClickSelectModal = () => {
+        setshowSelectList(!showSelectList)
+    }
+    
+    const handleValueSelectModal = (item: any, itm: any) => {
+        setFormValues({
+            ...formValues,
+            [itm.name]: item.value,
+        });
+        setshowSelectList(false)
+    }
+    
+    
+    // _________________________________useEffect_____________________________
+
+    useEffect(() => {
+        if (dataForm) {
+            dataForm?.map((itm: any, ind: any) => {
+                if (itm.option) {
+                    setFormValues(
+                        {
+                            ...formValues,
+                            [itm.name]: itm.option?.[0].label,
+                        }
+                    )
+                }
+            })
+        }
+    }, []);
 
 
-
+    
 
     return (
         <>
@@ -103,7 +120,7 @@ const InputCustom = (props: IProps) => {
                                     )}
                                     <input
                                         className={inputClass}
-                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value : ''}
                                         placeholder={itm?.placeholder}
                                         onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
                                         type="tel"
@@ -133,7 +150,7 @@ const InputCustom = (props: IProps) => {
                                     )}
                                     <input
                                         className={inputClass}
-                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value : ''}
                                         onChange={(e) => { updateFormValues((e.target.value), itm.name) }}
                                         placeholder={itm?.placeholder}
                                         type="password"
@@ -164,7 +181,7 @@ const InputCustom = (props: IProps) => {
                                     <input
                                         // className={cx("input", "is-rounded")}
                                         className={inputClass}
-                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value : ''}
                                         onChange={(e) => { updateFormValues(addCommas(removeNonNumeric((e.target.value))), itm.name) }}
                                         placeholder={itm?.placeholder}
                                         type="tel"
@@ -197,7 +214,7 @@ const InputCustom = (props: IProps) => {
                                         // className={cx("input", "is-rounded")}
                                         className={inputClass}
                                         onChange={(e) => updateFormValues(e.target.value, itm.name)}
-                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value :''}
+                                        value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value : ''}
                                         maxLength={itm.maxLength && itm.maxLength || 30}
                                         placeholder={itm?.placeholder}
                                         autoComplete="off"
@@ -229,7 +246,7 @@ const InputCustom = (props: IProps) => {
                                         // name="visible_comments"
                                         className='cursor-pointer'
 
-                                        checked={formValues[itm.name] && formValues[itm.name] }
+                                        checked={formValues[itm.name] && formValues[itm.name]}
                                         onChange={(e) => updateFormValues(e.target.checked, itm.name)}
                                     ></input>
                                     {itm.title != '' && (
@@ -239,10 +256,82 @@ const InputCustom = (props: IProps) => {
                             </div>
                         </>
                     )}
+                    {itm.type === 'select' && itm.active && (
+                        <>
+                            <div className="animate-[fade_0.7s]">
+
+                                <div className="animate-[fade_0.7s]">
+                                    <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                        {itm.title != '' && (
+                                            <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        )}
+
+                                        <Select
+                                            className={`${inputClass} !pr-0 !rounded-full !shadow-none`}
+                                            defaultValue={10}
+                                            popupClassName="!bg-gray-100 dark:!bg-darkMode-grayDark"
+                                            rootClassName='dark:bg-darkMode-black'
+                                            style={{ width: '100%', fontFamily: 'TidFont !important' }}
+                                            onChange={(e) => updateFormValues(e, itm.name)}
+
+                                            options={itm?.option}
+
+                                            defaultActiveFirstOption={itm.name}
+                                        />
+                                    </div>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                        </>
+                    )}
+                    {itm.type === 'selectModal' && itm.active && (
+                        <>
+                            <div className="animate-[fade_0.7s]">
+
+                                <div className="animate-[fade_0.7s]">
+                                    <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                        {itm.title != '' && (
+                                            <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                        )}
+
+                                        <div className={`${inputClass} flex items-center`} onClick={() => handleClickSelectModal()}>
+                                            {formValues?.[itm.name]}
+                                        </div>
+                                        {itm.btn && itm?.btn?.title && (
+                                            <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                                <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                            </div>
+                                        )}
+                                        {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                            <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                                {itm.btn.icon}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <ModalCustom show={showSelectList} setShow={setshowSelectList}>
+                                {itm.modalChild(itm, handleValueSelectModal)}
+                            </ModalCustom>
+                        </>
+                    )}
 
                 </>
             )
             )}
+
         </>
     )
 

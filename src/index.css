@@ -21,6 +21,7 @@ body {
   margin: 0;
   font-family: TidFont !important;
   direction: rtl !important;
+  
 }
 
 ::-webkit-scrollbar {
@@ -83,6 +84,16 @@ html {
 .slick-dots button {
   @apply !bg-darkMode-black dark:!bg-white
 }
+.ant-select-selector{
+  font-family: TidFont !important;
+  @apply !border-0 !bg-transparent focus:!outline-0 focus:!border-0 rounded-full !shadow-none
+}
+
+.ant-select-item-option-content{
+  font-family: TidFont !important;
+  
+}
+
 
 
 

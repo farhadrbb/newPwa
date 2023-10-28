@@ -22,13 +22,15 @@ const ModalCustom = ({ setShow, show, children, title }: IProps) => {
 
             <Modal
                 open={show}
+                centered
                 closable={false}
                 onOk={handleOk}
                 footer={false}
                 onCancel={handleCancel}
-                className="!p-0 !z-[400] "
+                className="!p-0 !z-[400]"
+                // wrapClassName='!bg-black'
                 title={title ? title : ''}
-                style={{ fontFamily: 'vazir' }}>
+                style={{ fontFamily: 'TidFont' }}>
                 <div className='dark:bg-darkMode-gray rounded-md'>{children}</div>
             </Modal>
         </>

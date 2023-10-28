@@ -7,6 +7,8 @@ import { FaClipboardList, FaTools, FaWallet } from "react-icons/fa";
 import ToolMenu from "./toolMenu";
 import { BsFillCreditCard2BackFill } from "react-icons/bs";
 import { BiSolidUser } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoadingSlice } from "../../../redux/slice/tool";
 // import icg_wallet from '../../../assest/img/wallet.svg'
 
 const Footer = memo((props: any) => {
@@ -20,6 +22,8 @@ const Footer = memo((props: any) => {
     const { t } = useTranslation()
     const [clickMenuLogin, setclickMenuLogin] = useState<any>(1);
     const [stateClickMenu, setstateClickMenu] = useState(false);
+    const loading = useSelector((state: any) => state.toolsSlice.loading)
+    const dispatch = useDispatch()
 
 
     //________________________________ varibles________________________
@@ -64,7 +68,14 @@ const Footer = memo((props: any) => {
         navigate(itm.route)
     }
     //________________________________useEffect________________________
-
+// useEffect(() => {
+//     if(stateClickMenu){
+//         dispatch(setLoadingSlice(true))
+//     }
+//     if(!stateClickMenu){
+//         dispatch(setLoadingSlice(false))
+//     }
+// }, [loading]);
 
 
     return (

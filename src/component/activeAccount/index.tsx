@@ -6,8 +6,11 @@ import { sepreteNumber3 } from '../../common/utils';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { AiTwotoneStar } from 'react-icons/ai';
 import { SlRefresh } from 'react-icons/sl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BtnCustom from '../btnCustom';
+import { useNavigate } from 'react-router-dom';
+import { setStepsSlice } from '../../redux/slice/step';
+import URLS from '../../common/url';
 
 
 
@@ -18,9 +21,30 @@ const ActiveAccount = () => {
     // __________________________________hook______________________
     const { t } = useTranslation()
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const step = useSelector((state: any) => state.stepSlice.data)
+
+    // _____________________________________functions___________________
+
+    const handleClick = ()=>{
+        dispatch(setStepsSlice({
+            step1: {
+                pathname: URLS.account.search,
+                title: 'انتخاب حساب مبدا',
+                backUrl1: URLS.account.transfer,
+                backToHome: '/account',
+                data: {
+                    ...step?.step1?.data,
+                    type: 'accounts',
+                },
+            }
+        }))
+        navigate(URLS.account.search)
+    }
 
     return (
-        <div className={parentClass}  >
+        <div className={parentClass}  onClick={()=>handleClick()}>
             <div>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center '>

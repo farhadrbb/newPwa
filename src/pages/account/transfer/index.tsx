@@ -16,7 +16,6 @@ const TransferAccount = () => {
     // ___________________________________Hook_______________________
     const step = useSelector((state: any) => state.stepSlice.data)
     // ______________________________________varibles_____________________________
-
     let dataTab = [
         {
             id: 0,
@@ -31,7 +30,6 @@ const TransferAccount = () => {
             title: 'پایا / ساتنا',
         },
     ]
-
     return (
         <>
 
