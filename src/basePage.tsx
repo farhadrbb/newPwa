@@ -9,6 +9,8 @@ import { useState } from 'react'
 import ConfirmForm from "./component/confirmForm";
 import DesAccounts from "./pages/account/transfer/desAccounts";
 import Receipt from "./component/receipt";
+import Services from "./pages/services";
+import ChequeManagement from "./pages/services/cheque";
 
 
 
@@ -46,8 +48,8 @@ const BasePage = () => {
         {
             path: "/services",
             children: [
-                { index: true, element: <div>test</div> },
-                { path: "transfer", element: <div>transfer</div> },
+                { index: true, element: <Services/> },
+                { path: "cheque", element: <ChequeManagement/> },
                 { path: "transfer/test2", element: <div>test2</div> },
             ],
         },
