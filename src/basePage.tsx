@@ -10,6 +10,8 @@ import ConfirmForm from "./component/confirmForm";
 import DesAccounts from "./pages/account/transfer/desAccounts";
 import Receipt from "./component/receipt";
 import SearchAccountOrCard from "./component/activeAccount/searchAccount";
+import Services from "./pages/services";
+import ChequeManagement from "./pages/services/cheque";
 import AccountLog from "./pages/account/accountLog";
 import AccountLogResult from "./pages/account/accountLog/accountLogResult";
 import AccountLogEmail from "./pages/account/accountLog/accountLogEmail";
@@ -49,8 +51,8 @@ const BasePage = () => {
         {
             path: "/services",
             children: [
-                { index: true, element: <div>test</div> },
-                { path: "transfer", element: <div>transfer</div> },
+                { index: true, element: <Services/> },
+                { path: "cheque", element: <ChequeManagement/> },
                 { path: "transfer/test2", element: <div>test2</div> },
             ],
         },
