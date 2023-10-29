@@ -8,6 +8,14 @@ import { useSelector } from 'react-redux';
 import Box from '../box';
 import { convertEnglishNumberToPersian } from '../../common/utils';
 import ModalCustom from '../modalCustom';
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+
+import 'dayjs/locale/fa';
+import Toolbar from 'react-multi-date-picker/plugins/toolbar';
+import InputIcon from 'react-multi-date-picker/components/input_icon';
+import { JsxElement } from 'typescript';
 interface IProps {
     // updateFormValues: Function,
     dataForm: IinputCustom[],
@@ -19,10 +27,17 @@ interface IProps {
 interface IinputCustom {
     name: string,
     title: string,
-    option?: any,
     btn?: any
     type: string,
-    active: boolean
+    col?: string
+    active: boolean,
+    option?:any,
+    modalChild?:(itm:any,handleValueSelectModal:any) => {}
+}
+
+interface IOption{
+    value:any,
+    label:any
 }
 
 const InputCustom = (props: IProps) => {
@@ -37,16 +52,15 @@ const InputCustom = (props: IProps) => {
     const inputClass = 'bg-[#E8F0FE] placeholder:text-xs   dark:bg-darkMode-black dark:border-0 dark:outline-0 dark:text-white pr-3 focus:outline-blue-400  border border-gray-300 rounded-full h-[36px] w-full absolute left-0 bottom-0 text-black text-sm font-bold'
     // ___________________________________hook______________________________
     const [showSelectList, setshowSelectList] = useState(false);
-    const [valueModal, setvalueModal] = useState({
-        value: 10,
-        label: 10
-    });
+    const [label, setlabel] = useState();
+
     // _________________________________function_____________________________
-    
+
     const addCommas = (num: any) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const removeNonNumeric = (num: any) => num.toString().replace(/[^0-9]/g, "");
-    function updateFormValues(e: any, type: string) {
-        let val = e;
+    function updateFormValues(e: any, type: string,date?:boolean) {
+
+        let val = date ? e.toDate().getTime() : e;
         if (type === "amount") {
             if (val === undefined) {
                 setFormValues({
@@ -76,26 +90,32 @@ const InputCustom = (props: IProps) => {
     const handleClickSelectModal = () => {
         setshowSelectList(!showSelectList)
     }
-    
+
     const handleValueSelectModal = (item: any, itm: any) => {
         setFormValues({
             ...formValues,
             [itm.name]: item.value,
         });
+        setlabel(item.label)
         setshowSelectList(false)
     }
-    
-    
+
+    useEffect(() => {
+        
+    }, []);
+
+
     // _________________________________useEffect_____________________________
 
     useEffect(() => {
         if (dataForm) {
             dataForm?.map((itm: any, ind: any) => {
                 if (itm.option) {
+                    setlabel(itm.option?.[0].label)
                     setFormValues(
                         {
                             ...formValues,
-                            [itm.name]: itm.option?.[0].label,
+                            [itm.name]: itm.option?.[0].value,
                         }
                     )
                 }
@@ -104,17 +124,19 @@ const InputCustom = (props: IProps) => {
     }, []);
 
 
-    
+
+
+
 
     return (
-        <>
+        <div className='grid grid-cols-2'>
             {dataForm.map((itm: any, ind: any) => (
                 <>
                     {itm.type === 'number' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
 
-                                <div className={`${ind > 0 && 'mt-3'} relative w-full ${itm.title ? "h-[60px]" : 'h-[40px]'} `}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full ${itm.title ? "h-[60px]" : 'h-[40px]'} `}>
                                     {itm.title != '' && (
                                         <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
@@ -142,9 +164,9 @@ const InputCustom = (props: IProps) => {
                     )}
                     {itm.type === 'password' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
 
-                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
                                         <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
@@ -173,8 +195,8 @@ const InputCustom = (props: IProps) => {
                     )}
                     {itm.type === 'amount' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
-                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
                                         <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
@@ -205,8 +227,8 @@ const InputCustom = (props: IProps) => {
                     )}
                     {itm.type === 'text' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
-                                <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
                                     {itm.title != '' && (
                                         <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
                                     )}
@@ -215,7 +237,7 @@ const InputCustom = (props: IProps) => {
                                         className={inputClass}
                                         onChange={(e) => updateFormValues(e.target.value, itm.name)}
                                         value={formValues[itm.name] ? formValues[itm.name] : itm?.value ? itm?.value : ''}
-                                        maxLength={itm.maxLength && itm.maxLength || 30}
+                                        maxLength={itm.maxLength && itm.maxLength || 35}
                                         placeholder={itm?.placeholder}
                                         autoComplete="off"
                                         type="text"
@@ -238,13 +260,13 @@ const InputCustom = (props: IProps) => {
                     )}
                     {itm.type === 'checkBox' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
 
                                 <div className='flex mt-6'>
                                     <input
                                         type="checkbox"
                                         // name="visible_comments"
-                                        className='cursor-pointer'
+                                        className='cursor-pointer  checked:!text-blue'
 
                                         checked={formValues[itm.name] && formValues[itm.name]}
                                         onChange={(e) => updateFormValues(e.target.checked, itm.name)}
@@ -258,27 +280,77 @@ const InputCustom = (props: IProps) => {
                     )}
                     {itm.type === 'select' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
 
-                                <div className="animate-[fade_0.7s]">
-                                    <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
-                                        {itm.title != '' && (
-                                            <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                        )}
 
-                                        <Select
-                                            className={`${inputClass} !pr-0 !rounded-full !shadow-none`}
-                                            defaultValue={10}
-                                            popupClassName="!bg-gray-100 dark:!bg-darkMode-grayDark"
-                                            rootClassName='dark:bg-darkMode-black'
-                                            style={{ width: '100%', fontFamily: 'TidFont !important' }}
-                                            onChange={(e) => updateFormValues(e, itm.name)}
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
 
-                                            options={itm?.option}
+                                    <Select
+                                        className={`${inputClass} !pr-0 !rounded-full !shadow-none`}
+                                        defaultValue={10}
+                                        popupClassName="!bg-gray-100 dark:!bg-darkMode-grayDark"
+                                        rootClassName='dark:bg-darkMode-black'
+                                        style={{ width: '100%', fontFamily: 'TidFont !important' }}
+                                        onChange={(e) => updateFormValues(e, itm.name)}
 
-                                            defaultActiveFirstOption={itm.name}
-                                        />
+                                        options={itm?.option}
+
+                                        defaultActiveFirstOption={itm.name}
+                                    />
+                                </div>
+                                {itm.btn && itm?.btn?.title && (
+                                    <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                        <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
                                     </div>
+                                )}
+                                {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                    <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                        {itm.btn.icon}
+                                    </div>
+                                )}
+                            </div>
+
+
+                        </>
+                    )}
+                    {itm.type === 'date' && itm.active && (
+                        <>
+
+
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
+
+                                    <DatePicker
+                                        containerStyle={{
+                                            width: "100%",
+                                        }}
+                                        style={{ fontFamily: 'TidFont' }}
+
+                                        className="cal"
+                                        calendar={persian}
+                                        locale={persian_fa}
+                                        value={formValues[itm?.name]}
+                                        onChange={(value: any) =>
+                                            updateFormValues(value, itm.name,true)
+                                        }
+                                        calendarPosition="bottom-center"
+                                        inputClass={inputClass}
+                                        portal
+                                        editable={false}
+                                        plugins={[
+
+                                            <Toolbar
+                                                position="bottom"
+                                            />
+                                        ]}
+
+                                    />
                                     {itm.btn && itm?.btn?.title && (
                                         <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
                                             <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
@@ -292,36 +364,32 @@ const InputCustom = (props: IProps) => {
                                 </div>
                             </div>
 
+
                         </>
                     )}
                     {itm.type === 'selectModal' && itm.active && (
                         <>
-                            <div className="animate-[fade_0.7s]">
+                            <div className={`${itm?.col === "1" ? "col-span-1 pl-1" : 'col-span-2'} animate-[fade_0.7s] w-full`}>
+                                <div className={`${ind > 0 && itm?.col != "1" ? 'mt-3' : 'mt-3'} relative w-full h-[60px] `}>
+                                    {itm.title != '' && (
+                                        <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
+                                    )}
 
-                                <div className="animate-[fade_0.7s]">
-                                    <div className={`${ind > 0 && 'mt-3'} relative w-full h-[60px] `}>
-                                        {itm.title != '' && (
-                                            <div className='absolute top-0 right-0 text-gray-600 dark:text-darkMode-graylight text-xs font-semibold'>{itm.title}</div>
-                                        )}
-
-                                        <div className={`${inputClass} flex items-center`} onClick={() => handleClickSelectModal()}>
-                                            {formValues?.[itm.name]}
-                                        </div>
-                                        {itm.btn && itm?.btn?.title && (
-                                            <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
-                                                <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
-                                            </div>
-                                        )}
-                                        {itm.btn && !itm?.btn?.title && itm.btn.icon && (
-                                            <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
-                                                {itm.btn.icon}
-                                            </div>
-                                        )}
+                                    <div className={`${inputClass} flex items-center`} onClick={() => handleClickSelectModal()}>
+                                        {label}
                                     </div>
+                                    {itm.btn && itm?.btn?.title && (
+                                        <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            <BtnCustom title={itm?.btn?.title} classNameBtn={'text-xs !bg-cyan-50'} />
+                                        </div>
+                                    )}
+                                    {itm.btn && !itm?.btn?.title && itm.btn.icon && (
+                                        <div className='absolute left-4 text-lg top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>
+                                            {itm.btn.icon}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
-
-
                             <ModalCustom show={showSelectList} setShow={setshowSelectList}>
                                 {itm.modalChild(itm, handleValueSelectModal)}
                             </ModalCustom>
@@ -332,7 +400,7 @@ const InputCustom = (props: IProps) => {
             )
             )}
 
-        </>
+        </div>
     )
 
 

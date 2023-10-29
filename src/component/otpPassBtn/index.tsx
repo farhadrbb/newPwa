@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { MdKey } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import useConfirmFormModel from '../../customHook/useConfirmModel';
 import { usePostAllDataMutation } from '../../redux/api/allApi';
 import BtnCustom from '../btnCustom';
 
@@ -9,7 +10,7 @@ import BtnCustom from '../btnCustom';
 interface IProps {
     mode?: number,
     blank?: boolean,
-    amount: string
+    amount?: string
 }
 
 const OtpPassBtn = (props: IProps) => {
@@ -17,6 +18,8 @@ const OtpPassBtn = (props: IProps) => {
 
     const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     const [postData, resultPostData] = usePostAllDataMutation()
+    const [infoData,infoTitle] = useConfirmFormModel()
+
 
 
     // ____________________________________functions_________________________
@@ -35,7 +38,7 @@ const OtpPassBtn = (props: IProps) => {
             };
         } else {
             accountData = {
-                amount: amount ? {amount,type: "IRR"} : {},
+                amount: infoData?.amount ? {amount:infoData?.amount?.replace(/\,/g, ""),type: "IRR"} : {},
                 accountOperation: "TRANSFER",
                 sourceAccountNumber: activeAccount.accountNumber,
             };

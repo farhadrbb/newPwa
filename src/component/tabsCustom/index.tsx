@@ -64,7 +64,7 @@ const TabsCustom = (props: IProps) => {
                         </div>
                     ))}
                 </div>
-                <div className={`w-full mt-7  `}>
+                <div className={`w-full mt-3 `}>
                     {handleRenderElement(click.id)}
                 </div>
             </div>

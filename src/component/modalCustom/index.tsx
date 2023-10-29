@@ -31,7 +31,7 @@ const ModalCustom = ({ setShow, show, children, title }: IProps) => {
                 // wrapClassName='!bg-black'
                 title={title ? title : ''}
                 style={{ fontFamily: 'TidFont' }}>
-                <div className='dark:bg-darkMode-gray rounded-md'>{children}</div>
+                <div className='dark:bg-darkMode-grayDark rounded-md'>{children}</div>
             </Modal>
         </>
     );

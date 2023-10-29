@@ -14,6 +14,9 @@ const useConfirmFormModel = () => {
     const [state, setstate] = React.useState<any>({});
     const [title, setTitle] = React.useState<any>({});
 
+    console.log("step.resultApi?.result?.info?.amount?.amount",sepreteNumber3(step.resultApi?.result?.info?.amount?.amount));
+    
+
 
     let infoData: any = {
         account: {
@@ -24,7 +27,7 @@ const useConfirmFormModel = () => {
             destinationDescription: step.formValue?.destinationDescription,
             sourceDescription: step.formValue?.sourceDescription,
             transferIdentifier1: step.formValue?.transferIdentifier1,
-            amount: Number(sepreteNumber3(step.resultApi?.result?.amount?.amount)),
+            amount: sepreteNumber3(step.resultApi?.result?.amount?.amount),
         },
         mobileAccount: {
             title: t('MONEY_TRANSFER_MOBILE'),
@@ -32,7 +35,7 @@ const useConfirmFormModel = () => {
             destinationAccountNumber: step.resultApi?.result?.destinationAccountNumber,
             destinationPhoneNumber: step.resultApi?.result?.destinationPhoneNumber,
             destinationOwner: step.resultApi?.result?.destinationOwner,
-            amount: Number(sepreteNumber3(step.resultApi?.result?.amount?.amount)),
+            amount: sepreteNumber3(step.resultApi?.result?.amount?.amount),
         },
         payaAccount: {
             title: t('TRANSFER_IBAN'),
@@ -40,8 +43,16 @@ const useConfirmFormModel = () => {
             destinationIBANNumber: step.resultApi?.result?.destinationIBANNumber,
             destinationOwner: step.resultApi?.result?.destinationOwner,
             bank: step.resultApi?.result?.destinationIBAN?.bank?.name,
-            amount: Number(sepreteNumber3(step.resultApi?.result?.amount?.amount)),
+            amount: sepreteNumber3(step.resultApi?.result?.amount?.amount),
         },
+        billAccount: {
+            title: step.resultApi?.result?.info?.type?.name,
+            accountNumber: step.resultApi?.result?.accountNumber,
+            billIdentifier: step.resultApi?.result?.info?.billIdentifier,
+            paymentIdentifier: step.resultApi?.result?.info?.paymentIdentifier,
+            amount: sepreteNumber3(step.resultApi?.result?.info?.amount?.amount),
+        },
+
     }
 
 
@@ -71,6 +82,13 @@ const useConfirmFormModel = () => {
             destinationOwner: t('ACCOUNT_OWNER_NAME'),
             bank: t('BANK'),
             amount: t('AMOUNT'),
+        },
+        billAccount: {
+            title: t('BILL_TYPE'),
+            accountNumber: t('SOURCE'),
+            billIdentifier:t("BILL_IDENTIFIRE"),
+            paymentIdentifier: t("PAYMENT_IDENTIFIRE"),
+            amount:  t('AMOUNT'),
         },
     }
 

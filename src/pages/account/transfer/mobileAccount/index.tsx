@@ -8,6 +8,7 @@ import { PiUserListBold } from 'react-icons/pi'
 import { BsCalculator } from 'react-icons/bs'
 import URLS from '../../../../common/url';
 import { useLazyGetAllDataQuery, usePostAllDataMutation } from '../../../../redux/api/allApi';
+import { useTranslation } from 'react-i18next';
 
 interface IFormValue {
     amount: string,
@@ -25,9 +26,9 @@ const MobileAccountTransfer = () => {
 
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
-    let formValueStep = step.step1?.data?.formValue
-
-    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
+    let formValueStep = step.step0?.data?.formValue
+    const { t } = useTranslation()
+    const [formValue, setFormValue] = React.useState<IFormValue>({ ...formValueStep } as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
@@ -104,8 +105,8 @@ const MobileAccountTransfer = () => {
     const dataApi = () => {
         let data = {
             "amount": {
-                "amount": formValue.amount.replace(/\,/g, ""),
-                "type": active.balance.type
+                "amount": formValue?.amount?.replace(/\,/g, ""),
+                "type": active.balance?.type
             },
             "destinationDescription": formValue.destinationDescription ? formValue.destinationDescription : "",
             "sourceDescription": formValue.sourceDescription ? formValue.sourceDescription : "",
@@ -158,6 +159,11 @@ const MobileAccountTransfer = () => {
                         formValue,
                         activeTab: 1,
                         resultApi: resultPostData.data,
+                        dataReceipt: {
+                            title: t('PAYMENT_RECEIPT'),
+                            backUrl1: URLS.account.transfer,
+                            backToHome: '/account',
+                        },
                         type: 'mobileAccount'
                     },
                 }

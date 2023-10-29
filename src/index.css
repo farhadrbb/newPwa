@@ -93,22 +93,14 @@ html {
   font-family: TidFont !important;
   
 }
+/* .cal ~ div {
+  z-index: 10000 !important;
+} */
+/* .cal .rmdp-top-class{
+  border-radius: 30px !important;
+} */
 
 
-
-
-@keyframes movement {
-  from {
-    -webkit-transform: scale(1.0) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
-
-  to {
-    -webkit-transform: scale(1.5) translateY(-25px) rotateX(45deg);
-    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
-    /* background: #3399FF; */
-  }
-}
 
 
 
@@ -122,6 +114,10 @@ html {
   .boxItem-global {
     @apply w-full h-20 bg-gray-100 dark:bg-darkMode-black shadow-md dark:shadow-lg rounded-xl mb-3 py-2 px-3
   }
+  .boxItem-modal-global{
+    @apply mb-2 font-semibold bg-gray-200 dark:bg-darkMode-black dark:text-white p-2 rounded-lg relative
+  }
+ 
 }
 
 @layer utilities {}

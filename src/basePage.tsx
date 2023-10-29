@@ -9,9 +9,11 @@ import { useState } from 'react'
 import ConfirmForm from "./component/confirmForm";
 import DesAccounts from "./pages/account/transfer/desAccounts";
 import Receipt from "./component/receipt";
-import SearchAccountOrCard from "./component/searchAccountOrCard";
+import SearchAccountOrCard from "./component/activeAccount/searchAccount";
 import AccountLog from "./pages/account/accountLog";
 import AccountLogResult from "./pages/account/accountLog/accountLogResult";
+import AccountLogEmail from "./pages/account/accountLog/accountLogEmail";
+import AccountBill from "./pages/account/accountBill";
 
 
 
@@ -23,21 +25,17 @@ const BasePage = () => {
             path: "/account",
             children: [
                 { index: true, element: <Account /> },
-                {
-                    path: "transfer",
-                    element: <TransferAccount />,
-                    // children: [
-                    //     { index: true, element: <TransferAccount />, },
-                    //     { path: "confirmForm", element: <ConfirmForm /> },
-                    //    { path: "destAccounts", element: <DesAccounts /> }
-                    // ]
-                },
+                {path: "transfer",element: <TransferAccount />},
                 { path: "transfer/confirmForm", element: <ConfirmForm /> },
                 { path: "transfer/destAccounts", element: <DesAccounts /> },
                 { path: "transfer/receipt", element: <Receipt /> },
                 { path: "search", element: <SearchAccountOrCard /> },
                 { path: "log", element: <AccountLog /> },
                 { path: "log/result", element: <AccountLogResult /> },
+                { path: "log/email", element: <AccountLogEmail /> },
+                { path: "bill", element: <AccountBill /> },
+                { path: "bill/confirmForm", element: <ConfirmForm /> },
+
             ],
         },
         {

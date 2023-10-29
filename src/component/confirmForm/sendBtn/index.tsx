@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import URLS from '../../../common/url';
 import { encryptRSA } from '../../../common/utils';
+import useConfirmFormModel from '../../../customHook/useConfirmModel';
 import useSendBtnConfirmFormModel from '../../../customHook/useSendBtnConfirmFormModel';
 import { usePostAllDataMutation } from '../../../redux/api/allApi';
 import { setStepsSlice } from '../../../redux/slice/step';
@@ -14,68 +16,22 @@ import BtnCustom from '../../btnCustom';
 const SendBtnConfirmForm = (props: any) => {
     // _____________________________varibles_______________________
 
-    const { infoDataObj, type, formValue } = props
+    const { formValue } = props
 
     // _____________________________hook_______________________
-    const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     const step = useSelector((state: any) => state.stepSlice.data)
-
+    const step1Data = useSelector((state: any) => state.stepSlice.data.step1.data)
     const [postData, resultPostData] = usePostAllDataMutation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    const [dataApi] = useSendBtnConfirmFormModel()
-
-
+    const [dataApi,keyApi] = useSendBtnConfirmFormModel()
+    const [infoData,infoTitle] = useConfirmFormModel()
 
     // _____________________________functions_______________________
-    // const dataApi = (obj: any) => {
-    //     let returnData = null
-    //     let encPass = encryptRSA(formValue.password);
-    //     setObj(obj)
-    //     let infoDataApi: any = {
-    //         account: {
-    //             accountNumber: activeAccount.accountNumber,
-    //             amount: obj.amount,
-    //             destinationAccountNumber: obj.destinationAccountNumber,
-    //             destinationDescription: obj?.destinationDescription,
-    //             sourceDescription: obj?.sourceDescription,
-    //             transferIdentifier1: obj?.transferIdentifier1,
-    //             accountPassword: encPass
-    //         },
-    //         mobileAccount: {
-    //             accountNumber: activeAccount.accountNumber,
-    //             destinationPhoneNumber: obj.destinationPhoneNumber,
-    //             amount: obj.amount,
-    //             destinationAccountNumber: obj.destinationAccountNumber,
-    //             destinationDescription: obj?.destinationDescription,
-    //             sourceDescription: obj?.sourceDescription,
-    //             transferIdentifier1: obj?.transferIdentifier1,
-    //             accountPassword: encPass
-    //         },
-    //         payaAccount: {
-    //             accountNumber: activeAccount.accountNumber,
-    //             amount: obj.amount,
-    //             destinationIBANNumber: obj.destinationIBANNumber,
-    //             accountPassword: encPass
-    //         }
-    //     }
-    //     returnData = infoDataApi?.[type]
-    //     return returnData
-    // }
-
-
-
-
 
     const handleClick = (obj: any) => {
-        let keyApi: any = {
-            account: "accountTransferToAccount",
-            mobileAccount: "accountTransferMobile",
-            payaAccount: "accountTransferToIban"
-        }
         let body = dataApi(obj,formValue)
-        postData({ url: keyApi[type], body })
+        postData({ url: keyApi[step1Data.type], body })
     }
 
     // _____________________________useEffect_______________________
@@ -85,19 +41,19 @@ const SendBtnConfirmForm = (props: any) => {
             dispatch(setStepsSlice({
                 step2: {
                     pathname: URLS.account.receipt,
-                    title: 'رسید انتقال وجه',
-                    backUrl1: URLS.account.transfer,
-                    backToHome: '/account',
-                    data: { resultApi: resultPostData.data, type: type },
+                    title:step1Data.dataReceipt.title,
+                    backUrl1: step1Data.dataReceipt.backUrl1,
+                    backToHome: step1Data.dataReceipt.backToHome,
+                    data: { resultApi: resultPostData.data, type: step1Data.type },
                 }
             }))
 
-            dispatch(setStepsSlice({
-                step1: {
-                    ...step.step1,
-                    data: {},
-                }
-            }))
+            // dispatch(setStepsSlice({
+            //     step1: {
+            //         ...step.step1,
+            //         data: {},
+            //     }
+            // }))
             navigate(URLS.account.receipt)
         }
     }, [resultPostData]);
@@ -105,7 +61,7 @@ const SendBtnConfirmForm = (props: any) => {
 
     return (
         <>
-            <BtnCustom title='ارسال' click={() => handleClick(infoDataObj)} />
+            <BtnCustom title='ارسال' click={() => handleClick(infoData)} />
         </>
     );
 }

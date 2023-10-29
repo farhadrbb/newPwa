@@ -4,7 +4,6 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import URLS from '../../../common/url';
-import { convertEnglishNumberToPersian } from '../../../common/utils';
 import ActiveAccount from '../../../component/activeAccount';
 import Box from '../../../component/box';
 import BtnCustom from '../../../component/btnCustom';
@@ -12,6 +11,7 @@ import InputCustom from '../../../component/inputCustom';
 import TabsCustom from '../../../component/tabsCustom';
 import { usePostAllDataMutation } from '../../../redux/api/allApi';
 import { setStepsSlice } from '../../../redux/slice/step';
+import AccountPos from './accountPos';
 
 
 
@@ -33,17 +33,15 @@ const AccountLog = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-
-
     // _______________________________varibles___________________
     let dataTab = [
         {
             id: 0,
-            title: 'حساب'
+            title: t('ACCOUNT')
         },
         {
             id: 1,
-            title: 'فیلتر',
+            title: t('POS_STORE'),
         },
 
     ]
@@ -54,7 +52,7 @@ const AccountLog = () => {
             name: 'logNumber',
             type: "selectModal",
             btn: {
-                icon: <MdKeyboardArrowDown />
+                icon: <MdKeyboardArrowDown className='dark:!text-white'/>
             },
             option: [
                 { value: 10, label: 10 },
@@ -63,16 +61,17 @@ const AccountLog = () => {
             ],
             modalChild: (itm: any, handleValueSelectModal: any) => (
                 <div className='p-3 flex flex-col'>
-                    <div className='font-bold text-xs text-black mb-2'>انتخاب کنید</div>
+                    <div className='font-bold text-xs text-black mb-2 dark:text-gray-200'>{t('LOG_NUMBER_LABLE')}</div>
                     {itm.option?.map((item: any, index: any) => (
                         <>
-                            <div className='mb-2 font-semibold bg-gray-200 p-2 rounded-lg' onClick={() => handleValueSelectModal(item, itm)}>{item.value}</div>
+                            <div className={`${formValue?.logNumber === item.value && ('border border-cyan-50')} boxItem-modal-global`} onClick={() => handleValueSelectModal(item, itm)}>{item.value}</div>
                         </>
                     ))}
                 </div>),
             value: formValue?.logNumber,
             active: true,
         },
+
 
     ]
 
@@ -90,6 +89,22 @@ const AccountLog = () => {
 
         }
         postData({ url: 'accountTransaction', body })
+    }
+
+
+    const handleClickitem = () => {
+        dispatch(setStepsSlice({
+            step1: {
+                pathname: URLS.account.logEmail,
+                title: t("TURNOVER"),
+                backUrl1: URLS.account.log,
+                backToHome: '/account',
+                data: {
+                    activeTab: 0,
+                },
+            }
+        }))
+        navigate(URLS.account.logEmail)
     }
 
 
@@ -118,7 +133,7 @@ const AccountLog = () => {
     return (
         <>
             <ActiveAccount />
-            <Box className="mb-7">
+            <Box >
                 <TabsCustom dataTab={dataTab} activeTab={step.step1?.data?.activeTab}>
                     <div >
 
@@ -131,10 +146,12 @@ const AccountLog = () => {
                         </div>
                         <div className='flex mt-10'>
                             <BtnCustom title={t('VIEW')} click={() => handleClickView()} />
-                            <BtnCustom title={t('TURNOVER')} classNameBtn='!bg-blue' />
+                            <BtnCustom title={t('TURNOVER')} classNameBtn='!bg-blue' click={() => handleClickitem()} />
                         </div>
                     </div>
-                    <div></div>
+                    <div>
+                        <AccountPos/>
+                    </div>
                 </TabsCustom>
             </Box>
         </>

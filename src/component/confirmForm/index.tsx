@@ -17,9 +17,8 @@ interface IFormValue {
 
 
 const ConfirmForm = () => {
-    const step = useSelector((state: any) => state.stepSlice.data.step1.data)
     const { t } = useTranslation()
-    const [infoData,infoTitle] = useConfirmFormModel()
+
     // _________________________________________varibles____________________________
     const dataForm = [
         {
@@ -31,23 +30,15 @@ const ConfirmForm = () => {
     ]
 
     // _________________________________________Hook____________________________
-    const [formValue, setformValue] = React.useState<IFormValue>(
-        {
-            password: ''
-        }
-    );
+    const [formValue, setformValue] = React.useState<IFormValue>({password: ''})
     // _________________________________________functions____________________________
-
   
 
 
     return (
         <>
-            {/* <div className="animate-[fade_0.7s]">
-                <div className="animate-[upAnime10_0.5s]"> */}
-
             <Box>
-                <InfoBox infoDataState={infoData} titleState={infoTitle} />
+                <InfoBox/>
                 <div className='mt-6'>
                     <InputCustom
                         dataForm={dataForm}
@@ -57,15 +48,13 @@ const ConfirmForm = () => {
                 </div>
                 <div className='flex justify-between mt-5'>
                     <SendBtnConfirmForm
-                        infoDataObj={infoData}
-                        type={step.type}
                         formValue={formValue}
                     />
-                    <OtpPassBtn amount={infoData.amount} />
+                    <OtpPassBtn />
                 </div>
             </Box>
-            {/* </div>
-            </div> */}
+            
+         
         </>
     );
 }

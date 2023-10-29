@@ -39,6 +39,8 @@ export const API_CALL_CONSTANTS:any = {
     accountPayCharity: BASE_URL + `charity/account-payment`,
     accountBillVerify: BASE_URL + `bill/verify-account-payment`,
     accountPayBill: BASE_URL + `bill/account-payment`,
+    accountShaparakShow: BASE_URL + `transaction/shaparak-account`,
+    accountShaparakEmail: BASE_URL + `transaction/shaparak-account-mail`,
     accountTwoIdBillVerify: BASE_URL + `two-id-bill/verify-account-payment`,
     accountTwoIdPayBill: BASE_URL + `two-id-bill/account-payment`,
     accountPayInternetPack: BASE_URL + `internet-pack/account-payment`,

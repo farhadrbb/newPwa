@@ -12,13 +12,13 @@ const useSendBtnConfirmFormModel = () => {
     const step = useSelector((state: any) => state.stepSlice.data.step1.data)
     const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
 
-    const dataApi = (obj: any,formValue:any) => {
+    const dataApi = (obj: any, formValue: any) => {
         let returnData = null
         let encPass = encryptRSA(formValue.password);
         let infoDataApi: any = {
             account: {
                 accountNumber: activeAccount.accountNumber,
-                amount: obj.amount,
+                amount: { amount: obj.amount.replace(/\,/g, ""), type: "IRR" },
                 destinationAccountNumber: obj.destinationAccountNumber,
                 destinationDescription: obj?.destinationDescription,
                 sourceDescription: obj?.sourceDescription,
@@ -28,7 +28,7 @@ const useSendBtnConfirmFormModel = () => {
             mobileAccount: {
                 accountNumber: activeAccount.accountNumber,
                 destinationPhoneNumber: obj.destinationPhoneNumber,
-                amount: obj.amount,
+                amount: { amount: obj.amount.replace(/\,/g, ""), type: "IRR" },
                 destinationAccountNumber: obj.destinationAccountNumber,
                 destinationDescription: obj?.destinationDescription,
                 sourceDescription: obj?.sourceDescription,
@@ -37,17 +37,38 @@ const useSendBtnConfirmFormModel = () => {
             },
             payaAccount: {
                 accountNumber: activeAccount.accountNumber,
-                amount: obj.amount,
+                amount: { amount: obj.amount.replace(/\,/g, ""), type: "IRR" },
                 destinationIBANNumber: obj.destinationIBANNumber,
                 accountPassword: encPass
-            }
+            },
+            billAccount: {
+                accountNumber: activeAccount.accountNumber,
+                amount: { amount: obj.amount.replace(/\,/g, ""), type: "IRR" },
+                billIdentifier: obj.billIdentifier,
+                paymentIdentifier: obj.paymentIdentifier,
+                accountPassword: encPass,
+                type: step.resultApi?.result?.info?.type,
+            },
+
         }
+
+
+
         returnData = infoDataApi?.[step?.type]
         return returnData
     }
 
 
-    return [dataApi]
+    let keyApi: any = {
+        account: "accountTransferToAccount",
+        mobileAccount: "accountTransferMobile",
+        payaAccount: "accountTransferToIban",
+        billAccount: 'accountPayBill'
+    }
+
+
+
+    return [dataApi,keyApi]
 }
 
 export default useSendBtnConfirmFormModel;

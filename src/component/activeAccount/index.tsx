@@ -7,9 +7,8 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { AiTwotoneStar } from 'react-icons/ai';
 import { SlRefresh } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
-import BtnCustom from '../btnCustom';
 import { useNavigate } from 'react-router-dom';
-import { setStepsSlice } from '../../redux/slice/step';
+import { setStepsSlice, setStepsSliceEmptyTheStep } from '../../redux/slice/step';
 import URLS from '../../common/url';
 
 
@@ -24,31 +23,55 @@ const ActiveAccount = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const step = useSelector((state: any) => state.stepSlice.data)
+    const whenBack = useSelector((state: any) => state.stepSlice.backClick)
+
+
 
     // _____________________________________functions___________________
 
-    const handleClick = ()=>{
-        dispatch(setStepsSlice({
-            step1: {
-                pathname: URLS.account.search,
-                title: 'انتخاب حساب مبدا',
-                backUrl1: URLS.account.transfer,
-                backToHome: '/account',
-                data: {
-                    ...step?.step1?.data,
-                    type: 'accounts',
-                },
-            }
-        }))
+    const handleClick = () => {
+        if (!step.step1) {
+            dispatch(setStepsSlice({
+                step1: {
+                    pathname: URLS.account.search,
+                    title: 'انتخاب حساب مبدا',
+                    backUrl1: step.step1?.pathname || step.step0?.pathname,
+                    backToHome: '/account',
+                    data: {
+                        ...step?.step0?.data,
+                    },
+                }
+            }))
+        }
+        if (step.step1) {
+            dispatch(setStepsSlice({
+                step2: {
+                    pathname: URLS.account.search,
+                    title: 'انتخاب حساب مبدا',
+                    backUrl1: step.step1?.pathname || step.step0?.pathname,
+                    backToHome: '/account',
+                    data: {
+                        ...step?.step1?.data,
+                    },
+                }
+            }))
+        }
         navigate(URLS.account.search)
     }
 
+
+    React.useEffect(() => {
+        if (whenBack) {
+            dispatch(setStepsSliceEmptyTheStep(step.step2 ? "step2" : step.step1 ? 'step1' : ''))
+        }
+    }, [whenBack]);
+
     return (
-        <div className={parentClass}  onClick={()=>handleClick()}>
-            <div>
+        <div className={parentClass} onClick={() => handleClick()}>
+            <div >
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center '>
-                        <img src={logo_img} className="w-[35px] h-[37px]"/>
+                        <img src={logo_img} className="w-[35px] h-[37px]" />
                         <div className='mr-2 text-sm font-bold'>{active.accountNumber}</div>
                         <MdOutlineKeyboardArrowDown className='text-xl mr-2' />
                         <div className='mr-2'>
@@ -60,7 +83,7 @@ const ActiveAccount = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-between items-center mt-5'>
+            <div className='flex justify-between items-center mt-5 '>
                 <div className='flex'>
                     <div className='text-xs'>{t('ACCOUNT_BALANCE')}</div>
                     <SlRefresh className='mr-1 fill-cyan-50' />
