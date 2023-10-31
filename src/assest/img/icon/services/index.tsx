@@ -748,26 +748,42 @@ export const IcSayadInquiry = (props: any) => {
     const { fill, size, anime, classNameIcon } = props
 
     return (<>
-        <svg width={size ? size : '20'} height={size ? size : '20'} style={anime ? { transition: 'all 0.3s' } : {}} fill={fill ? fill : 'black'} className={`${classNameIcon}`} version="1.1" xmlns="http://www.w3.org/2000/svg" xlinkActuate="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 -29 480 480" id="icg_sayad_inquiry">
+        
+ <svg xmlns="http://www.w3.org/2000/svg"   
+
+
+width={size ? size : '30'} height={size ? size : '30'} style={anime ? { transition: 'all 0.3s' } : {}}
+ 
+
+id="icg_sayadInquiry"
+>
 <path id="Path_675" data-name="Path 675" d="M120,280h8.376v.882H120Zm0,0" transform="translate(-113.387 -268.979)" fill="#1b6cc7"/>
-  <path id="Path_676" data-name="Path 676" d="M120,136h8.376v.882H120Zm0,0" transform="translate(-113.387 -127.743)" fill="#1b6cc7"/>
-  <path id="Path_678" data-name="Path 678" d="M328,200h.882v.882H328Zm0,0" transform="translate(-309.926 -188.979)" fill="#1b6cc7"/>
-  <path id="Path_679" data-name="Path 679" d="M360,200h.882v.882H360Zm0,0" transform="translate(-340.162 -188.979)" fill="#1b6cc7"/>
-  <path id="Path_681" data-name="Path 681" d="M370.967,364.73l.57-.57.57.57.623-.623-.57-.57.57-.57-.623-.623-.57.57-.57-.57-.623.623.57.57-.57.57Zm0,0" transform="translate(-349.936 -342.377)" fill="#1b6cc7"/>
-  <path id="Path_682" data-name="Path 682" d="M256.882,0V.882H256v.882h.882v.882h.882V1.763h.882V.882h-.882V0Zm0,0" transform="translate(-241.893)" fill="#1b6cc7"/>
-  <path id="Path_683" data-name="Path 683" d="M146.645,393.322a1.323,1.323,0,1,0-1.323,1.323A1.323,1.323,0,0,0,146.645,393.322Zm-1.763,0a.441.441,0,1,1,.441.441A.441.441,0,0,1,144.882,393.322Zm0,0" transform="translate(-136.065 -370.399)" fill="#1b6cc7"/>
-  <path id="Path_684" data-name="Path 684" d="M54.262,48H52.719a.441.441,0,0,0-.441.441v2.645H33.323v.882h1.763v8.817H32v.882h3.086v.882H34.2v.882H54.262a1.986,1.986,0,0,0,1.984-1.984,1.96,1.96,0,0,0-.122-.661h.122v-10.8A1.986,1.986,0,0,0,54.262,48Zm-1.1.882h1.1a1.1,1.1,0,0,1,1.1,1.1V59.8a1.971,1.971,0,0,0-1.1-.336h-1.1Zm-.882,5.731H49.193v-.882h3.086Zm1.984,7.935H35.968V51.968H52.278v.882H48.752a.441.441,0,0,0-.441.441v1.763a.441.441,0,0,0,.441.441h3.527V59.9a.441.441,0,0,0,.441.441h1.543a1.1,1.1,0,0,1,0,2.2Zm0,0" transform="translate(-30.237 -45.355)" fill="#1b6cc7"/>
-  <path id="Path_685" data-name="Path 685" d="M24,104h.882v.882H24Zm0,0" transform="translate(-22.677 -98.269)" fill="#1b6cc7"/>
-  <path id="Path_686" data-name="Path 686" d="M40,312h.882v.882H40Zm0,0" transform="translate(-37.796 -294.807)" fill="#1b6cc7"/>
-  <path id="Path_687" data-name="Path 687" d="M0,280H.882v.882H0Zm0,0" transform="translate(0 -264.571)" fill="#1b6cc7"/>
+ <path id="Path_676" data-name="Path 676" d="M120,136h8.376v.882H120Zm0,0" transform="translate(-113.387 -127.743)" fill="#1b6cc7"/>
+ <path id="Path_678" data-name="Path 678" d="M328,200h.882v.882H328Zm0,0" transform="translate(-309.926 -188.979)" fill="#1b6cc7"/>
+ <path id="Path_679" data-name="Path 679" d="M360,200h.882v.882H360Zm0,0" transform="translate(-340.162 -188.979)" fill="#1b6cc7"/>
+ <path id="Path_681" data-name="Path 681" d="M370.967,364.73l.57-.57.57.57.623-.623-.57-.57.57-.57-.623-.623-.57.57-.57-.57-.623.623.57.57-.57.57Zm0,0" transform="translate(-349.936 -342.377)" fill="#1b6cc7"/>
+ <path id="Path_682" data-name="Path 682" d="M256.882,0V.882H256v.882h.882v.882h.882V1.763h.882V.882h-.882V0Zm0,0" transform="translate(-241.893)" fill="#1b6cc7"/>
+ <path id="Path_683" data-name="Path 683" d="M146.645,393.322a1.323,1.323,0,1,0-1.323,1.323A1.323,1.323,0,0,0,146.645,393.322Zm-1.763,0a.441.441,0,1,1,.441.441A.441.441,0,0,1,144.882,393.322Zm0,0" transform="translate(-136.065 -370.399)" fill="#1b6cc7"/>
+ <path id="Path_684" data-name="Path 684" d="M54.262,48H52.719a.441.441,0,0,0-.441.441v2.645H33.323v.882h1.763v8.817H32v.882h3.086v.882H34.2v.882H54.262a1.986,1.986,0,0,0,1.984-1.984,1.96,1.96,0,0,0-.122-.661h.122v-10.8A1.986,1.986,0,0,0,54.262,48Zm-1.1.882h1.1a1.1,1.1,0,0,1,1.1,1.1V59.8a1.971,1.971,0,0,0-1.1-.336h-1.1Zm-.882,5.731H49.193v-.882h3.086Zm1.984,7.935H35.968V51.968H52.278v.882H48.752a.441.441,0,0,0-.441.441v1.763a.441.441,0,0,0,.441.441h3.527V59.9a.441.441,0,0,0,.441.441h1.543a1.1,1.1,0,0,1,0,2.2Zm0,0" transform="translate(-30.237 -45.355)" fill="#1b6cc7"/>
+ <path id="Path_685" data-name="Path 685" d="M24,104h.882v.882H24Zm0,0" transform="translate(-22.677 -98.269)" fill="#1b6cc7"/>
+ <path id="Path_686" data-name="Path 686" d="M40,312h.882v.882H40Zm0,0" transform="translate(-37.796 -294.807)" fill="#1b6cc7"/>
+ <path id="Path_687" data-name="Path 687" d="M0,280H.882v.882H0Zm0,0" transform="translate(0 -264.571)" fill="#1b6cc7"/>
 
-
-        </svg>
+</svg>
     </>)
 }
 
+export const IcSayadConfirm = (props: any) => {
+    const { fill, size, anime, classNameIcon } = props
 
+    return (<>
 
-
-
+<svg xmlns="http://www.w3.org/2000/svg" 
+ width={size ? size : '30'} height={size ? size : '30'} style={anime ? { transition: 'all 0.3s' } : {}}
+ id="icg_sayadConfirm"
+ >
+    <path  
+    d="data:image/png;base64,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"/>
+  </svg>
+  </>)
+}

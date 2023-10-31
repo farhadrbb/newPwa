@@ -40,7 +40,7 @@ function Services() {
             backUrl1: '/services',
             backToHome: '/services',
             data: {},
-            add: true
+            // add: true
         }
     }))
 
