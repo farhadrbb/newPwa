@@ -57,7 +57,7 @@ const useReceiptModel = () => {
                         {t("SUCCESS")}
                     </div>
                     <div>
-                        <IoCloseCircle className='text-lg text-red-500 mr-1' />
+                        <BsFillCheckCircleFill className='text-lg text-cyan-50 mr-1' />
                     </div>
                 </div>
             )
@@ -95,7 +95,17 @@ const useReceiptModel = () => {
             traceNumber: step.resultApi?.result?.traceNumber,
             referenceNumber: step.resultApi?.result?.referenceNumber,
             amount: sepreteNumber3(step.resultApi?.result?.amount?.amount),
-        }
+        },
+        billAccount: {
+            activityStatus: handleStatus(step.resultApi?.result?.activityStatus),
+            title: step.resultApi?.result?.billCompanyName,
+            accountNumber: step.resultApi?.result?.accountNumber,
+            billIdentifier: step.resultApi?.result?.billInfo?.billIdentifier,
+            paymentIdentifier: step.resultApi?.result?.billInfo?.paymentIdentifier,
+            amount: sepreteNumber3(step.resultApi?.result?.billInfo?.amount?.amount),
+        },
+
+
     }
 
     let infoTitle: any = {
@@ -128,7 +138,16 @@ const useReceiptModel = () => {
             traceNumber: t('TRACKING_CODE'),
             referenceNumber: t('REFRENCE_NUMBER'),
             amount: t('AMOUNT'),
-        }
+        },
+        billAccount: {
+            
+            activityStatus: t("STATUS"),
+            title: t('BILL_TYPE'),
+            accountNumber: t('SOURCE'),
+            billIdentifier:t("BILL_IDENTIFIRE"),
+            paymentIdentifier: t("PAYMENT_IDENTIFIRE"),
+            amount:  t('AMOUNT'),
+        },
     }
 
 

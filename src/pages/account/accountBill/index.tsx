@@ -41,7 +41,7 @@ const AccountBill = () => {
         <>
             <ActiveAccount />
             <Box>
-                <TabsCustom dataTab={dataTab} activeTab={step.step1?.data?.activeTab}>
+                <TabsCustom dataTab={dataTab} activeTab={step.step0?.data?.activeTab}>
                     <BillGeneral />
                     <BillInquery />
                     <BillTwoIdBill />

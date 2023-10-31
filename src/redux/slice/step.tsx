@@ -45,15 +45,15 @@ const stepSlice = createSlice({
             let obj = action.payload
             state.data = { ...state.data, ...obj }
         },
-        setStepsSliceBack: (state, action) => {
-            let obj:any = {
-                ...state.data
-            }
-            let str = action.payload.replace("step","")
-            delete obj[`step${Number(str) + 1}`]
-            // console.log("obj",obj);
-            state.data = obj
-        },
+        // setStepsSliceBack: (state, action) => {
+        //     let obj:any = {
+        //         ...state.data
+        //     }
+        //     let str = action.payload.replace("step","")
+        //     delete obj[`step${Number(str) + 1}`]
+        //     // console.log("obj",obj);
+        //     state.data = obj
+        // },
         setStepsSliceEmpty: (state, action) => {
             state.data = {}
         },
@@ -71,5 +71,5 @@ const stepSlice = createSlice({
     },
 })
 
-export const { setStepsSlice, setStepsSliceBack,setStepsSliceEmpty,setBackClick,setStepsSliceEmptyTheStep } = stepSlice.actions
+export const { setStepsSlice,setStepsSliceEmpty,setBackClick,setStepsSliceEmptyTheStep } = stepSlice.actions
 export default stepSlice.reducer

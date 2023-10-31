@@ -26,6 +26,7 @@ const List: React.FC = () => {
 
     const [select, setselect] = useState<any>(0);
     const location = useLocation()
+    // const [isPending,startTransition] = useTransition()
 
     const user = useSelector((state: any) => state.user.user)
     const active = useSelector((state: any) => state.activeCardOrAccount)

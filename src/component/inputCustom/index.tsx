@@ -31,13 +31,14 @@ interface IinputCustom {
     type: string,
     col?: string
     active: boolean,
-    option?:any,
-    modalChild?:(itm:any,handleValueSelectModal:any) => {}
+    option?: any,
+    notFillValueSelect?: boolean
+    modalChild?: (itm: any, handleValueSelectModal: any) => {}
 }
 
-interface IOption{
-    value:any,
-    label:any
+interface IOption {
+    value: any,
+    label: any
 }
 
 const InputCustom = (props: IProps) => {
@@ -58,7 +59,7 @@ const InputCustom = (props: IProps) => {
 
     const addCommas = (num: any) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const removeNonNumeric = (num: any) => num.toString().replace(/[^0-9]/g, "");
-    function updateFormValues(e: any, type: string,date?:boolean) {
+    function updateFormValues(e: any, type: string, date?: boolean) {
 
         let val = date ? e.toDate().getTime() : e;
         if (type === "amount") {
@@ -101,27 +102,40 @@ const InputCustom = (props: IProps) => {
     }
 
     useEffect(() => {
-        
-    }, []);
+        dataForm?.map((itm: any, ind: any) => {
+            if (itm.option && itm.value ) {
+                itm?.option?.map((opt:any,ind:any)=>{
+                    if(opt.value === formValues[itm.name]){
+                        setlabel(opt.label)
+                    }
+                })
+            }
+        })
+    }, [formValues]);
 
 
     // _________________________________useEffect_____________________________
 
     useEffect(() => {
-        if (dataForm) {
-            dataForm?.map((itm: any, ind: any) => {
-                if (itm.option) {
-                    setlabel(itm.option?.[0].label)
-                    setFormValues(
-                        {
-                            ...formValues,
-                            [itm.name]: itm.option?.[0].value,
-                        }
-                    )
-                }
-            })
-        }
+
+        dataForm?.map((itm: any, ind: any) => {
+            if (itm.option && !itm.notFillValueSelect) {
+                setlabel(itm.option?.[0].label)
+                setFormValues(
+                    {
+                        ...formValues,
+                        [itm.name]: itm.option?.[0].value,
+                    }
+                )
+            }
+        })
     }, []);
+
+    console.log("formvalue", formValues);
+    console.log("label", label);
+
+
+
 
 
 
@@ -337,7 +351,7 @@ const InputCustom = (props: IProps) => {
                                         locale={persian_fa}
                                         value={formValues[itm?.name]}
                                         onChange={(value: any) =>
-                                            updateFormValues(value, itm.name,true)
+                                            updateFormValues(value, itm.name, true)
                                         }
                                         calendarPosition="bottom-center"
                                         inputClass={inputClass}
@@ -376,7 +390,7 @@ const InputCustom = (props: IProps) => {
                                     )}
 
                                     <div className={`${inputClass} flex items-center`} onClick={() => handleClickSelectModal()}>
-                                        {label}
+                                        {label ? label : 'انتخاب'}
                                     </div>
                                     {itm.btn && itm?.btn?.title && (
                                         <div className='absolute left-1 top-6  flex justify-center items-center h-[35px] cursor-pointer' onClick={() => itm.btn?.click}>

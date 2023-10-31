@@ -16,6 +16,7 @@ import AccountLog from "./pages/account/accountLog";
 import AccountLogResult from "./pages/account/accountLog/accountLogResult";
 import AccountLogEmail from "./pages/account/accountLog/accountLogEmail";
 import AccountBill from "./pages/account/accountBill";
+import ServicesBill from "./pages/services/servicesBill";
 
 
 
@@ -27,7 +28,7 @@ const BasePage = () => {
             path: "/account",
             children: [
                 { index: true, element: <Account /> },
-                {path: "transfer",element: <TransferAccount />},
+                { path: "transfer",element: <TransferAccount />},
                 { path: "transfer/confirmForm", element: <ConfirmForm /> },
                 { path: "transfer/destAccounts", element: <DesAccounts /> },
                 { path: "transfer/receipt", element: <Receipt /> },
@@ -53,7 +54,7 @@ const BasePage = () => {
             children: [
                 { index: true, element: <Services/> },
                 { path: "cheque", element: <ChequeManagement/> },
-                { path: "transfer/test2", element: <div>test2</div> },
+                { path: "bill", element: <ServicesBill/> },
             ],
         },
         {

@@ -60,11 +60,11 @@ const ActiveAccount = () => {
     }
 
 
-    React.useEffect(() => {
-        if (whenBack) {
-            dispatch(setStepsSliceEmptyTheStep(step.step2 ? "step2" : step.step1 ? 'step1' : ''))
-        }
-    }, [whenBack]);
+    // React.useEffect(() => {
+    //     if (whenBack) {
+    //         dispatch(setStepsSliceEmptyTheStep(step.step2 ? "step2" : step.step1 ? 'step1' : ''))
+    //     }
+    // }, [whenBack]);
 
     return (
         <div className={parentClass} onClick={() => handleClick()}>

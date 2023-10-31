@@ -44,7 +44,16 @@ const Layout = (props: any) => {
 
     useEffect(() => {
         if(location.pathname === '/account'){
-            dispatch(setStepsSliceEmpty(''))
+            dispatch(setStepsSliceEmpty(true))
+        }
+        if(location.pathname === '/card'){
+            dispatch(setStepsSliceEmpty(true))
+        }
+        if(location.pathname === '/service'){
+            dispatch(setStepsSliceEmpty(true))
+        }
+        if(location.pathname === '/profile'){
+            dispatch(setStepsSliceEmpty(true))
         }
     }, [location]);
 

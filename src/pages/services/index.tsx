@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { IcChequeManagment } from "../../assest/img/icon/services"
+import { IcBillService, IcChequeManagment } from "../../assest/img/icon/services"
 import ItemsSelect, { IMenu } from "../../component/itemsSelect"
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,15 @@ function Services() {
             fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
             route: '/services/cheque',
             onclick: (item: IMenu) => handleOnclickItem(item)
-        }
+        },
+        {
+            title: t("BILL_MANAGEMENT"),
+            icon: IcBillService,
+            color: 'bg-itemSelect-red',
+            fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
+            route: '/services/cheque',
+            onclick: (item: IMenu) => handleOnclickItem(item)
+        },
     ]
 
     // ____________________________________functions________________________________
@@ -40,7 +48,6 @@ function Services() {
             backUrl1: '/services',
             backToHome: '/services',
             data: {},
-            add: true
         }
     }))
 

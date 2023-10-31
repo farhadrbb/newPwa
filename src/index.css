@@ -117,6 +117,9 @@ html {
   .boxItem-modal-global{
     @apply mb-2 font-semibold bg-gray-200 dark:bg-darkMode-black dark:text-white p-2 rounded-lg relative
   }
+  .loading-global{
+    @apply absolute  z-[1000] !opacity-100 border-[2px] animate-spin  border-blue  border-r-transparent border-t-transparent w-8 h-8 bg-transparent rounded-full
+  }
  
 }
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setBackClick, setStepsSlice, setStepsSliceBack, setStepsSliceEmpty, setStepsSliceEmptyTheStep } from '../../redux/slice/step';
+import { setBackClick, setStepsSlice, setStepsSliceEmpty, setStepsSliceEmptyTheStep } from '../../redux/slice/step';
 import { HiHome } from 'react-icons/hi'
 import { FaArrowLeft } from 'react-icons/fa'
 import { BiCloset } from 'react-icons/bi';
@@ -42,7 +42,6 @@ const BreadCrumb = () => {
         add: ''
 
     });
-    const [backState, setbackState] = useState("");
     const navigate = useNavigate()
 
 
@@ -53,7 +52,6 @@ const BreadCrumb = () => {
             if (step.data[itm]) {
                 if (step.data[itm].pathname == location.pathname) {
                     setstepState(step.data[itm])
-                    setbackState(itm)
                 }
 
             }
@@ -62,26 +60,27 @@ const BreadCrumb = () => {
 
     const handleRouteBack = (obj: any, backHome?: any) => {
         let arrStep = Object.keys(step.data)
-            if (arrStep[arrStep?.length - 2]) {
-                dispatch(setStepsSlice(
-                    {
-                        [arrStep[arrStep?.length - 2]]: {
-                            ...step?.data?.[arrStep[arrStep?.length - 2]],
-                            data: {
-                                ...step?.data?.[arrStep[arrStep?.length - 1]]?.data
-                            }
+
+        if (arrStep[arrStep?.length - 2]) {
+            dispatch(setStepsSlice(
+                {
+                    [arrStep[arrStep?.length - 2]]: {
+                        ...step?.data?.[arrStep[arrStep?.length - 2]],
+                        data: {
+                            formValue: { ...step?.data?.[arrStep[arrStep?.length - 1]]?.data.formValue },
+                            activeTab: step?.data?.[arrStep[arrStep?.length - 1]]?.data.activeTab
                         }
                     }
-                ))
-            } else if (!arrStep[arrStep?.length - 2] && arrStep[arrStep?.length - 1]) {
-                dispatch(setStepsSliceEmptyTheStep(arrStep[arrStep?.length - 1]))
-            }else {
-                dispatch(setStepsSliceEmpty(true))
+                }
+            ))
+            dispatch(setStepsSliceEmptyTheStep(arrStep[arrStep?.length - 1]))
+        }
+        //  else if (!arrStep[arrStep?.length - 2] && arrStep[arrStep?.length - 1]) {
+        // }else {
+        //     dispatch(setStepsSliceEmpty(true))
+        // }
 
-            }
-       
         dispatch(setBackClick(true))
-        // dispatch(setStepsSliceBack(backState))
         navigate(backHome ? obj.backToHome : obj?.backUrl1)
         setTimeout(() => {
             dispatch(setBackClick(false))
@@ -93,7 +92,6 @@ const BreadCrumb = () => {
         if (location) {
             handlePaste()
         }
-
     }, [location]);
     return (
         <>

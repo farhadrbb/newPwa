@@ -116,7 +116,6 @@ const TejaratAccountTransfer = () => {
             transferIdentifier1: formValue.transferIdentifier1,
         }
         return data
-
     }
 
     const handleClickSend = () => {

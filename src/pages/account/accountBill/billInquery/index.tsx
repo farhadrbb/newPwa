@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
+import { IoSave } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import URLS from '../../../../common/url';
 import BtnCustom from '../../../../component/btnCustom';
 import ImageBanks from '../../../../component/imageBank';
 import InputCustom from '../../../../component/inputCustom';
-
+import { setStepsSlice } from '../../../../redux/slice/step';
 
 
 
@@ -13,8 +17,13 @@ interface IFormValue {
     inquery: string
 }
 const BillInquery = () => {
-    const [formValue, setFormValue] = React.useState<IFormValue>({} as IFormValue)
+    const step = useSelector((state: any) => state.stepSlice.data)
+
+    let formValueStep = step.step0?.data?.formValue
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
     const { t } = useTranslation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
 
     const BillTypes: any = [
@@ -81,6 +90,7 @@ const BillInquery = () => {
             title: t('BILL_TYPE'),
             name: 'inquery',
             type: "selectModal",
+            notFillValueSelect: true,
             btn: {
                 icon: <MdKeyboardArrowDown className='dark:!text-white' />
             },
@@ -88,7 +98,7 @@ const BillInquery = () => {
                 return ({
                     value: itm.type,
                     label: <div className='flex items-center'>
-                        <div><ImageBanks logKey={itm.logo_key} bill/></div>
+                        <div><ImageBanks logKey={itm.logo_key} bill /></div>
                         <div className='text-xs mr-1'>{itm.title}</div>
                     </div>,
                 })
@@ -107,6 +117,33 @@ const BillInquery = () => {
         },
 
     ]
+
+
+
+
+    const handleClickSend = () => {
+        dispatch(setStepsSlice({
+            step1: {
+                pathname: URLS.services.bill,
+                title: t("BILL_MANAGEMENT"),
+                backUrl1: URLS.account.bill,
+                backToHome: '/account',
+                data: {
+                    formValue,
+                    // resultApi: resultPostData.data,
+                    // type: 'account',
+                    // dataReceipt: {
+                    //     title: t('PAYMENT_RECEIPT'),
+                    //     backUrl1: URLS.account.transfer,
+                    //     backToHome: '/account',
+                    // },
+                    activeTab: 1,
+                },
+            }
+        }))
+        navigate(URLS.services.bill)
+    }
+
     return (
         <>
             <div className="mb-3">
@@ -116,11 +153,13 @@ const BillInquery = () => {
                     setFormValues={setFormValue}
                 />
             </div>
-            <div className='mt-5'>
-                <BtnCustom title={t("SEND")} />
+            <div className='mt-5 flex justify-between'>
+                <BtnCustom title={t("SEND")} click={() => handleClickSend()} />
+                <BtnCustom classNameBtn='!bg-blue' title={t("SAVE_LIST")} icon={<IoSave className='ml-1 text-lg mb-[2px]' />} click={() => handleClickSend()} />
             </div>
         </>
     );
 }
 
 export default BillInquery;
+

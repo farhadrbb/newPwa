@@ -89,9 +89,9 @@ const LoginTabOne = () => {
 
     useEffect(() => {
         if (user) {
-            setTimeout(() => {
-                navigate("/account")
-            }, 500);
+            // setTimeout(() => {
+            // }, 500);
+            navigate("/account")
         }
     }, [resultLogin]);
 

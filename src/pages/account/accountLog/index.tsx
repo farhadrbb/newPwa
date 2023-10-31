@@ -24,11 +24,12 @@ interface IFormValue {
 const AccountLog = () => {
 
     // _______________________________hook___________________
-
-    const { t } = useTranslation()
-    const [formValue, setFormValue] = React.useState<IFormValue>({} as IFormValue)
-    const [postData, resultPostData] = usePostAllDataMutation()
+    
     const step = useSelector((state: any) => state.stepSlice.data)
+    const { t } = useTranslation()
+    let formValueStep = step.step0?.data?.formValue
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
+    const [postData, resultPostData] = usePostAllDataMutation()
     const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -134,9 +135,8 @@ const AccountLog = () => {
         <>
             <ActiveAccount />
             <Box >
-                <TabsCustom dataTab={dataTab} activeTab={step.step1?.data?.activeTab}>
+                <TabsCustom dataTab={dataTab} activeTab={step.step0?.data?.activeTab}>
                     <div >
-
                         <div className="mb-3">
                             <InputCustom
                                 dataForm={dataForm}

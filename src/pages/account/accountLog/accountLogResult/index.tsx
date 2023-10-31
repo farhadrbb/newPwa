@@ -52,10 +52,10 @@ const AccountLogResult = () => {
                                 </div>
                                 <div className='flex flex-col' style={{ direction: 'ltr' }}>
                                     <div className='flex mb-2'>
-                                        <div className='font-bold mr-1'>{t("IRR")}</div>
+                                        <div className='font-bold mr-1 dark:text-gray-100'>{t("IRR")}</div>
                                         <div className='text-cyan-50 font-bold'>{sepreteNumber3(itm?.transactionAmount?.amount)}</div>
                                     </div>
-                                    <div style={{ direction: 'ltr' }}>{dateStampToShamsi(itm?.dateMill)}</div>
+                                    <div className='dark:text-gray-100 ' style={{ direction: 'ltr' }}>{dateStampToShamsi(itm?.dateMill)}</div>
                                 </div>
                             </div>
                             <div className="mt-1 text-xs text-gray-500 dark:text-gray-200 font-bold flex justify-end w-full "></div>
