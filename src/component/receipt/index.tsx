@@ -16,8 +16,8 @@ const Receipt = () => {
     const { t } = useTranslation()
     const [infoData,infoTitle] = useReceiptModel()
 
-    console.log("infoData",infoData);
-    console.log("infoTitle",infoTitle);
+    // console.log("infoData",infoData);
+    // console.log("infoTitle",infoTitle);
     
   
 

@@ -13,6 +13,7 @@ const URLS = {
         confirmTransfer: "/account/transfer/confirmForm",
         receipt: "/account/transfer/receipt",
         bill: "/account/bill",
+        billConfirmForm:'/account/bill/confirmForm',
         topup: "/account/topup",
         internet: "/account/internet",
         charity: "/account/charity",

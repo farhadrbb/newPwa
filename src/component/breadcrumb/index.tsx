@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setStepsSlice, setStepsSliceBack, setStepsSliceEmpty } from '../../redux/slice/step';
+import { setBackClick, setStepsSlice, setStepsSliceBack, setStepsSliceEmpty, setStepsSliceEmptyTheStep } from '../../redux/slice/step';
 import { HiHome } from 'react-icons/hi'
 import { FaArrowLeft } from 'react-icons/fa'
 import { BiCloset } from 'react-icons/bi';
@@ -61,8 +61,31 @@ const BreadCrumb = () => {
     }
 
     const handleRouteBack = (obj: any, backHome?: any) => {
-        dispatch(setStepsSliceBack(backState))
+        let arrStep = Object.keys(step.data)
+            if (arrStep[arrStep?.length - 2]) {
+                dispatch(setStepsSlice(
+                    {
+                        [arrStep[arrStep?.length - 2]]: {
+                            ...step?.data?.[arrStep[arrStep?.length - 2]],
+                            data: {
+                                ...step?.data?.[arrStep[arrStep?.length - 1]]?.data
+                            }
+                        }
+                    }
+                ))
+            } else if (!arrStep[arrStep?.length - 2] && arrStep[arrStep?.length - 1]) {
+                dispatch(setStepsSliceEmptyTheStep(arrStep[arrStep?.length - 1]))
+            }else {
+                dispatch(setStepsSliceEmpty(true))
+
+            }
+       
+        dispatch(setBackClick(true))
+        // dispatch(setStepsSliceBack(backState))
         navigate(backHome ? obj.backToHome : obj?.backUrl1)
+        setTimeout(() => {
+            dispatch(setBackClick(false))
+        }, 1000);
     }
 
     // ___________________________________________useEffect__________________________

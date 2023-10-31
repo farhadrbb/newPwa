@@ -8,7 +8,6 @@ interface IStep {
     backUrl2?: string,
     backToHome: string
     data: IData,
-    add?: boolean,
     pathname: string
 }
 
@@ -16,6 +15,7 @@ interface IStep {
 interface IData{
     formValue?:any
     resultApi?:any
+    dataReceipt?:any
     type?:string
     apiKey?:string
     activeTab?:number
@@ -32,7 +32,8 @@ interface IState{
 
 
 const initialState = {
-    data: {}
+    data: {},
+    backClick:false
 }
 
 
@@ -56,8 +57,19 @@ const stepSlice = createSlice({
         setStepsSliceEmpty: (state, action) => {
             state.data = {}
         },
+        setStepsSliceEmptyTheStep: (state, action) => {
+            let obj:any={
+                ...state.data
+            }
+            delete obj[action.payload]
+            state.data = obj
+        },
+        setBackClick: (state,action) => {
+            state.backClick = action.payload
+        },
+        
     },
 })
 
-export const { setStepsSlice, setStepsSliceBack,setStepsSliceEmpty } = stepSlice.actions
+export const { setStepsSlice, setStepsSliceBack,setStepsSliceEmpty,setBackClick,setStepsSliceEmptyTheStep } = stepSlice.actions
 export default stepSlice.reducer

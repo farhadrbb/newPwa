@@ -55,10 +55,10 @@ const List: React.FC = () => {
         return (
             <div className={`${ind === select && 'scale-110'}  ${classParent}`} style={{ fontFamily: 'TidFont' }}>
                 <div className={`${classBoxImg}`}>
-                    <div className={`${path === "/card" ? 'animate-[downAnime10_1s] visible h-full ' : 'w-0 h-0 invisible opacity-0 '}`}>
+                    <div  className={`${path === "/card" ? 'animate-[downAnime10_1s] visible h-full ' : 'w-0 h-0 invisible opacity-0 '}`}>
                         <CardBox itm={itm} />
                     </div>
-                    <div className={`${path === "/account" ? 'animate-[downAnime10_1s] visible h-full ' : 'w-0 h-0 invisible opacity-0 '}`}>
+                    <div  className={`${path === "/account" ? 'animate-[downAnime10_1s] visible h-full ' : 'w-0 h-0 invisible opacity-0 '}`}>
                         <AccountBoxList itm={itm} />
                     </div>
                 </div>

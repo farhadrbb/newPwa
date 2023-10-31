@@ -70,6 +70,11 @@ module.exports = {
           '50%': { transform: 'rotateY(180deg)' },
           '100%': { transform: 'rotateY(360deg)' },
         },
+        pers: {
+        '0%': { transform: 'perspective(0cm) rotateX(0deg) rotateY(0deg) rotateZ(0deg)' },
+          // '50%': { transform: 'perspective(2cm) rotateX(-15deg) rotateY(30deg) rotateZ(90deg)' },
+          '100%': { transform: 'perspective(1200px)  rotateY(-180deg) rotateX(0deg)' },
+        },
       },
 
 

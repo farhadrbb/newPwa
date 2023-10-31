@@ -8,6 +8,7 @@ import { PiUserListBold } from 'react-icons/pi'
 import { BsCalculator } from 'react-icons/bs'
 import URLS from '../../../../common/url';
 import { useLazyGetAllDataQuery, usePostAllDataMutation } from '../../../../redux/api/allApi';
+import { useTranslation } from 'react-i18next';
 
 interface IFormValue {
     amount: string,
@@ -23,11 +24,13 @@ const TejaratAccountTransfer = () => {
 
     const step = useSelector((state: any) => state.stepSlice.data)
     const active = useSelector((state: any) => state.activeCardOrAccount.activeAccount)
-    let formValueStep = step.step1?.data?.formValue
-    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
+    let formValueStep = step.step0?.data?.formValue
+    const [formValue, setFormValue] = React.useState<IFormValue>({ ...formValueStep } as IFormValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [postData, resultPostData] = usePostAllDataMutation()
+    const { t } = useTranslation()
+
 
     // ______________________________________varibles_____________________________
     const dataFormTejarat = [
@@ -114,9 +117,17 @@ const TejaratAccountTransfer = () => {
             step1: {
                 pathname: URLS.account.destAccounts,
                 title: 'انتخاب مقصد',
-                backUrl1: '/account/transfer',
+                backUrl1:URLS.account.transfer,
                 backToHome: '/account',
-                data: { formValue, apiKey: "accountIbanDestination", activeTab: 2, },
+                data: {
+                    formValue, apiKey: "accountIbanDestination",
+                    dataReceipt: {
+                        title: t('PAYMENT_RECEIPT'),
+                        backUrl1: URLS.account.transfer,
+                        backToHome: '/account',
+                    },
+                    activeTab: 2,
+                },
             }
         }))
         navigate(URLS.account.destAccounts)

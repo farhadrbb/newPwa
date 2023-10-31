@@ -29,17 +29,15 @@ function PrivateRoute({ children }: any) {
 }
 
 
-
 function App() {
+
+
 
   // _____________________________________hook________________________
 
   const darkmode = useSelector((state: any) => state.toolsSlice.dark)
-
   const step = useSelector((state: any) => state.stepSlice.data)
   console.log("step", step);
-
-
   const dispatch = useDispatch()
 
   // _____________________________________varibles________________________
@@ -69,6 +67,8 @@ function App() {
     ))
   }
 
+  
+
   // _____________________________useEffect__________________________
   useEffect(() => {
 
@@ -80,6 +80,7 @@ function App() {
       element.classList.add("dark")
       localStorage.setItem('theme', "dark")
     }
+
   }, [darkmode])
 
 

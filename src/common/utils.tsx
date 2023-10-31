@@ -14,6 +14,8 @@ export function encryptRSA(str: any) {
 }
 
 export const sepreteNumber3 = (num: any) => {
+
+  
   if (num) {
 
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")

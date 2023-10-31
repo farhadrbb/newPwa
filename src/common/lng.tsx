@@ -13,7 +13,8 @@ export const lng =
             "WELLCOM_MESSAGE": "به همراه بانک تجارت خوش آمدید",
             "NATIONAL_CODE": "شناسه ملی",
             "REAL_NATIONAL_CODE": "کد ملی",
-
+            "POS_STORE" : 'پایانه فروشگاهی',
+            "POS" : 'پایانه',
 
             "PHONE_NUMBER": "شماره همراه",
             "SEND": "ارسال",
@@ -42,6 +43,7 @@ export const lng =
             "PAYA_SATNA": "پایا/ساتنا",
             "HELP": "راهنما",
             "ERROR": "خطا",
+            "PAYMENT_RECEIPT":'رسید پرداختی',
             "USER_NAME_IS_EMPTY": "نام کاربری خود را وارد کنید",
             "PASSWORD_IS_EMPTY": "رمز عبور خود را وارد کنید",
             "ADD_ACCOUNT_DESC": "لطفا شماره همراه خود را جهت فعال سازی وارد کرده و گزینه ارسال رو انتخاب کنید.",

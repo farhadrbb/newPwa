@@ -7,6 +7,7 @@ import TabsCustom from "../../component/tabsCustom";
 export interface IMenu {
     title: string,
     icon: React.FC,
+    data?:{}
     color: string,
     fill:string,
     onclick: (itm:IMenu)=> void,

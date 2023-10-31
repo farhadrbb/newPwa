@@ -65,7 +65,8 @@ const Account = () => {
             icon: IcBillService,
             color: 'bg-itemSelect-cyanDark',
             fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
-            route: '/account/transfer',
+            route: '/account/bill',
+            data:{type:'account'},
             onclick: (itm: IMenu) => handleOnclickItem(itm)
         },
         {
@@ -149,7 +150,6 @@ const Account = () => {
                 backUrl1: '/account',
                 backToHome: '/account',
                 data: {},
-                add: true
             }
         }))
 
