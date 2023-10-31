@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next"
 import Box from "../../../component/box"
 import TabsCustom from "../../../component/tabsCustom"
+import Sayad from "./sayad"
+import Digital from "./digital"
 
 
 function ChequeManagement() {
@@ -21,19 +23,23 @@ function ChequeManagement() {
        
     ]
 
+    // const SItems:SMenu[] = [
+    //     {
+    //         title: t("CHEQUE_MANAGEMENT"),
+    //         icon: IcChequeManagment,
+    //         color: 'bg-itemSelect-cyan',
+    //         fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
+    //         route: '/services/cheque',
+    //         onclick: (item: IMenu) => handleOnclickItem(item)
+    //     }
+    // ]
   
     return (
         <div>
                 <Box className="mb-7">
                     <TabsCustom dataTab={dataTab} >
-                        <div>
-                            1
-
-                        </div>
-                        <div>
-                            2
-
-                        </div>
+                        <Sayad />
+                        <Digital />
                         {/* <TejaratAccountTransfer />
                         <MobileAccountTransfer />
                         <IbanAccountTrasnfer /> */}

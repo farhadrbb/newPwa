@@ -42,6 +42,7 @@ const Account = () => {
             fill: 'fill-itemSelect-grayDark dark:fill-itemSelect-graylight',
             route: '/account/transfer',
             onclick: (itm: IMenu) => handleOnclickItem(itm)
+            
         },
         {
             title: 'انتقال وجه',
