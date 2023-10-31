@@ -65,14 +65,12 @@ const TejaratAccountTransfer = () => {
             name: 'transferId',
             type: "checkBox",
             value: formValue?.transferId,
-
             active: true
         },
         {
             title: '',
             name: 'transferIdentifier1',
             value: formValue?.transferIdentifier1,
-
             type: "number",
             active: formValue.transferId
         },
@@ -95,7 +93,7 @@ const TejaratAccountTransfer = () => {
             externalRequestId: 0,
             requestSourceType: "CUSTOMER_NORMAL",
             sourceAccountNumber: active.accountNumber,
-            transferIdentifier1: formValue.transferId,
+            transferIdentifier1: formValue.transferIdentifier1,
         }
         return data
 

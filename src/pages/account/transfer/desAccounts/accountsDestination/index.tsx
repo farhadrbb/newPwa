@@ -63,8 +63,8 @@ const AccountsDestination = (props: any) => {
             destinationIBAN: itm?.iban
         }
         dispatch(setStepsSlice({
-            step1: {
-                ...step.step1,
+            step0: {
+                ...step.step0,
                 data: {
                     formValue: { ...step.step1.data.formValue, ...obj },
                     activeTab: apiKeyState === 'accountDestination' ? 0 : 2,
@@ -137,7 +137,6 @@ const AccountsDestination = (props: any) => {
                             <div className="mt-1 text-xs text-gray-500 dark:text-gray-200 font-bold flex justify-end w-full ">{handleData(itm)?.accountNumber || handleData(itm)?.iban}</div>
                         </div>
                     ))}
-
                 </div>
             </div>
         </>

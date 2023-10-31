@@ -108,9 +108,10 @@ export const baseQuery = async (args: any, api: any, extraOptions: any) => {
   if (result.error && result.error.status === 401) {
     // alert('دوباره لاگین کنید')
     // api.dispatch(setToast({title:'دوباره لاگین کنید',type:'error'}))
+   
     setTimeout(() => {
       window.location.reload()
-    }, 500);
+    }, 1000);
   }
   return result;
 };

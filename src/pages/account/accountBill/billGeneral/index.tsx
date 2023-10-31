@@ -16,8 +16,10 @@ interface IFormValue {
 }
 
 const BillGeneral = () => {
-    const [formValue, setFormValue] = React.useState<IFormValue>({} as IFormValue)
     const step = useSelector((state: any) => state.stepSlice.data)
+    let formValueStep = step.step0?.data?.formValue
+    
+    const [formValue, setFormValue] = React.useState<IFormValue>({...formValueStep} as IFormValue)
     const [postData, resultPostData] = usePostAllDataMutation()
     const { t } = useTranslation()
     const activeAccount = useSelector((state: any) => state.activeCardOrAccount.activeAccount)

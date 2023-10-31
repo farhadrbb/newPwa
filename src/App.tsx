@@ -20,17 +20,16 @@ import ModalCustom from './component/modalCustom';
 
 function PrivateRoute({ children }: any) {
   const user = useSelector((state: any) => state.user.user)
-
+  
   if (!user) {
     return <Navigate to="/login" />
   }
-
+  
   return children;
 }
 
 
 function App() {
-
 
 
   // _____________________________________hook________________________
@@ -67,7 +66,7 @@ function App() {
     ))
   }
 
-  
+
 
   // _____________________________useEffect__________________________
   useEffect(() => {

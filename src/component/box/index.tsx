@@ -7,7 +7,7 @@ interface IProps {
 }
 const Box = memo((props: IProps) => {
     const { title, children, className } = props
-    const boxClass = "bg-white w-full pt-1 rounded-[15px] flex flex-col dark:bg-darkMode-grayDark shadow-xl shadow-gray-300 dark:shadow-gray-900 overflow-y-auto min-h-[10vh] max-h-[80vh]"
+    const boxClass = "bg-white w-full pt-1 rounded-[15px] flex flex-col dark:bg-darkMode-grayDark shadow-lg shadow-gray-400 dark:shadow-gray-900 overflow-y-auto  max-h-[70vh]"
     const titleClass = "bg-gray-300 text-black text-base rounded-tr-md rounded-tl-md p-2 dark:text-gray-100 dark:bg-darkMode-gray dark:shadow-slate-800"
 
     return (

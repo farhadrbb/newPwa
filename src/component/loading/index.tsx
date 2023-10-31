@@ -15,7 +15,7 @@ const Loading = () => {
 
             <div className={`${loading ? 'visible opacity-70 w-full h-full' : 'w-0 h-0 invisible opacity-0'} ${classLoading}`}>
                 {/* <Spin indicator={antIcon} className="fill-gray-900 text-white" /> */}
-            <div className="absolute  z-[1000] !opacity-100 border-[2px] animate-spin border-soli border-white  border-r-transparent border-t-transparent w-10 h-10 bg-transparent rounded-full"></div>
+                <div className="absolute  z-[1000] !opacity-100 border-[2px] animate-spin border-soli border-white  border-r-transparent border-t-transparent w-10 h-10 bg-transparent rounded-full"></div>
 
                 {/* <div className="preloader">
                     <div className="preloader-box">
